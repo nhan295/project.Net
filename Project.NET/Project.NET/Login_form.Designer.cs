@@ -31,9 +31,9 @@
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox3 = new PictureBox();
-            txtUrsname = new TextBox();
+            txtEmail = new TextBox();
             txtPass = new TextBox();
-            button1 = new Button();
+            btn_login = new Button();
             linkLabel1 = new LinkLabel();
             btn_register = new Button();
             label1 = new Label();
@@ -77,12 +77,12 @@
             pictureBox3.TabIndex = 2;
             pictureBox3.TabStop = false;
             // 
-            // txtUrsname
+            // txtEmail
             // 
-            txtUrsname.Location = new Point(138, 289);
-            txtUrsname.Name = "txtUrsname";
-            txtUrsname.Size = new Size(302, 27);
-            txtUrsname.TabIndex = 3;
+            txtEmail.Location = new Point(138, 289);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(302, 27);
+            txtEmail.TabIndex = 3;
             // 
             // txtPass
             // 
@@ -92,17 +92,18 @@
             txtPass.Size = new Size(302, 27);
             txtPass.TabIndex = 4;
             // 
-            // button1
+            // btn_login
             // 
-            button1.BackColor = Color.DarkRed;
-            button1.Font = new Font("Segoe UI Variable Display", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = SystemColors.ButtonHighlight;
-            button1.Location = new Point(138, 425);
-            button1.Name = "button1";
-            button1.Size = new Size(302, 55);
-            button1.TabIndex = 5;
-            button1.Text = "Login";
-            button1.UseVisualStyleBackColor = false;
+            btn_login.BackColor = Color.DarkRed;
+            btn_login.Font = new Font("Segoe UI Variable Display", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_login.ForeColor = SystemColors.ButtonHighlight;
+            btn_login.Location = new Point(138, 425);
+            btn_login.Name = "btn_login";
+            btn_login.Size = new Size(302, 55);
+            btn_login.TabIndex = 5;
+            btn_login.Text = "Login";
+            btn_login.UseVisualStyleBackColor = false;
+            btn_login.Click += btn_login_Click;
             // 
             // linkLabel1
             // 
@@ -167,9 +168,9 @@
             Controls.Add(label1);
             Controls.Add(btn_register);
             Controls.Add(linkLabel1);
-            Controls.Add(button1);
+            Controls.Add(btn_login);
             Controls.Add(txtPass);
-            Controls.Add(txtUrsname);
+            Controls.Add(txtEmail);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
@@ -192,9 +193,9 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
-        private TextBox txtUrsname;
+        private TextBox txtEmail;
         private TextBox txtPass;
-        private Button button1;
+        private Button btn_login;
         private LinkLabel linkLabel1;
         private Button btn_register;
         private Label label1;

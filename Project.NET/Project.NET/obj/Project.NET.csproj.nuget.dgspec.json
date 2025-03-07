@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\.NET\\Project.NET\\Project.NET\\Project.NET.csproj": {}
+    "E:\\GitHub\\project.Net\\Project.NET\\Project.NET\\Project.NET.csproj": {}
   },
   "projects": {
-    "D:\\.NET\\Project.NET\\Project.NET\\Project.NET.csproj": {
+    "E:\\GitHub\\project.Net\\Project.NET\\Project.NET\\Project.NET.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\.NET\\Project.NET\\Project.NET\\Project.NET.csproj",
+        "projectUniqueName": "E:\\GitHub\\project.Net\\Project.NET\\Project.NET\\Project.NET.csproj",
         "projectName": "Project.NET",
-        "projectPath": "D:\\.NET\\Project.NET\\Project.NET\\Project.NET.csproj",
-        "packagesPath": "C:\\Users\\CAN THO\\.nuget\\packages\\",
-        "outputPath": "D:\\.NET\\Project.NET\\Project.NET\\obj\\",
+        "projectPath": "E:\\GitHub\\project.Net\\Project.NET\\Project.NET\\Project.NET.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "E:\\GitHub\\project.Net\\Project.NET\\Project.NET\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\CAN THO\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -43,12 +39,21 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
+          "dependencies": {
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.9.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -68,7 +73,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
