@@ -104,6 +104,28 @@ BEGIN
     WHERE f.title LIKE N'%' + @Title + '%';  
 END;
 
+
+CREATE PROCEDURE InsertCustomerIntoInvoice
+    @invoice_id INT,
+    @cus_name NVARCHAR(45)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    DECLARE @cus_id INT;
+    SELECT @cus_id = cus_id FROM Customer WHERE cus_name = @cus_name;
+    IF @cus_id IS NOT NULL
+    BEGIN
+        UPDATE Invoice SET cus_id = @cus_id WHERE invoice_id = @invoice_id;
+        PRINT 'Cập nhật hóa đơn thành công!';
+    END
+    ELSE
+    BEGIN
+        PRINT 'Khách hàng không tồn tại!';
+    END
+END;
+
+
 -- Chèn dữ liệu vào bảng Cinema
 INSERT INTO Cinema (cinema_id, cinema_room, cinema_address, total_rooms) VALUES
 (1, 'Room A', '123 Main St', '5'),
