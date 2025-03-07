@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MovieDetail));
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             textBox1 = new TextBox();
@@ -41,7 +42,7 @@
             // 
             // pictureBox2
             // 
-            pictureBox2.Image = Properties.Resources.qu_nh_p_tr_ng___payoff_poster___kc_07032025_1_;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(12, 101);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(130, 170);
@@ -51,7 +52,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.hq720;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(-3, 0);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(566, 179);
