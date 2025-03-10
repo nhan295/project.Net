@@ -1,3 +1,4 @@
+using System;
 using System.Data;
 using Microsoft.Data.SqlClient;
 
@@ -32,11 +33,11 @@ namespace Project.NET
             try
             {
                 clsConnectDB.OpenConnection();
-                SqlCommand com = new SqlCommand("select * from Customer where cus_email=@cus_email and cus_password=@cus_password", clsConnectDB.conn);
+                SqlCommand com = new SqlCommand("select * from Customer where cus_email=@CusEmail and cus_password=@CusPassword", clsConnectDB.conn);
 
-                SqlParameter p1 = new SqlParameter("@cus_email", SqlDbType.NVarChar);
+                SqlParameter p1 = new SqlParameter("@CusEmail", SqlDbType.NVarChar);
                 p1.Value = txtEmail.Text;
-                SqlParameter p2 = new SqlParameter("@cus_password", SqlDbType.NVarChar);
+                SqlParameter p2 = new SqlParameter("@CusPassword", SqlDbType.NVarChar);
                 p2.Value = txtPass.Text;
 
                 com.Parameters.Add(p1);
@@ -45,15 +46,32 @@ namespace Project.NET
                 SqlDataReader reader = com.ExecuteReader();
                 if (reader.HasRows)
                 {
-                    MessageBox.Show("Dang nhap thanh cong", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //this.Hide();
+                    // Luu id cua khach hang
+                    if(reader.Read())
+                    {
+                        clsSession.CusId = reader.GetInt32(0);
+
+                        //MessageBox.Show("Customer ID: " + clsSession.CusId, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    //MessageBox.Show("Dang nhap thanh cong", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Hide();
+                    HomePage home = new HomePage();
+                    home.ShowDialog();
+                    this.Close();
 
                 } else
                 {
                     MessageBox.Show("Dang nhap that bai", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            } catch (Exception ex) {
+            } 
+            catch (Exception ex) 
+            {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                clsConnectDB.CloseConnection();
             }
         }
     }

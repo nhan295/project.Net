@@ -13,7 +13,7 @@ create table Cinema (
 select* from cinema;
 
 create table Customer (
-	cus_id int primary key,
+	cus_id int identity(1,1) primary key,
 	cus_name nvarchar(45),
 	cus_password nvarchar(45),
 	cus_phone nvarchar(45),
