@@ -41,9 +41,9 @@
             txtCity = new TextBox();
             btnUpdateProfile = new Button();
             btnDeleteAccount = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
             SuspendLayout();
             // 
             // lblTitle
@@ -155,42 +155,40 @@
             btnDeleteAccount.Text = "Delete Account";
             btnDeleteAccount.Click += btnDeleteAccount_Click;
             // 
-            // textBox1
+            // label1
             // 
-            textBox1.BackColor = Color.DarkGray;
-            textBox1.Location = new Point(20, 52);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(612, 27);
-            textBox1.TabIndex = 22;
-            textBox1.Text = "My Account is...";
-            textBox1.TextChanged += textBox1_TextChanged;
+            label1.BackColor = Color.DarkGray;
+            label1.Location = new Point(20, 55);
+            label1.Name = "label1";
+            label1.Size = new Size(612, 20);
+            label1.TabIndex = 25;
+            label1.Text = "My account is...";
             // 
-            // textBox2
+            // label2
             // 
-            textBox2.BackColor = Color.DarkGray;
-            textBox2.Location = new Point(20, 134);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(612, 27);
-            textBox2.TabIndex = 23;
-            textBox2.Text = "More information";
-            textBox2.TextChanged += textBox2_TextChanged;
+            label2.BackColor = Color.DarkGray;
+            label2.Location = new Point(20, 133);
+            label2.Name = "label2";
+            label2.Size = new Size(612, 20);
+            label2.TabIndex = 26;
+            label2.Text = "More information";
             // 
-            // textBox3
+            // label3
             // 
-            textBox3.BackColor = Color.DarkGray;
-            textBox3.Location = new Point(20, 242);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(612, 27);
-            textBox3.TabIndex = 24;
-            textBox3.Text = "Contact";
+            label3.BackColor = Color.DarkGray;
+            label3.Location = new Point(20, 240);
+            label3.Name = "label3";
+            label3.Size = new Size(612, 20);
+            label3.TabIndex = 27;
+            label3.Text = "Contact";
             // 
             // ProfilePage
             // 
             BackColor = Color.White;
             ClientSize = new Size(658, 409);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(lblTitle);
             Controls.Add(lblGmail);
             Controls.Add(txtGmail);
@@ -210,8 +208,8 @@
             PerformLayout();
         }
 
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private Label label1;
+        private Label label2;
+        private Label label3;
     }
 }
