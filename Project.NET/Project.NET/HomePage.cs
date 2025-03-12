@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,10 +13,33 @@ namespace Project.NET
 {
     public partial class HomePage : Form
     {
+
+        private Image[] slideImages = {
+            Properties.Resources.toy,    
+            Properties.Resources.frozen,
+            Properties.Resources.inception
+            
+    };
+        private int currentIndex = 0;
         public HomePage()
         {
             InitializeComponent();
+            LoadSlideImage();
+            timer1.Tick += TimerSlide_Tick;
+            timer1.Start();
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
         }
+            private void LoadSlideImage()
+        {
+            pictureBox3.Image = slideImages[currentIndex];
+        }
+
+            private void TimerSlide_Tick(object sender, EventArgs e)
+        {
+            currentIndex = (currentIndex + 1) % slideImages.Length;
+            pictureBox3.Image = slideImages[currentIndex];
+        }
+
 
         private void label1_Click(object sender, EventArgs e)
         {
