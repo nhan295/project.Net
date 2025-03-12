@@ -211,7 +211,7 @@
             // 
             // pictureBox2
             // 
-            pictureBox2.Image = Properties.Resources.user1;
+            pictureBox2.Image = Properties.Resources.user;
             pictureBox2.Location = new Point(46, 341);
             pictureBox2.Margin = new Padding(4);
             pictureBox2.Name = "pictureBox2";

@@ -155,7 +155,7 @@
             // 
             // pictureBox8
             // 
-            pictureBox8.Image = Properties.Resources.user__1_;
+            pictureBox8.Image = Properties.Resources.user2;
             pictureBox8.Location = new Point(0, 3);
             pictureBox8.Name = "pictureBox8";
             pictureBox8.Size = new Size(40, 41);
@@ -250,7 +250,7 @@
             // 
             // pictureBox5
             // 
-            pictureBox5.Image = Properties.Resources.dinosaur1;
+            pictureBox5.Image = Properties.Resources.dinosaur;
             pictureBox5.Location = new Point(3, 6);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(37, 41);
@@ -301,7 +301,7 @@
             // 
             // btn_menu
             // 
-            btn_menu.Image = Properties.Resources.menu1;
+            btn_menu.Image = Properties.Resources.menu;
             btn_menu.Location = new Point(12, 12);
             btn_menu.Name = "btn_menu";
             btn_menu.Size = new Size(38, 30);
