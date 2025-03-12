@@ -63,15 +63,12 @@ namespace Project.NET
                 } else
                 {
                     MessageBox.Show("Dang nhap that bai", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    clsConnectDB.CloseConnection();
                 }
             } 
             catch (Exception ex) 
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                clsConnectDB.CloseConnection();
             }
         }
     }

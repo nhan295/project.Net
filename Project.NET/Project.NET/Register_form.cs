@@ -163,16 +163,13 @@ namespace Project.NET
                     else
                     {
                         MessageBox.Show("Tài khoản đã tồn tại", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        clsConnectDB.CloseConnection();
                     }
                 }
             } 
             catch(Exception ex) 
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally 
-            {
-                clsConnectDB.CloseConnection();
             }
 
         }
