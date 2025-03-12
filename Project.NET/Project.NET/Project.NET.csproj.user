@@ -10,6 +10,9 @@
     <Compile Update="MovieDetail.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ProfilePage.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Register_form.cs">
       <SubType>Form</SubType>
     </Compile>
