@@ -1,6 +1,9 @@
 ﻿
 create database [Project.Net];
 
+USE master;
+drop database [Project.Net];
+
 use [Project.Net];
 
 create table Cinema (

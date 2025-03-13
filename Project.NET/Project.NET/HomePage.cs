@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProfilePageApp;
 
 namespace Project.NET
 {
@@ -15,10 +16,10 @@ namespace Project.NET
     {
 
         private Image[] slideImages = {
-            Properties.Resources.toy,    
+            Properties.Resources.toy,
             Properties.Resources.frozen,
             Properties.Resources.inception
-            
+
     };
         private int currentIndex = 0;
         public HomePage()
@@ -29,12 +30,12 @@ namespace Project.NET
             timer1.Start();
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
         }
-            private void LoadSlideImage()
+        private void LoadSlideImage()
         {
             pictureBox3.Image = slideImages[currentIndex];
         }
 
-            private void TimerSlide_Tick(object sender, EventArgs e)
+        private void TimerSlide_Tick(object sender, EventArgs e)
         {
             currentIndex = (currentIndex + 1) % slideImages.Length;
             pictureBox3.Image = slideImages[currentIndex];
@@ -103,6 +104,24 @@ namespace Project.NET
 
         private void pictureBox8_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnAccountInformation_Click(object sender, EventArgs e)
+        {
+            //this.Hide();
+            ProfilePage profilePage = new ProfilePage();
+            profilePage.ShowDialog();
+            //this.Close();
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            clsSession.CusId = 0;
+            Login_form login = new Login_form();
+            this.Hide();
+            login.ShowDialog();
+            this.Close();
 
         }
     }

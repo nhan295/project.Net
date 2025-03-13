@@ -41,7 +41,7 @@
             txtCity = new TextBox();
             btnUpdateProfile = new Button();
             btnDeleteAccount = new Button();
-            label1 = new Label();
+            lblUserName = new Label();
             label2 = new Label();
             label3 = new Label();
             SuspendLayout();
@@ -52,7 +52,7 @@
             lblTitle.Font = new Font("Arial", 14F, FontStyle.Bold);
             lblTitle.Location = new Point(20, 9);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(249, 29);
+            lblTitle.Size = new Size(289, 33);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Account Information";
             // 
@@ -71,7 +71,6 @@
             lblName.Size = new Size(66, 23);
             lblName.TabIndex = 5;
             lblName.Text = "Name:";
-            lblName.Click += lblName_Click;
             // 
             // lblBirthday
             // 
@@ -80,7 +79,6 @@
             lblBirthday.Size = new Size(100, 23);
             lblBirthday.TabIndex = 7;
             lblBirthday.Text = "Birthday:";
-            lblBirthday.Click += lblBirthday_Click;
             // 
             // lblPhone
             // 
@@ -89,7 +87,6 @@
             lblPhone.Size = new Size(124, 23);
             lblPhone.TabIndex = 14;
             lblPhone.Text = "Mobile Phone:";
-            lblPhone.Click += lblPhone_Click;
             // 
             // lblCity
             // 
@@ -98,50 +95,48 @@
             lblCity.Size = new Size(100, 23);
             lblCity.TabIndex = 16;
             lblCity.Text = "Address";
-            lblCity.Click += lblCity_Click;
             // 
             // txtGmail
             // 
             txtGmail.Location = new Point(150, 90);
             txtGmail.Name = "txtGmail";
-            txtGmail.Size = new Size(482, 27);
+            txtGmail.Size = new Size(482, 31);
             txtGmail.TabIndex = 3;
             // 
             // txtName
             // 
             txtName.Location = new Point(150, 167);
             txtName.Name = "txtName";
-            txtName.Size = new Size(482, 27);
+            txtName.Size = new Size(482, 31);
             txtName.TabIndex = 6;
-            txtName.TextChanged += txtName_TextChanged;
             // 
             // dtpBirthday
             // 
             dtpBirthday.Format = DateTimePickerFormat.Short;
             dtpBirthday.Location = new Point(150, 200);
             dtpBirthday.Name = "dtpBirthday";
-            dtpBirthday.Size = new Size(200, 27);
+            dtpBirthday.Size = new Size(200, 31);
             dtpBirthday.TabIndex = 8;
             // 
             // txtPhone
             // 
             txtPhone.Location = new Point(150, 275);
             txtPhone.Name = "txtPhone";
-            txtPhone.Size = new Size(200, 27);
+            txtPhone.Size = new Size(200, 31);
             txtPhone.TabIndex = 15;
             // 
             // txtCity
             // 
             txtCity.Location = new Point(150, 321);
             txtCity.Name = "txtCity";
-            txtCity.Size = new Size(482, 27);
+            txtCity.Size = new Size(482, 31);
             txtCity.TabIndex = 17;
             // 
             // btnUpdateProfile
             // 
-            btnUpdateProfile.Location = new Point(476, 366);
+            btnUpdateProfile.Location = new Point(414, 366);
             btnUpdateProfile.Name = "btnUpdateProfile";
-            btnUpdateProfile.Size = new Size(75, 35);
+            btnUpdateProfile.Size = new Size(137, 35);
             btnUpdateProfile.TabIndex = 20;
             btnUpdateProfile.Text = "Update Profile";
             btnUpdateProfile.Click += btnUpdateProfile_Click;
@@ -155,14 +150,14 @@
             btnDeleteAccount.Text = "Delete Account";
             btnDeleteAccount.Click += btnDeleteAccount_Click;
             // 
-            // label1
+            // lblUserName
             // 
-            label1.BackColor = Color.DarkGray;
-            label1.Location = new Point(20, 55);
-            label1.Name = "label1";
-            label1.Size = new Size(612, 20);
-            label1.TabIndex = 25;
-            label1.Text = "My account is...";
+            lblUserName.BackColor = Color.DarkGray;
+            lblUserName.Location = new Point(20, 55);
+            lblUserName.Name = "lblUserName";
+            lblUserName.Size = new Size(612, 20);
+            lblUserName.TabIndex = 25;
+            lblUserName.Text = "My account is...";
             // 
             // label2
             // 
@@ -188,7 +183,7 @@
             ClientSize = new Size(658, 409);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(lblUserName);
             Controls.Add(lblTitle);
             Controls.Add(lblGmail);
             Controls.Add(txtGmail);
@@ -204,6 +199,7 @@
             Controls.Add(btnDeleteAccount);
             Name = "ProfilePage";
             Text = "Profile Page";
+            Load += ProfilePage_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -211,5 +207,6 @@
         private Label label1;
         private Label label2;
         private Label label3;
+        private Label lblUserName;
     }
 }

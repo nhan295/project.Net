@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Data;
 using System.Windows.Forms;
+using Microsoft.Data.SqlClient;
+using Project.NET;
 
 namespace ProfilePageApp
 {
@@ -24,49 +27,38 @@ namespace ProfilePageApp
             }
         }
 
-        private void lblGender_Click(object sender, EventArgs e)
+        private void ProfilePage_Load(object sender, EventArgs e)
         {
+            try
+            {
+                int cusId = clsSession.CusId;
+                clsConnectDB.OpenConnection();
+                SqlCommand com = new SqlCommand("select cus_name, cus_phone, cus_email, cus_address, cus_birthday from Customer where cus_id=@cusId", clsConnectDB.conn);
+                SqlParameter p = new SqlParameter("@cusId", SqlDbType.Int);
+                p.Value = cusId;
+                com.Parameters.Add(p);
 
-        }
+                SqlDataReader reader = com.ExecuteReader();
+                if(reader.HasRows)
+                {
+                    if(reader.Read())
+                    {
+                        txtName.Text = reader.GetString(0);
+                        txtPhone.Text = reader.GetString(1);
+                        txtGmail.Text = reader.GetString(2);
+                        txtCity.Text = reader.GetString(3);
 
-        private void lblPhone_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblName_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblCity_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblBirthday_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+                        if(!reader.IsDBNull(4))
+                        {
+                            dtpBirthday.Value = reader.GetDateTime(4);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to Load data: " + ex, "Failed" , MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
