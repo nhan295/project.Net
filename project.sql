@@ -80,7 +80,8 @@ create table Film(
 	company_production nvarchar(50),
 	desciption nvarchar(50),
 	thumbnail nvarchar(50),
-	status_firm nvarchar(50)
+	film_status nvarchar(50),
+	film_language nvarchar(50)
 
 	foreign key (genre_id) references Genre(genre_id),
 
@@ -208,16 +209,17 @@ INSERT INTO Seat (seat_id, screeningroom_id, seat_number, seat_status) VALUES
 (10, 10, 'J10', 1);
 
 -- Chèn dữ liệu vào bảng Film
-INSERT INTO Film (film_id, title, genre_id, release_date, director, company_production, description, thumbnail, status) VALUES
-(1, 'The Avengers', 1, '2012-05-04', 'Joss Whedon', 'Marvel Studios', 'Superhero film', 'avengers.jpg', 'Now Showing'),
-(2, 'Inception', 5, '2010-07-16', 'Christopher Nolan', 'Warner Bros.', 'Sci-fi thriller', 'inception.jpg', 'Now Showing'),
-(3, 'Titanic', 6, '1997-12-19', 'James Cameron', '20th Century Fox', 'Romantic drama', 'titanic.jpg', 'Now Showing'),
-(4, 'The Conjuring', 4, '2013-07-19', 'James Wan', 'New Line Cinema', 'Horror film', 'conjuring.jpg', 'Now Showing'),
-(5, 'Toy Story', 8, '1995-11-22', 'John Lasseter', 'Pixar', 'Animated film', 'toystory.jpg', 'Now Showing'),
-(6, 'The Dark Knight', 1, '2008-07-18', 'Christopher Nolan', 'Warner Bros.', 'Superhero film', 'darkknight.jpg', 'Now Showing'),
-(7, 'Interstellar', 5, '2014-11-07', 'Christopher Nolan', 'Paramount', 'Sci-fi adventure', 'interstellar.jpg', 'Now Showing'),
-(8, 'Frozen', 10, '2013-11-27', 'Chris Buck', 'Disney', 'Fantasy animation', 'frozen.jpg', 'Now Showing'),
-(9, 'Parasite', 3, '2019-05-30', 'Bong Joon-ho', 'CJ Entertainment', 'Thriller drama', 'parasite.jpg', 'Now Showing'),
-(10, 'The Godfather', 3, '1972-03-24', 'Francis Ford Coppola', 'Paramount Pictures', 'Crime drama', 'godfather.jpg', 'Now Showing');
+INSERT INTO Film (film_id, title, genre_id, release_date, director, company_production, description, thumbnail, film_status, film_language) VALUES
+(1, 'The Avengers', 1, '2012-05-04', 'Joss Whedon', 'Marvel Studios', 'Superhero film', 'avengers.jpg', 'Now Showing', 'English - Vietnamese'),
+(2, 'Inception', 5, '2010-07-16', 'Christopher Nolan', 'Warner Bros.', 'Sci-fi thriller', 'inception.jpg', 'Now Showing', 'English - Vietnamese'),
+(3, 'Titanic', 6, '1997-12-19', 'James Cameron', '20th Century Fox', 'Romantic drama', 'titanic.jpg', 'Now Showing', 'English - Vietnamese'),
+(4, 'The Conjuring', 4, '2013-07-19', 'James Wan', 'New Line Cinema', 'Horror film', 'conjuring.jpg', 'Now Showing', 'English - Vietnamese'),
+(5, 'Toy Story', 8, '1995-11-22', 'John Lasseter', 'Pixar', 'Animated film', 'toystory.jpg', 'Now Showing', 'English - Vietnamese'),
+(6, 'The Dark Knight', 1, '2008-07-18', 'Christopher Nolan', 'Warner Bros.', 'Superhero film', 'darkknight.jpg', 'Now Showing', 'English - Vietnamese'),
+(7, 'Interstellar', 5, '2014-11-07', 'Christopher Nolan', 'Paramount', 'Sci-fi adventure', 'interstellar.jpg', 'Now Showing', 'English - Vietnamese'),
+(8, 'Frozen', 10, '2013-11-27', 'Chris Buck', 'Disney', 'Fantasy animation', 'frozen.jpg', 'Now Showing', 'English - Vietnamese'),
+(9, 'Parasite', 3, '2019-05-30', 'Bong Joon-ho', 'CJ Entertainment', 'Thriller drama', 'parasite.jpg', 'Now Showing', 'English - Vietnamese'),
+(10, 'The Godfather', 3, '1972-03-24', 'Francis Ford Coppola', 'Paramount Pictures', 'Crime drama', 'godfather.jpg', 'Now Showing', 'English - Vietnamese');
+
 
 

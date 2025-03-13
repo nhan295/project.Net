@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomePage));
             label1 = new Label();
             pictureBox1 = new PictureBox();
             label2 = new Label();
@@ -318,7 +317,6 @@
             // 
             // pictureBox2
             // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(0, 0);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(40, 41);
@@ -402,7 +400,6 @@
             // 
             // pictureBox6
             // 
-            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
             pictureBox6.Location = new Point(0, 0);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(40, 41);
@@ -454,7 +451,7 @@
             // 
             pictureBox3.Location = new Point(204, 65);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(459, 121);
+            pictureBox3.Size = new Size(448, 126);
             pictureBox3.TabIndex = 5;
             pictureBox3.TabStop = false;
             // 
