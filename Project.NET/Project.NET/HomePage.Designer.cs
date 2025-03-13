@@ -108,7 +108,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             label1.ForeColor = SystemColors.ActiveCaptionText;
-            label1.Location = new Point(146, 208);
+            label1.Location = new Point(190, 222);
             label1.Name = "label1";
             label1.Size = new Size(172, 32);
             label1.TabIndex = 0;
@@ -121,7 +121,7 @@
             pictureBox1.Dock = DockStyle.Top;
             pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(859, 45);
+            pictureBox1.Size = new Size(838, 45);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
@@ -130,7 +130,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             label2.ForeColor = SystemColors.ActiveCaptionText;
-            label2.Location = new Point(526, 208);
+            label2.Location = new Point(524, 222);
             label2.Name = "label2";
             label2.Size = new Size(168, 32);
             label2.TabIndex = 2;
@@ -145,7 +145,7 @@
             panel1.Controls.Add(panel5);
             panel1.Controls.Add(panel4);
             panel1.Controls.Add(panel2);
-            panel1.Location = new Point(84, 252);
+            panel1.Location = new Point(83, 278);
             panel1.Name = "panel1";
             panel1.Size = new Size(746, 379);
             panel1.TabIndex = 3;
@@ -185,7 +185,7 @@
             // 
             // pictureBox13
             // 
-            pictureBox13.Location = new Point(3, 3);
+            pictureBox13.Location = new Point(3, 6);
             pictureBox13.Name = "pictureBox13";
             pictureBox13.Size = new Size(192, 225);
             pictureBox13.TabIndex = 0;
@@ -233,7 +233,7 @@
             // 
             // pictureBox11
             // 
-            pictureBox11.Location = new Point(3, 3);
+            pictureBox11.Location = new Point(10, 8);
             pictureBox11.Name = "pictureBox11";
             pictureBox11.Size = new Size(192, 225);
             pictureBox11.TabIndex = 0;
@@ -257,7 +257,7 @@
             // 
             // pictureBox10
             // 
-            pictureBox10.Location = new Point(3, 3);
+            pictureBox10.Location = new Point(6, 8);
             pictureBox10.Name = "pictureBox10";
             pictureBox10.Size = new Size(192, 225);
             pictureBox10.TabIndex = 0;
@@ -265,7 +265,7 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(10, 234);
+            textBox3.Location = new Point(10, 239);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(185, 27);
             textBox3.TabIndex = 1;
@@ -281,7 +281,7 @@
             // 
             // pictureBox9
             // 
-            pictureBox9.Location = new Point(3, 3);
+            pictureBox9.Location = new Point(3, 2);
             pictureBox9.Name = "pictureBox9";
             pictureBox9.Size = new Size(192, 225);
             pictureBox9.TabIndex = 0;
@@ -451,7 +451,7 @@
             // 
             pictureBox3.Location = new Point(204, 65);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(448, 126);
+            pictureBox3.Size = new Size(448, 142);
             pictureBox3.TabIndex = 5;
             pictureBox3.TabStop = false;
             // 
@@ -502,7 +502,7 @@
             sidebar.Dock = DockStyle.Left;
             sidebar.Location = new Point(0, 45);
             sidebar.Name = "sidebar";
-            sidebar.Size = new Size(11, 598);
+            sidebar.Size = new Size(11, 612);
             sidebar.TabIndex = 7;
             // 
             // timer1

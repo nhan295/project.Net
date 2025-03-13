@@ -74,6 +74,7 @@ create table Seat (
 create table Film(
 	film_id int primary key,
 	title nvarchar(50),
+	rated nvarchar(250),
 	genre_id int,
 	release_date date,
 	director nvarchar(50),

@@ -46,7 +46,7 @@ namespace Project.NET
 
         }
 
-        bool sidebarExpand = true;
+        bool sidebarExpand = false;
         private void sidebarTransition_Tick(object sender, EventArgs e)
         {
             if (sidebarExpand)
