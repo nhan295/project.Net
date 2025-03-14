@@ -59,10 +59,9 @@
             btnAccountInformation = new Button();
             panel9 = new Panel();
             pictureBox7 = new PictureBox();
-            button6 = new Button();
+            btn_Ticket = new Button();
             panel3 = new Panel();
-            pictureBox6 = new PictureBox();
-            button2 = new Button();
+            btn_ChangePass = new Button();
             panel6 = new Panel();
             pictureBox5 = new PictureBox();
             textBox1 = new TextBox();
@@ -94,7 +93,6 @@
             panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -363,7 +361,7 @@
             // panel9
             // 
             panel9.Controls.Add(pictureBox7);
-            panel9.Controls.Add(button6);
+            panel9.Controls.Add(btn_Ticket);
             panel9.Location = new Point(3, 150);
             panel9.Name = "panel9";
             panel9.Size = new Size(223, 41);
@@ -379,50 +377,39 @@
             pictureBox7.TabIndex = 10;
             pictureBox7.TabStop = false;
             // 
-            // button6
+            // btn_Ticket
             // 
-            button6.BackColor = SystemColors.InactiveCaptionText;
-            button6.ForeColor = SystemColors.ButtonFace;
-            button6.Location = new Point(46, -12);
-            button6.Name = "button6";
-            button6.Size = new Size(183, 71);
-            button6.TabIndex = 7;
-            button6.Text = "My Tickets";
-            button6.TextAlign = ContentAlignment.MiddleLeft;
-            button6.UseVisualStyleBackColor = false;
+            btn_Ticket.BackColor = SystemColors.InactiveCaptionText;
+            btn_Ticket.ForeColor = SystemColors.ButtonFace;
+            btn_Ticket.Location = new Point(46, -12);
+            btn_Ticket.Name = "btn_Ticket";
+            btn_Ticket.Size = new Size(183, 71);
+            btn_Ticket.TabIndex = 7;
+            btn_Ticket.Text = "My Tickets";
+            btn_Ticket.TextAlign = ContentAlignment.MiddleLeft;
+            btn_Ticket.UseVisualStyleBackColor = false;
             // 
             // panel3
             // 
-            panel3.Controls.Add(pictureBox6);
-            panel3.Controls.Add(button2);
+            panel3.Controls.Add(btn_ChangePass);
             panel3.Location = new Point(3, 103);
             panel3.Name = "panel3";
             panel3.Size = new Size(223, 41);
             panel3.TabIndex = 8;
             panel3.Paint += panel3_Paint;
             // 
-            // pictureBox6
+            // btn_ChangePass
             // 
-            pictureBox6.Image = Properties.Resources.settings;
-            pictureBox6.Location = new Point(0, 0);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(40, 41);
-            pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox6.TabIndex = 9;
-            pictureBox6.TabStop = false;
-            // 
-            // button2
-            // 
-            button2.BackColor = SystemColors.InactiveCaptionText;
-            button2.ForeColor = SystemColors.ButtonFace;
-            button2.Location = new Point(46, -12);
-            button2.Name = "button2";
-            button2.Size = new Size(183, 71);
-            button2.TabIndex = 7;
-            button2.Text = "Setting";
-            button2.TextAlign = ContentAlignment.MiddleLeft;
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            btn_ChangePass.BackColor = SystemColors.InactiveCaptionText;
+            btn_ChangePass.ForeColor = SystemColors.ButtonFace;
+            btn_ChangePass.Location = new Point(46, -12);
+            btn_ChangePass.Name = "btn_ChangePass";
+            btn_ChangePass.Size = new Size(183, 71);
+            btn_ChangePass.TabIndex = 7;
+            btn_ChangePass.Text = "Change password";
+            btn_ChangePass.TextAlign = ContentAlignment.MiddleLeft;
+            btn_ChangePass.UseVisualStyleBackColor = false;
+            btn_ChangePass.Click += button2_Click;
             // 
             // panel6
             // 
@@ -506,7 +493,7 @@
             sidebar.Dock = DockStyle.Left;
             sidebar.Location = new Point(0, 45);
             sidebar.Name = "sidebar";
-            sidebar.Size = new Size(112, 612);
+            sidebar.Size = new Size(247, 612);
             sidebar.TabIndex = 7;
             // 
             // timer1
@@ -559,7 +546,6 @@
             panel9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
@@ -588,14 +574,13 @@
         private Panel panel6;
         private TextBox textBox1;
         private PictureBox pictureBox5;
-        private Button button2;
-        private PictureBox pictureBox6;
+        private Button btn_ChangePass;
         private Panel panel7;
         private Button button3;
         private Panel panel8;
         private Button btnAccountInformation;
         private Panel panel9;
-        private Button button6;
+        private Button btn_Ticket;
         private PictureBox pictureBox8;
         private PictureBox pictureBox7;
         private TextBox textBox2;
