@@ -111,6 +111,7 @@ namespace Project.NET
         {
             //this.Hide();
             ProfilePage profilePage = new ProfilePage();
+            profilePage.Owner = this;
             profilePage.ShowDialog();
             //this.Close();
         }

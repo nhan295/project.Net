@@ -17,7 +17,53 @@ namespace ProfilePageApp
 
         private void btnUpdateProfile_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Profile updated successfully!", "Update Profile", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                clsConnectDB.OpenConnection();
+                SqlCommand com = new SqlCommand(
+                    "update customer set cus_name=@cusName, cus_phone=@cusPhone, cus_email=@cusEmail, cus_address=@cusAddress, cus_birthday=@cusBirthday " +
+                    "where cus_id=@cusId", clsConnectDB.conn);
+                SqlParameter p1 = new SqlParameter("@cusName", SqlDbType.NVarChar);
+                SqlParameter p2 = new SqlParameter("@cusPhone", SqlDbType.NVarChar);
+                SqlParameter p3 = new SqlParameter("@cusEmail", SqlDbType.NVarChar);
+                SqlParameter p4 = new SqlParameter("@cusAddress", SqlDbType.NVarChar);
+                SqlParameter p5 = new SqlParameter("@cusBirthday", SqlDbType.Date);
+                SqlParameter p6 = new SqlParameter("@cusId", SqlDbType.Int);
+
+                p1.Value = txtName.Text;
+                p2.Value = txtPhone.Text;
+                p3.Value = txtGmail.Text;
+                p4.Value = txtCity.Text;
+                if (dtpBirthday.Value.Date < DateTime.Now.Date)
+                    p5.Value = dtpBirthday.Value.Date;
+                else
+                {
+                    MessageBox.Show("Vui long chon ngay sinh hop le", "Invalid data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                p6.Value = cusId;
+
+                com.Parameters.Add(p1);
+                com.Parameters.Add(p2);
+                com.Parameters.Add(p3);
+                com.Parameters.Add(p4);
+                com.Parameters.Add(p5);
+                com.Parameters.Add(p6);
+
+                int rowsAffected = com.ExecuteNonQuery();
+                clsConnectDB.CloseConnection();
+
+                if(rowsAffected > 0)
+                {
+                    MessageBox.Show("Profile updated successfully!", "Update Profile", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void btnDeleteAccount_Click(object sender, EventArgs e)
@@ -35,13 +81,20 @@ namespace ProfilePageApp
                     com.Parameters.Add(p);
 
                     int rowsAffected = com.ExecuteNonQuery();
+                    clsConnectDB.CloseConnection();
 
                     if (rowsAffected > 0)
                     {
                         clsSession.CusId = 0;
                         MessageBox.Show("Account deleted!", "Delete Account", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        
-                        Application.Restart();
+
+                        this.Owner?.Hide();
+                        this.Owner?.Close();
+                        this.Hide();
+                        this.Close();
+                        Login_form login = new Login_form();
+                        login.ShowDialog();
+                        Application.Exit();
                     }
                 } 
                 catch (Exception ex)
@@ -77,6 +130,7 @@ namespace ProfilePageApp
                         }
                     }
                 }
+                clsConnectDB.CloseConnection();
             }
             catch (Exception ex)
             {
