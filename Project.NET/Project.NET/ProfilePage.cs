@@ -8,6 +8,8 @@ namespace ProfilePageApp
 {
     public partial class ProfilePage : Form
     {
+        private int cusId = clsSession.CusId;
+
         public ProfilePage()
         {
             InitializeComponent();
@@ -23,7 +25,29 @@ namespace ProfilePageApp
             var result = MessageBox.Show("Are you sure you want to delete your account?", "Delete Account", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
-                MessageBox.Show("Account deleted!", "Delete Account", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
+                {
+                    clsConnectDB.OpenConnection();
+                    SqlCommand com = new SqlCommand("delete from Customer where cus_id=@cusId", clsConnectDB.conn);
+
+                    SqlParameter p = new SqlParameter("@cusId", SqlDbType.Int);
+                    p.Value = cusId;
+                    com.Parameters.Add(p);
+
+                    int rowsAffected = com.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        clsSession.CusId = 0;
+                        MessageBox.Show("Account deleted!", "Delete Account", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        
+                        Application.Restart();
+                    }
+                } 
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -31,7 +55,6 @@ namespace ProfilePageApp
         {
             try
             {
-                int cusId = clsSession.CusId;
                 clsConnectDB.OpenConnection();
                 SqlCommand com = new SqlCommand("select cus_name, cus_phone, cus_email, cus_address, cus_birthday from Customer where cus_id=@cusId", clsConnectDB.conn);
                 SqlParameter p = new SqlParameter("@cusId", SqlDbType.Int);
