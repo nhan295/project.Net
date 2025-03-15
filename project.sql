@@ -47,22 +47,6 @@ create table ScreeningRoom (
 	foreign key (showtime_id) references Showtimes(showtime_id)
 );
 
-create table Invoice (
-	invoice_id int primary key,
-	cus_id int,
-	screeningroom_id int,
-	film_id int,
-	seat_id int,
-	cinema_id int,
-	showtime_id int,
-
-	foreign key (seat_id) references Seat(seat_id),
-	foreign key (cinema_id) references Cinema(cinema_id),
-	foreign key (showtime_id) references Showtimes(showtime_id),
-	foreign key (film_id) references Film(film_id), 
-	foreign key (cus_id) references Customer(cus_id),
-	foreign key (screeningroom_id) references ScreeningRoom(screeningroom_id),
-);
 
 create table Seat (
 	seat_id int primary key,
@@ -72,6 +56,7 @@ create table Seat (
 
 	foreign key (screeningroom_id) references ScreeningRoom(screeningroom_id)
 );
+
 
 
 create table Film(
@@ -89,6 +74,22 @@ create table Film(
 
 	foreign key (genre_id) references Genre(genre_id),
 
+);
+create table Invoice (
+	invoice_id int primary key,
+	cus_id int,
+	screeningroom_id int,
+	film_id int,
+	seat_id int,
+	cinema_id int,
+	showtime_id int,
+
+	foreign key (seat_id) references Seat(seat_id),
+	foreign key (cinema_id) references Cinema(cinema_id),
+	foreign key (showtime_id) references Showtimes(showtime_id),
+	foreign key (film_id) references Film(film_id), 
+	foreign key (cus_id) references Customer(cus_id),
+	foreign key (screeningroom_id) references ScreeningRoom(screeningroom_id),
 );
 
 CREATE PROCEDURE SearchFilmByTitle  
@@ -147,17 +148,17 @@ INSERT INTO Cinema (cinema_id, cinema_room, cinema_address, total_rooms) VALUES
 (10, 'Room J', '369 Cherry St', '2');
 
 -- Chèn dữ liệu vào bảng Customer
-INSERT INTO Customer (cus_id, cus_name, cus_password, cus_phone, cus_email, cus_address, cus_birthday) VALUES
-(1, 'John Doe', 'pass123', '123456789', 'john@example.com', 'New York', '2003-05-20'),
-(2, 'Jane Smith', 'pass456', '987654321', 'jane@example.com', 'Los Angeles', '2003-05-20'),
-(3, 'Alice Brown', 'alice789', '456123789', 'alice@example.com', 'Chicago', '2003-05-20'),
-(4, 'Bob White', 'bob321', '321654987', 'bob@example.com', 'Houston', '2003-05-20'),
-(5, 'Charlie Black', 'charlie654', '789321456', 'charlie@example.com', 'San Francisco', '2003-05-20'),
-(6, 'David Green', 'david987', '159753468', 'david@example.com', 'Seattle', '2003-05-20'),
-(7, 'Eve Blue', 'eve456', '357159486', 'eve@example.com', 'Denver', '2003-05-20'),
-(8, 'Frank Yellow', 'frank123', '951753846', 'frank@example.com', 'Boston', '2003-05-20'),
-(9, 'Grace Pink', 'grace789', '753159246', 'grace@example.com', 'Miami', '2003-05-20'),
-(10, 'Henry Orange', 'henry321', '852963741', 'henry@example.com', 'Dallas', '2003-05-20');
+INSERT INTO Customer ( cus_name, cus_password, cus_phone, cus_email, cus_address, cus_birthday) VALUES
+( 'John Doe', 'pass123', '123456789', 'john@example.com', 'New York', '2003-05-20'),
+('Jane Smith', 'pass456', '987654321', 'jane@example.com', 'Los Angeles', '2003-05-20'),
+('Alice Brown', 'alice789', '456123789', 'alice@example.com', 'Chicago', '2003-05-20'),
+( 'Bob White', 'bob321', '321654987', 'bob@example.com', 'Houston', '2003-05-20'),
+('Charlie Black', 'charlie654', '789321456', 'charlie@example.com', 'San Francisco', '2003-05-20'),
+('David Green', 'david987', '159753468', 'david@example.com', 'Seattle', '2003-05-20'),
+('Eve Blue', 'eve456', '357159486', 'eve@example.com', 'Denver', '2003-05-20'),
+('Frank Yellow', 'frank123', '951753846', 'frank@example.com', 'Boston', '2003-05-20'),
+('Grace Pink', 'grace789', '753159246', 'grace@example.com', 'Miami', '2003-05-20'),
+('Henry Orange', 'henry321', '852963741', 'henry@example.com', 'Dallas', '2003-05-20');
 
 
 -- Chèn dữ liệu vào bảng Genre
@@ -213,7 +214,7 @@ INSERT INTO Seat (seat_id, screeningroom_id, seat_number, seat_status) VALUES
 (10, 10, 'J10', 1);
 
 -- Chèn dữ liệu vào bảng Film
-INSERT INTO Film (film_id, title, genre_id, release_date, director, company_production, description, thumbnail, film_status, film_language) VALUES
+INSERT INTO Film (film_id, title, genre_id, release_date, director, company_production, desciption, thumbnail, film_status, film_language) VALUES
 (1, 'The Avengers', 1, '2012-05-04', 'Joss Whedon', 'Marvel Studios', 'Superhero film', 'avengers.jpg', 'Now Showing', 'English - Vietnamese'),
 (2, 'Inception', 5, '2010-07-16', 'Christopher Nolan', 'Warner Bros.', 'Sci-fi thriller', 'inception.jpg', 'Now Showing', 'English - Vietnamese'),
 (3, 'Titanic', 6, '1997-12-19', 'James Cameron', '20th Century Fox', 'Romantic drama', 'titanic.jpg', 'Now Showing', 'English - Vietnamese'),
