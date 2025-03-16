@@ -47,7 +47,7 @@ namespace Project.NET
                 if (reader.HasRows)
                 {
                     // Luu id cua khach hang
-                    if(reader.Read())
+                    if (reader.Read())
                     {
                         clsSession.CusId = reader.GetInt32(0);
 
@@ -60,15 +60,34 @@ namespace Project.NET
                     home.ShowDialog();
                     this.Close();
 
-                } else
+                }
+                else
                 {
                     MessageBox.Show("Dang nhap that bai", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     clsConnectDB.CloseConnection();
                 }
-            } 
-            catch (Exception ex) 
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void peye_Click(object sender, EventArgs e)
+        {
+            if (txtPass.PasswordChar == '\0')
+            {
+                phide.BringToFront();
+                txtPass.PasswordChar = '*';
+            }
+        }
+
+        private void phide_Click(object sender, EventArgs e)
+        {
+            if (txtPass.PasswordChar == '*')
+            {
+                peye.BringToFront();
+                txtPass.PasswordChar = '\0';
             }
         }
     }

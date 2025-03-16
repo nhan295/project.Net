@@ -34,32 +34,6 @@ namespace Project.NET
 
         }
 
-        private void picCurrent_Click(object sender, EventArgs e)
-        {
-            isCurrentVisible = !isCurrentVisible;
-            txtCurrent.PasswordChar = isCurrentVisible ? '\0' : '*';
-            picCurrent.Image = Image.FromFile(isCurrentVisible
-                ? @"D:\GitHub\project.Net\Project.NET\Project.NET\Resources\eye.png"
-                : @"D:\GitHub\project.Net\Project.NET\Project.NET\Resources\hidden.png");
-        }
-
-        private void picNew_Click(object sender, EventArgs e)
-        {
-            isNewVisible = !isNewVisible;
-            txtNew.PasswordChar = isNewVisible ? '\0' : '*';
-            picNew.Image = Image.FromFile(isNewVisible
-                ? @"D:\GitHub\project.Net\Project.NET\Project.NET\Resources\eye.png"
-                : @"D:\GitHub\project.Net\Project.NET\Project.NET\Resources\hidden.png");
-        }
-
-        private void picConfirm_Click(object sender, EventArgs e)
-        {
-            isConfirmVisible = !isConfirmVisible;
-            txtConfirm.PasswordChar = isConfirmVisible ? '\0' : '*';
-            picConfirm.Image = Image.FromFile(isConfirmVisible
-                ? @"D:\GitHub\project.Net\Project.NET\Project.NET\Resources\eye.png"
-                : @"D:\GitHub\project.Net\Project.NET\Project.NET\Resources\hidden.png");
-        }
 
         private void btnChange_Click(object sender, EventArgs e)
         {
@@ -127,6 +101,60 @@ namespace Project.NET
             finally
             {
                 clsConnectDB.CloseConnection();
+            }
+        }
+
+        private void peye1_Click(object sender, EventArgs e)
+        {
+            if (txtCurrent.PasswordChar == '\0')
+            {
+                phide1.BringToFront();
+                (txtCurrent.PasswordChar) = '*';
+            }
+        }
+
+        private void phide1_Click(object sender, EventArgs e)
+        {
+            if (txtCurrent.PasswordChar == '*')
+            {
+                peye1.BringToFront();
+                txtCurrent.PasswordChar = '\0';
+            }
+        }
+
+        private void peye2_Click(object sender, EventArgs e)
+        {
+            if (txtNew.PasswordChar == '\0')
+            {
+                phide2.BringToFront();
+                (txtNew.PasswordChar) = '*';
+            }
+        }
+
+        private void phide2_Click(object sender, EventArgs e)
+        {
+            if (txtNew.PasswordChar == '*')
+            {
+                peye2.BringToFront();
+                txtNew.PasswordChar = '\0';
+            }
+        }
+
+        private void peye3_Click(object sender, EventArgs e)
+        {
+            if (txtConfirm.PasswordChar == '\0')
+            {
+                phide3.BringToFront();
+                (txtConfirm.PasswordChar) = '*';
+            }
+        }
+
+        private void phide3_Click(object sender, EventArgs e)
+        {
+            if (txtConfirm.PasswordChar == '*')
+            {
+                peye3.BringToFront();
+                txtConfirm.PasswordChar = '\0';
             }
         }
     }

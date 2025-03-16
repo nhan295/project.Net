@@ -39,11 +39,15 @@
             label1 = new Label();
             pictureBox4 = new PictureBox();
             pictureBox5 = new PictureBox();
+            peye = new PictureBox();
+            phide = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)peye).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)phide).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -160,11 +164,35 @@
             pictureBox5.TabIndex = 10;
             pictureBox5.TabStop = false;
             // 
+            // peye
+            // 
+            peye.Image = Properties.Resources.eye;
+            peye.Location = new Point(413, 361);
+            peye.Name = "peye";
+            peye.Size = new Size(27, 27);
+            peye.SizeMode = PictureBoxSizeMode.StretchImage;
+            peye.TabIndex = 11;
+            peye.TabStop = false;
+            peye.Click += peye_Click;
+            // 
+            // phide
+            // 
+            phide.Image = Properties.Resources.hidden;
+            phide.Location = new Point(414, 361);
+            phide.Name = "phide";
+            phide.Size = new Size(26, 27);
+            phide.SizeMode = PictureBoxSizeMode.StretchImage;
+            phide.TabIndex = 12;
+            phide.TabStop = false;
+            phide.Click += phide_Click;
+            // 
             // Login_form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(562, 675);
+            Controls.Add(phide);
+            Controls.Add(peye);
             Controls.Add(label1);
             Controls.Add(btn_register);
             Controls.Add(linkLabel1);
@@ -184,6 +212,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)peye).EndInit();
+            ((System.ComponentModel.ISupportInitialize)phide).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -201,5 +231,7 @@
         private Label label1;
         private PictureBox pictureBox4;
         private PictureBox pictureBox5;
+        private PictureBox peye;
+        private PictureBox phide;
     }
 }
