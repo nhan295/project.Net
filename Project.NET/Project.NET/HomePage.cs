@@ -82,11 +82,6 @@ namespace Project.NET
             sidebarTransition.Start();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
@@ -97,7 +92,7 @@ namespace Project.NET
 
         }
 
-       
+
 
         private void pictureBox8_Click(object sender, EventArgs e)
         {
@@ -121,6 +116,12 @@ namespace Project.NET
             login.ShowDialog();
             this.Close();
 
+        }
+
+        private void btn_ChangePass_Click(object sender, EventArgs e)
+        {
+            ChangePassword ChangePass = new ChangePassword();
+            ChangePass.ShowDialog();
         }
     }
 }

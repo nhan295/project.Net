@@ -147,6 +147,7 @@
             btnChange.Size = new Size(230, 30);
             btnChange.TabIndex = 10;
             btnChange.Text = "Change Password";
+            btnChange.Click += btnChange_Click;
             // 
             // ChangePassword
             // 
