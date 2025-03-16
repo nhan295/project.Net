@@ -33,7 +33,10 @@ create table Genre (
 
 create table Showtimes (
 	showtime_id int identity(1,1) primary key,
-	time nvarchar(45)
+	film_id int,
+	time nvarchar(45),
+
+	foreign key (film_id) references film(film_id)
 );
 
 create table ScreeningRoom (
@@ -174,17 +177,17 @@ INSERT INTO Genre (genre_name) VALUES
 ('Fantasy');
 
 -- Chèn dữ liệu vào bảng Showtimes
-INSERT INTO Showtimes (time) VALUES
-('10:00 AM'),
-('12:30 PM'),
-('3:00 PM'),
-('5:30 PM'),
-('8:00 PM'),
-('10:30 PM'),
-('1:00 AM'),
-('3:30 AM'),
-('6:00 AM'),
-('8:30 AM');
+INSERT INTO Showtimes (film_id, time) VALUES
+(11,'10:00 AM'),
+(2, '12:30 PM'),
+(3, '3:00 PM'),
+(4,'5:30 PM'),
+(5,'8:00 PM'),
+(6, '10:30 PM'),
+(7, '1:00 AM'),
+(8, '3:30 AM'),
+(9, '6:00 AM'),
+(10, '8:30 AM');
 
 -- Chèn dữ liệu vào bảng ScreeningRoom
 INSERT INTO ScreeningRoom (cinema_id, showtime_id, screeningroom_seats, screeningroom_name) VALUES
@@ -227,3 +230,7 @@ INSERT INTO Film (title, genre_id, release_date, director, company_production, d
 
 
 
+select title, release_date, s.time, descriptions, rated, genre_name, director, film_language
+                                                from film f inner join Showtimes s on f.film_id = s.film_id
+                                                inner join Genre g on f.genre_id = g.genre_id
+                                                where f.film_id=2;
