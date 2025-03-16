@@ -6,9 +6,11 @@ namespace Project.NET
 {
     public partial class MovieDetail : Form
     {
-        public MovieDetail()
+        private int filmId;
+        public MovieDetail(int filmId)
         {
             InitializeComponent();
+            this.filmId = filmId;
         }
 
         private void MovieDetail_Load(object sender, EventArgs e)
@@ -16,44 +18,60 @@ namespace Project.NET
             try
             {
                 clsConnectDB.OpenConnection();
-                int filmId = 3; //clsCurrentFilm.FilmId;
-                SqlCommand com = new SqlCommand("select title, release_date, s.time, descriptions, rated, genre_name, director, film_language, thumbnail " +
-                                                "from film f inner join Showtimes s on f.film_id = s.film_id " +
-                                                "inner join Genre g on f.genre_id = g.genre_id " +
-                                                "where f.film_id=@filmId", clsConnectDB.conn);
-                SqlParameter p = new SqlParameter("@filmId", SqlDbType.Int);
-                p.Value = filmId;
-                com.Parameters.Add(p);
+
+                SqlCommand com = new SqlCommand("SELECT title, release_date, s.time, descriptions, rated, genre_name, director, film_language, thumbnail " +
+                                                "FROM film f INNER JOIN Showtimes s ON f.film_id = s.film_id " +
+                                                "INNER JOIN Genre g ON f.genre_id = g.genre_id " +
+                                                "WHERE f.film_id=@filmId", clsConnectDB.conn);
+                com.Parameters.AddWithValue("@filmId", filmId);
 
                 SqlDataReader reader = com.ExecuteReader();
 
-                if(reader.HasRows)
+                if (reader.Read())
                 {
-                    if(reader.Read())
-                    {
-                        txtTitle.Text = reader["title"].ToString();
-                        txtDate.Text = Convert.ToDateTime(reader["release_date"]).ToString("yyyy-MM-dd");
-                        txtTimeshow.Text = reader["time"].ToString();
-                        txtDecrip.Text = reader["descriptions"].ToString();
-                        txtRatedCnt.Text = reader["rated"].ToString();
-                        txtGerneCnt.Text = reader["genre_name"].ToString();
-                        txtDirectorCnt.Text = reader["director"].ToString();
-                        txtLanguageCnt.Text = reader["film_language"].ToString();
+                    txtTitle.Text = reader["title"].ToString();
+                    txtDate.Text = Convert.ToDateTime(reader["release_date"]).ToString("yyyy-MM-dd");
+                    txtTimeshow.Text = reader["time"].ToString();
+                    txtDecrip.Text = reader["descriptions"].ToString();
+                    txtRatedCnt.Text = reader["rated"].ToString();
+                    txtGerneCnt.Text = reader["genre_name"].ToString();
+                    txtDirectorCnt.Text = reader["director"].ToString();
+                    txtLanguageCnt.Text = reader["film_language"].ToString();
+                    string imageName = reader["thumbnail"].ToString().Trim();
 
-                        string imgPath = "../../../assets/images/" + reader["thumbnail"].ToString();
-                        pictureBox1.Image = Image.FromFile(imgPath);
-                        pictureBox2.Image = Image.FromFile(imgPath);
+                    Image movieImage = (Image)Properties.Resources.ResourceManager.GetObject(imageName);
+
+                    if (movieImage != null)
+                    {
+                        CoverFrame.Image = movieImage;
+                        PosterFrame.Image = movieImage;
                     }
-                }
-                else
-                {
-                    clsConnectDB.CloseConnection();
+                    else
+                    {
+
+                        string imgPath = Path.Combine(Application.StartupPath, @"..\..\..\assets\images", imageName);
+
+                        if (File.Exists(imgPath))
+                        {
+                            CoverFrame.Image = Image.FromFile(imgPath);
+                            PosterFrame.Image = Image.FromFile(imgPath);
+                        }
+                        else
+                        {
+                            CoverFrame.Image = Properties.Resources.images;
+                            PosterFrame.Image = Properties.Resources.images;
+                        }
+                    }
+
+                    CoverFrame.SizeMode = PictureBoxSizeMode.StretchImage;
+                    PosterFrame.SizeMode = PictureBoxSizeMode.StretchImage;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: "+ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }

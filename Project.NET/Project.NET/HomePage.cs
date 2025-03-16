@@ -9,11 +9,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProfilePageApp;
+using Microsoft.Data.SqlClient;
 
 namespace Project.NET
 {
     public partial class HomePage : Form
     {
+        private List<string> movieImages = new List<string>();
 
         private Image[] slideImages = {
             Properties.Resources.toy,
@@ -26,10 +28,91 @@ namespace Project.NET
         {
             InitializeComponent();
             LoadSlideImage();
+            LoadNameMovies();
+            LoadMovies();
             timer1.Tick += TimerSlide_Tick;
             timer1.Start();
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
         }
+
+        private void LoadMovies()
+        {
+            clsConnectDB.OpenConnection();
+
+            string query = "SELECT TOP 6 film_id, thumbnail FROM film ORDER BY film_id ASC";
+            using (SqlCommand com = new SqlCommand(query, clsConnectDB.conn))
+            {
+                using (SqlDataReader reader = com.ExecuteReader())
+                {
+                    PictureBox[] filmFrames = { FilmFrame1, FilmFrame2, FilmFrame3, FilmFrame4, FilmFrame5, FilmFrame6 };
+                    int[] filmIds = new int[6];  // Lưu ID phim để truyền qua trang chi tiết
+                    int index = 0;
+
+                    while (reader.Read() && index < filmFrames.Length)
+                    {
+                        filmIds[index] = Convert.ToInt32(reader["film_id"]); // Lưu ID phim
+                        string imageName = reader["thumbnail"].ToString();
+                        Image movieImage = (Image)Properties.Resources.ResourceManager.GetObject(imageName);
+
+                        if (movieImage != null)
+                        {
+                            filmFrames[index].Image = movieImage;
+                        }
+                        else
+                        {
+                            filmFrames[index].Image = Properties.Resources.images;
+                        }
+
+                        filmFrames[index].SizeMode = PictureBoxSizeMode.StretchImage;
+
+                        // Gán sự kiện click cho mỗi PictureBox
+                        int filmId = filmIds[index];
+                        filmFrames[index].Click += (s, e) => OpenMovieDetail(filmId);
+
+                        index++;
+                    }
+                }
+            }
+        }
+
+        // Hàm mở trang chi tiết phim
+        private void OpenMovieDetail(int filmId)
+        {
+            MovieDetail detailForm = new MovieDetail(filmId);
+            detailForm.ShowDialog();
+        }
+
+
+
+        private void LoadNameMovies()
+        {
+            clsConnectDB.OpenConnection();
+
+            string query = "SELECT TOP 6 title FROM film ORDER BY film_id ASC";
+            using (SqlCommand com = new SqlCommand(query, clsConnectDB.conn))
+            {
+                using (SqlDataReader reader = com.ExecuteReader())
+                {
+                    TextBox[] filmName = { FilmName1, FilmName2, FilmName3, FilmName4, FilmName5, FilmName6 };
+                    int index = 0;
+
+                    while (reader.Read() && index < filmName.Length)
+                    {
+                        string filmname = reader["title"].ToString();
+
+
+                            filmName[index].Text = filmname;
+                        
+                    
+                        index++;
+                    }
+                }
+            }
+        }
+
+
+
+
         private void LoadSlideImage()
         {
             pictureBox3.Image = slideImages[currentIndex];
@@ -122,6 +205,31 @@ namespace Project.NET
         {
             ChangePassword ChangePass = new ChangePassword();
             ChangePass.ShowDialog();
+        }
+
+        private void pictureBox9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
