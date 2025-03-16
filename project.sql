@@ -24,6 +24,7 @@ create table Customer (
 	cus_address nvarchar(125),
 	cus_birthday date
 );
+select * from Customer;
 
 create table Genre (
 	genre_id int identity(1,1) primary key,
@@ -134,7 +135,25 @@ BEGIN
         PRINT 'Khách hàng không tồn tại!';
     END
 END;
+--change password
+CREATE PROCEDURE ChangeUserPassword
+    @UserId INT,
+    @new_pwd NVARCHAR(255)
+AS
+BEGIN
+    SET NOCOUNT ON;
 
+    UPDATE Customer 
+    SET cus_password = @new_pwd
+    WHERE cus_id = @UserId;
+
+    IF @@ROWCOUNT > 0
+        SELECT 1 AS Success; -- Thành công
+    ELSE
+        SELECT 0 AS Success; -- Thất bại
+END;
+
+EXEC ChangeUserPassword 1, "1234";
 
 -- Chèn dữ liệu vào bảng Cinema
 INSERT INTO Cinema (cinema_room, cinema_address, total_rooms) VALUES

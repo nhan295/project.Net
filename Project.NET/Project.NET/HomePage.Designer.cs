@@ -62,6 +62,7 @@
             btn_Ticket = new Button();
             panel3 = new Panel();
             btn_ChangePass = new Button();
+            pictureBox15 = new PictureBox();
             panel6 = new Panel();
             pictureBox5 = new PictureBox();
             textBox1 = new TextBox();
@@ -93,6 +94,7 @@
             panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -392,6 +394,7 @@
             // panel3
             // 
             panel3.Controls.Add(btn_ChangePass);
+            panel3.Controls.Add(pictureBox15);
             panel3.Location = new Point(3, 103);
             panel3.Name = "panel3";
             panel3.Size = new Size(223, 41);
@@ -409,7 +412,17 @@
             btn_ChangePass.Text = "Change password";
             btn_ChangePass.TextAlign = ContentAlignment.MiddleLeft;
             btn_ChangePass.UseVisualStyleBackColor = false;
-            btn_ChangePass.Click += button2_Click;
+            btn_ChangePass.Click += btn_ChangePass_Click;
+            // 
+            // pictureBox15
+            // 
+            pictureBox15.Image = Properties.Resources.password;
+            pictureBox15.Location = new Point(3, 5);
+            pictureBox15.Name = "pictureBox15";
+            pictureBox15.Size = new Size(40, 36);
+            pictureBox15.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox15.TabIndex = 11;
+            pictureBox15.TabStop = false;
             // 
             // panel6
             // 
@@ -546,6 +559,7 @@
             panel9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
@@ -603,5 +617,6 @@
         private TextBox textBox6;
         private System.Windows.Forms.Timer timer1;
         private Button btnLogOut;
+        private PictureBox pictureBox15;
     }
 }
