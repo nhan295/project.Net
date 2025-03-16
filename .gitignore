@@ -400,3 +400,5 @@ FodyWeavers.xsd
 *.sln.iml
 bin/
 obj/
+Project.NET/Project.NET/Program.cs
+Project.NET/Project.NET/clsConnectDB.cs
