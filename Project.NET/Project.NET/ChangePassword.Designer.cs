@@ -116,6 +116,7 @@
             picCurrent.SizeMode = PictureBoxSizeMode.StretchImage;
             picCurrent.TabIndex = 3;
             picCurrent.TabStop = false;
+            picCurrent.Click += picCurrent_Click;
             // 
             // picNew
             // 
@@ -126,6 +127,7 @@
             picNew.SizeMode = PictureBoxSizeMode.StretchImage;
             picNew.TabIndex = 6;
             picNew.TabStop = false;
+            picNew.Click += picNew_Click;
             // 
             // picConfirm
             // 
@@ -136,6 +138,7 @@
             picConfirm.SizeMode = PictureBoxSizeMode.StretchImage;
             picConfirm.TabIndex = 9;
             picConfirm.TabStop = false;
+            picConfirm.Click += picConfirm_Click;
             // 
             // btnChange
             // 
