@@ -73,5 +73,10 @@ namespace Project.NET
             }
         }
 
+        private void btnBooking_Click(object sender, EventArgs e)
+        {
+            BookingPage bookingForm = new BookingPage(filmId, txtTitle.Text);
+            bookingForm.ShowDialog();
+        }
     }
 }
