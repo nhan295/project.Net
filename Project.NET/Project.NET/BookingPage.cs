@@ -23,11 +23,36 @@ namespace Project.NET
 
             clsConnectDB.OpenConnection();
 
-
+            LoadData();
             UpdateDay();
             UpdateDate();
             LoadShowtimes();
             DefaultDay();
+        }
+
+        // Chổ này là show cái drop box các rạp phim làm sao để người ta chọn index theo kiểu drop các rạp rồi chọn rạp mới ra giờ
+        private void LoadData()
+        {
+            clsConnectDB.OpenConnection();
+            string query = "Select cinema_room from Cinema where cinema_id = 1";
+
+            using (SqlCommand com = new SqlCommand(query, clsConnectDB.conn))
+            {
+                try
+                {
+                    using (SqlDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            CinemaList.Items.Add(reader["cinema_room"].ToString());
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi: " + ex.Message);
+                }
+            }
         }
 
         private void BookingPage_Load(object sender, EventArgs e)
@@ -145,7 +170,7 @@ namespace Project.NET
                     panelTime.Controls.Add(newButton);
                     timeButtons.Add(newButton);
 
-                    x += 70; 
+                    x += 70;
                 }
             }
         }
@@ -154,6 +179,26 @@ namespace Project.NET
         {
             Button clickedButton = sender as Button;
             MessageBox.Show($"Bạn đã chọn suất chiếu: {clickedButton.Text}");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

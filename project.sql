@@ -108,7 +108,7 @@ BEGIN
         f.release_date, 
         f.director, 
         f.company_production, 
-        f.desciption, 
+        f.descriptions, 
         f.thumbnail
     FROM Film f
     JOIN Genre g ON f.genre_id = g.genre_id
@@ -196,56 +196,56 @@ INSERT INTO Genre (genre_name) VALUES
 ('Fantasy');
 
 -- Chèn dữ liệu vào bảng Showtimes
-INSERT INTO Showtimes (film_id, time) VALUES
-(11,'10:00 AM'),
-(2, '12:30 PM'),
-(3, '3:00 PM'),
-(4,'5:30 PM'),
-(5,'8:00 PM'),
-(6, '10:30 PM'),
-(7, '1:00 AM'),
-(8, '3:30 AM'),
-(9, '6:00 AM'),
-(10, '8:30 AM');
+INSERT INTO Showtimes (time) VALUES
+('10:00 AM'),
+('12:30 PM'),
+('3:00 PM'),
+('5:30 PM'),
+('8:00 PM'),
+('10:30 PM'),
+('1:00 AM'),
+('3:30 AM'),
+('6:00 AM'),
+('8:30 AM');
 
 -- Chèn dữ liệu vào bảng ScreeningRoom
-INSERT INTO ScreeningRoom (cinema_id, showtime_id, screeningroom_seats, screeningroom_name) VALUES
-(1, 1, '50', 'Screen 1'),
-(2, 2, '40', 'Screen 2'),
-(3, 3, '30', 'Screen 3'),
-(4, 4, '20', 'Screen 4'),
-(5, 5, '60', 'Screen 5'),
-(6, 6, '45', 'Screen 6'),
-(7, 7, '35', 'Screen 7'),
-(8, 8, '25', 'Screen 8'),
-(9, 9, '55', 'Screen 9'),
-(10, 10, '50', 'Screen 10');
+INSERT INTO ScreeningRoom (cinema_id, screeningroom_seats, screeningroom_name) VALUES
+(1,'50', 'Screen 1'),
+(2,'40', 'Screen 2'),
+(3,'30', 'Screen 3'),
+(4,'20', 'Screen 4'),
+(5,'60', 'Screen 5'),
+(6,'45', 'Screen 6'),
+(7,'35', 'Screen 7'),
+(8,'25', 'Screen 8'),
+(9,'55', 'Screen 9'),
+(10,'50', 'Screen 10');
 
 -- Chèn dữ liệu vào bảng Seat
-INSERT INTO Seat (screeningroom_id, seat_number, seat_status) VALUES
-(1, 'A1', 1),
-(2, 'B2', 0),
-(3, 'C3', 1),
-(4, 'D4', 0),
-(5, 'E5', 1),
-(6, 'F6', 1),
-(7, 'G7', 0),
-(8, 'H8', 1),
-(9, 'I9', 0),
-(10, 'J10', 1);
+INSERT INTO Seat (seat_number, seat_status) VALUES
+('A1', 1),
+('B2', 0),
+('C3', 1),
+('D4', 0),
+('E5', 1),
+('F6', 1),
+('G7', 0),
+('H8', 1),
+('I9', 0),
+('J10', 1);
 
 -- Chèn dữ liệu vào bảng Film
 INSERT INTO Film (title, genre_id, release_date, director, company_production, descriptions, thumbnail, film_status, film_language) VALUES
-('The Avengers', 1, '2012-05-04', 'Joss Whedon', 'Marvel Studios', 'Superhero film', 'avengers.jpg', 'Now Showing', 'English - Vietnamese'),
-('Inception', 5, '2010-07-16', 'Christopher Nolan', 'Warner Bros.', 'Sci-fi thriller', 'inception.jpg', 'Now Showing', 'English - Vietnamese'),
-('Titanic', 6, '1997-12-19', 'James Cameron', '20th Century Fox', 'Romantic drama', 'titanic.jpg', 'Now Showing', 'English - Vietnamese'),
-('The Conjuring', 4, '2013-07-19', 'James Wan', 'New Line Cinema', 'Horror film', 'conjuring.jpg', 'Now Showing', 'English - Vietnamese'),
-('Toy Story', 8, '1995-11-22', 'John Lasseter', 'Pixar', 'Animated film', 'toystory.jpg', 'Now Showing', 'English - Vietnamese'),
-('The Dark Knight', 1, '2008-07-18', 'Christopher Nolan', 'Warner Bros.', 'Superhero film', 'darkknight.jpg', 'Now Showing', 'English - Vietnamese'),
-('Interstellar', 5, '2014-11-07', 'Christopher Nolan', 'Paramount', 'Sci-fi adventure', 'interstellar.jpg', 'Now Showing', 'English - Vietnamese'),
-('Frozen', 10, '2013-11-27', 'Chris Buck', 'Disney', 'Fantasy animation', 'frozen.jpg', 'Now Showing', 'English - Vietnamese'),
-('Parasite', 3, '2019-05-30', 'Bong Joon-ho', 'CJ Entertainment', 'Thriller drama', 'parasite.jpg', 'Now Showing', 'English - Vietnamese'),
-('The Godfather', 3, '1972-03-24', 'Francis Ford Coppola', 'Paramount Pictures', 'Crime drama', 'godfather.jpg', 'Now Showing', 'English - Vietnamese');
+('The Avengers', 1, '2012-05-04', 'Joss Whedon', 'Marvel Studios', 'Superhero film', 'avengers', 'Now Showing', 'English - Vietnamese'),
+('Inception', 5, '2010-07-16', 'Christopher Nolan', 'Warner Bros.', 'Sci-fi thriller', 'inception', 'Now Showing', 'English - Vietnamese'),
+('Titanic', 6, '1997-12-19', 'James Cameron', '20th Century Fox', 'Romantic drama', 'titanic', 'Now Showing', 'English - Vietnamese'),
+('The Conjuring', 4, '2013-07-19', 'James Wan', 'New Line Cinema', 'Horror film', 'conjuring', 'Now Showing', 'English - Vietnamese'),
+('Toy Story', 8, '1995-11-22', 'John Lasseter', 'Pixar', 'Animated film', 'toystory', 'Now Showing', 'English - Vietnamese'),
+('The Dark Knight', 1, '2008-07-18', 'Christopher Nolan', 'Warner Bros.', 'Superhero film', 'darkknight', 'Now Showing', 'English - Vietnamese'),
+('Interstellar', 5, '2014-11-07', 'Christopher Nolan', 'Paramount', 'Sci-fi adventure', 'interstellar', 'Now Showing', 'English - Vietnamese'),
+('Frozen', 10, '2013-11-27', 'Chris Buck', 'Disney', 'Fantasy animation', 'frozen', 'Now Showing', 'English - Vietnamese'),
+('Parasite', 3, '2019-05-30', 'Bong Joon-ho', 'CJ Entertainment', 'Thriller drama', 'parasite', 'Now Showing', 'English - Vietnamese'),
+('The Godfather', 3, '1972-03-24', 'Francis Ford Coppola', 'Paramount Pictures', 'Crime drama', 'godfather', 'Now Showing', 'English - Vietnamese');
 
 
 
