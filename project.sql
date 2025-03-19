@@ -173,7 +173,7 @@ END;
 EXEC ChangeUserPassword 1, "1234";
 
 -- Chèn dữ liệu vào bảng Cinema
-INSERT INTO Cinema (cinema_room, cinema_address, total_rooms) VALUES
+INSERT INTO Cinema (cinema_name, cinema_address, total_rooms) VALUES
 ('Vincom Hung Vuong', '123 Main St', '5'),
 ('Vincom Xuan Khanh', '456 Elm St', '3'),
 ('Lotte Hung Vuong', '789 Oak St', '4'),
@@ -271,3 +271,7 @@ select title, release_date, s.time, descriptions, rated, genre_name, director, f
                                                 from film f inner join Showtimes s on f.film_id = s.film_id
                                                 inner join Genre g on f.genre_id = g.genre_id
                                                 where f.film_id=2;
+
+Select cinema_name from Cinema c 
+	inner join movieCinema m on c.cinema_id = m.cinema_id
+    where m.film_id=2;
