@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Data;
 
 namespace Project.NET
 {
@@ -34,17 +35,21 @@ namespace Project.NET
         private void LoadData()
         {
             clsConnectDB.OpenConnection();
-            string query = "Select cinema_room from Cinema where cinema_id = 1";
+            string query = "Select cinema_name from Cinema c " +
+                           "inner join movieCinema m on c.cinema_id = m.cinema_id " +
+                           "where m.film_id=@filmId";
 
             using (SqlCommand com = new SqlCommand(query, clsConnectDB.conn))
             {
                 try
                 {
+                    com.Parameters.AddWithValue("@filmId", this.filmId);
+
                     using (SqlDataReader reader = com.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            CinemaList.Items.Add(reader["cinema_room"].ToString());
+                            CinemaList.Items.Add(reader["cinema_name"].ToString());
                         }
                     }
                 }

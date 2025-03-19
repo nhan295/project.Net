@@ -11,7 +11,7 @@ namespace Project.NET
         {
             try
             {
-                conn = new SqlConnection("Server=KIN; Database=Project.Net; Integrated Security=True; TrustServerCertificate=True;");
+                conn = new SqlConnection("Server=DESKTOP-H5EPMLB; Database=Project.Net; Integrated Security=True; TrustServerCertificate=True;");
 
                 conn.Open();
             }
