@@ -8,9 +8,9 @@ use [Project.Net];
 
 create table Cinema (
 	cinema_id int identity(1,1) primary key,
-	cinema_room nvarchar(45),
+	cinema_name nvarchar(45),
 	cinema_address nvarchar(45),
-	total_rooms nvarchar(45)
+	total_rooms nvarchar(45),
 );
 
 select* from cinema;
@@ -31,6 +31,24 @@ create table Genre (
 	genre_name nvarchar(45)
 );
 
+create table Film(
+	film_id int identity(1,1) primary key,
+	title nvarchar(50),
+	rated nvarchar(250),
+	genre_id int,
+	release_date date,
+	director nvarchar(50),
+	company_production nvarchar(50),
+	descriptions nvarchar(50),
+	thumbnail nvarchar(50),
+	film_status nvarchar(50),
+	film_language nvarchar(50)
+
+	foreign key (genre_id) references Genre(genre_id),
+
+
+);
+select * from Film;
 
 create table Showtimes (
 	showtime_id int identity(1,1) primary key,
@@ -51,6 +69,15 @@ create table ScreeningRoom (
 	foreign key (showtime_id) references Showtimes(showtime_id)
 );
 
+
+create table Seat (
+	seat_id int identity(1,1) primary key,
+	screeningroom_id int,
+	seat_number nvarchar(45),
+	seat_status tinyint,
+
+	foreign key (screeningroom_id) references ScreeningRoom(screeningroom_id)
+);
 create table Invoice (
 	invoice_id int identity(1,1) primary key,
 	cus_id int,
@@ -68,32 +95,22 @@ create table Invoice (
 	foreign key (screeningroom_id) references ScreeningRoom(screeningroom_id),
 );
 
-create table Seat (
-	seat_id int identity(1,1) primary key,
-	screeningroom_id int,
-	seat_number nvarchar(45),
-	seat_status tinyint,
-
-	foreign key (screeningroom_id) references ScreeningRoom(screeningroom_id)
+CREATE TABLE movieCinema (
+    cinema_id INT,
+    film_id INT,
+    PRIMARY KEY (cinema_id, film_id),
+    FOREIGN KEY (cinema_id) REFERENCES Cinema(cinema_id),
+    FOREIGN KEY (film_id) REFERENCES Film(film_id)
 );
 
-
-create table Film(
-	film_id int identity(1,1) primary key,
-	title nvarchar(50),
-	rated nvarchar(250),
-	genre_id int,
-	release_date date,
-	director nvarchar(50),
-	company_production nvarchar(50),
-	descriptions nvarchar(50),
-	thumbnail nvarchar(50),
-	film_status nvarchar(50),
-	film_language nvarchar(50)
-
-	foreign key (genre_id) references Genre(genre_id),
-
-);
+insert movieCinema(cinema_id,film_id) values(1,1);
+insert movieCinema(cinema_id,film_id) values(1,2);
+insert movieCinema(cinema_id,film_id) values(1,3);
+insert movieCinema(cinema_id,film_id) values(1,4);
+insert movieCinema(cinema_id,film_id) values(2,1);
+insert movieCinema(cinema_id,film_id) values(2,2);
+insert movieCinema(cinema_id,film_id) values(2,3);
+insert movieCinema(cinema_id,film_id) values(2,4);
 
 CREATE PROCEDURE SearchFilmByTitle  
     @Title NVARCHAR(50)  
@@ -157,12 +174,12 @@ EXEC ChangeUserPassword 1, "1234";
 
 -- Chèn dữ liệu vào bảng Cinema
 INSERT INTO Cinema (cinema_room, cinema_address, total_rooms) VALUES
-('Room A', '123 Main St', '5'),
-('Room B', '456 Elm St', '3'),
-('Room C', '789 Oak St', '4'),
-('Room D', '159 Pine St', '2'),
-('Room E', '753 Birch St', '6'),
-('Room F', '852 Cedar St', '4'),
+('Vincom Hung Vuong', '123 Main St', '5'),
+('Vincom Xuan Khanh', '456 Elm St', '3'),
+('Lotte Hung Vuong', '789 Oak St', '4'),
+('Lotte Xuan Khanh', '159 Pine St', '2'),
+('BigC 30/4', '753 Birch St', '6'),
+('CinemaGV', '852 Cedar St', '4'),
 ('Room G', '369 Maple St', '5'),
 ('Room H', '147 Spruce St', '3'),
 ('Room I', '258 Walnut St', '4'),
@@ -196,17 +213,7 @@ INSERT INTO Genre (genre_name) VALUES
 ('Fantasy');
 
 -- Chèn dữ liệu vào bảng Showtimes
-INSERT INTO Showtimes (time) VALUES
-('10:00 AM'),
-('12:30 PM'),
-('3:00 PM'),
-('5:30 PM'),
-('8:00 PM'),
-('10:30 PM'),
-('1:00 AM'),
-('3:30 AM'),
-('6:00 AM'),
-('8:30 AM');
+
 
 -- Chèn dữ liệu vào bảng ScreeningRoom
 INSERT INTO ScreeningRoom (cinema_id, screeningroom_seats, screeningroom_name) VALUES
@@ -246,6 +253,17 @@ INSERT INTO Film (title, genre_id, release_date, director, company_production, d
 ('Frozen', 10, '2013-11-27', 'Chris Buck', 'Disney', 'Fantasy animation', 'frozen', 'Now Showing', 'English - Vietnamese'),
 ('Parasite', 3, '2019-05-30', 'Bong Joon-ho', 'CJ Entertainment', 'Thriller drama', 'parasite', 'Now Showing', 'English - Vietnamese'),
 ('The Godfather', 3, '1972-03-24', 'Francis Ford Coppola', 'Paramount Pictures', 'Crime drama', 'godfather', 'Now Showing', 'English - Vietnamese');
+INSERT INTO Showtimes (film_id,time) VALUES
+(1,'10:00 AM'),
+(2,'12:30 PM'),
+(3,'3:00 PM'),
+(4,'5:30 PM'),
+(5,'8:00 PM'),
+(6,'10:30 PM'),
+(7,'1:00 AM'),
+(8,'3:30 AM'),
+(9,'6:00 AM'),
+(10,'8:30 AM');
 
 
 
