@@ -42,14 +42,9 @@
             btnDay2 = new Button();
             btnDay1 = new Button();
             btnDay = new Button();
+            cbCinema = new ComboBox();
             panelTime = new Panel();
-            btnTime2 = new Button();
-            btnTime = new Button();
-            labPlace1 = new Label();
-            btnExpand = new Button();
-            CinemaList = new ListBox();
             panelDates.SuspendLayout();
-            panelTime.SuspendLayout();
             SuspendLayout();
             // 
             // labelName
@@ -229,77 +224,29 @@
             btnDay.UseVisualStyleBackColor = false;
             btnDay.Click += btnDay_Click;
             // 
+            // cbCinema
+            // 
+            cbCinema.FormattingEnabled = true;
+            cbCinema.Location = new Point(10, 122);
+            cbCinema.Name = "cbCinema";
+            cbCinema.Size = new Size(612, 23);
+            cbCinema.TabIndex = 2;
+            // 
             // panelTime
             // 
-            panelTime.Controls.Add(btnTime2);
-            panelTime.Controls.Add(btnTime);
-            panelTime.Location = new Point(10, 148);
-            panelTime.Margin = new Padding(3, 2, 3, 2);
+            panelTime.Location = new Point(10, 151);
             panelTime.Name = "panelTime";
-            panelTime.Size = new Size(612, 46);
-            panelTime.TabIndex = 2;
+            panelTime.Size = new Size(612, 175);
+            panelTime.TabIndex = 3;
             panelTime.Visible = false;
-            // 
-            // btnTime2
-            // 
-            btnTime2.Location = new Point(114, 12);
-            btnTime2.Margin = new Padding(3, 2, 3, 2);
-            btnTime2.Name = "btnTime2";
-            btnTime2.Size = new Size(82, 22);
-            btnTime2.TabIndex = 1;
-            btnTime2.Text = "22:30";
-            btnTime2.UseVisualStyleBackColor = true;
-            // 
-            // btnTime
-            // 
-            btnTime.Location = new Point(17, 12);
-            btnTime.Margin = new Padding(3, 2, 3, 2);
-            btnTime.Name = "btnTime";
-            btnTime.Size = new Size(82, 22);
-            btnTime.TabIndex = 0;
-            btnTime.Text = "20:30";
-            btnTime.UseVisualStyleBackColor = true;
-            // 
-            // labPlace1
-            // 
-            labPlace1.AutoSize = true;
-            labPlace1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labPlace1.Location = new Point(14, 118);
-            labPlace1.Name = "labPlace1";
-            labPlace1.Size = new Size(201, 25);
-            labPlace1.TabIndex = 0;
-            labPlace1.Text = "Vincom Hung Vuong";
-            // 
-            // btnExpand
-            // 
-            btnExpand.Location = new Point(596, 122);
-            btnExpand.Margin = new Padding(3, 2, 3, 2);
-            btnExpand.Name = "btnExpand";
-            btnExpand.Size = new Size(23, 22);
-            btnExpand.TabIndex = 3;
-            btnExpand.Text = "▼";
-            btnExpand.UseVisualStyleBackColor = true;
-            btnExpand.Click += btnExpand_Click;
-            // 
-            // CinemaList
-            // 
-            CinemaList.FormattingEnabled = true;
-            CinemaList.ItemHeight = 15;
-            CinemaList.Location = new Point(14, 217);
-            CinemaList.Name = "CinemaList";
-            CinemaList.Size = new Size(311, 94);
-            CinemaList.TabIndex = 4;
-            CinemaList.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // BookingPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(634, 338);
-            Controls.Add(CinemaList);
-            Controls.Add(btnExpand);
-            Controls.Add(labPlace1);
             Controls.Add(panelTime);
+            Controls.Add(cbCinema);
             Controls.Add(panelDates);
             Controls.Add(labelName);
             Margin = new Padding(3, 2, 3, 2);
@@ -307,7 +254,6 @@
             Text = "BookingPage";
             panelDates.ResumeLayout(false);
             panelDates.PerformLayout();
-            panelTime.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -321,11 +267,6 @@
         private Button btnDay3;
         private Button btnDay2;
         private Button btnDay1;
-        private Panel panelTime;
-        private Label labPlace1;
-        private Button btnExpand;
-        private Button btnTime2;
-        private Button btnTime;
         private Button btnDay5;
         private Label labDate;
         private Label labDate5;
@@ -333,6 +274,7 @@
         private Label labDate3;
         private Label labDate2;
         private Label labDate1;
-        private ListBox CinemaList;
+        private ComboBox cbCinema;
+        private Panel panelTime;
     }
 }

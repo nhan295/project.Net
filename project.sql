@@ -274,4 +274,9 @@ select title, release_date, s.time, descriptions, rated, genre_name, director, f
 
 Select cinema_name from Cinema c 
 	inner join movieCinema m on c.cinema_id = m.cinema_id
-    where m.film_id=2;
+    where m.film_id=4;
+
+
+SELECT time FROM Showtimes s
+                inner join movieCinema m on s.film_id = m.film_id 
+                WHERE s.film_id = 1 AND m.cinema_id = 2;

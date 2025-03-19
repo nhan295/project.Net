@@ -21,36 +21,36 @@ namespace Project.NET
             this.filmTitle = filmTitle;
             labelName.Text = filmTitle;
 
-
             clsConnectDB.OpenConnection();
-
-            LoadData();
-            UpdateDay();
-            UpdateDate();
-            LoadShowtimes();
-            DefaultDay();
+            LoadCinemaList(); // Tải danh sách rạp
+            cbCinema.SelectedIndexChanged += cbCinema_SelectedIndexChanged;
         }
 
+
+
+
+
         // Chổ này là show cái drop box các rạp phim làm sao để người ta chọn index theo kiểu drop các rạp rồi chọn rạp mới ra giờ
-        private void LoadData()
+        private void LoadCinemaList()
         {
             clsConnectDB.OpenConnection();
-            string query = "Select cinema_name from Cinema c " +
-                           "inner join movieCinema m on c.cinema_id = m.cinema_id " +
-                           "where m.film_id=@filmId";
+            string query = "SELECT c.cinema_id, c.cinema_name FROM Cinema c " +
+                           "INNER JOIN movieCinema m ON c.cinema_id = m.cinema_id " +
+                           "WHERE m.film_id=@filmId";
 
             using (SqlCommand com = new SqlCommand(query, clsConnectDB.conn))
             {
                 try
                 {
                     com.Parameters.AddWithValue("@filmId", this.filmId);
-
                     using (SqlDataReader reader = com.ExecuteReader())
                     {
-                        while (reader.Read())
-                        {
-                            CinemaList.Items.Add(reader["cinema_name"].ToString());
-                        }
+                        DataTable dt = new DataTable();
+                        dt.Load(reader);
+
+                        cbCinema.DisplayMember = "cinema_name"; // Hiển thị tên rạp
+                        cbCinema.ValueMember = "cinema_id"; // Lưu ID của rạp
+                        cbCinema.DataSource = dt;
                     }
                 }
                 catch (Exception ex)
@@ -60,16 +60,18 @@ namespace Project.NET
             }
         }
 
-        private void BookingPage_Load(object sender, EventArgs e)
+
+        private void cbCinema_SelectedIndexChanged(object sender, EventArgs e)
         {
-            panelTime.Visible = false;
-            btnDay.PerformClick();
+            if (cbCinema.SelectedValue != null)
+            {
+                int cinemaId = Convert.ToInt32(cbCinema.SelectedValue);
+
+                LoadShowtimes(cinemaId);
+                panelTime.Visible = true;
+            }
         }
 
-        private void btnExpand_Click(object sender, EventArgs e)
-        {
-            panelTime.Visible = !panelTime.Visible;
-        }
 
         private void btnDay_Click(object sender, EventArgs e)
         {
@@ -113,59 +115,41 @@ namespace Project.NET
             }
         }
 
-        private void LoadShowtimes()
+        private void LoadShowtimes(int cinemaId)
         {
-            // Xóa các button cũ nếu có
+            // Xóa các button suất chiếu cũ
             foreach (var btn in timeButtons)
             {
                 panelTime.Controls.Remove(btn);
             }
             timeButtons.Clear();
 
-            string query = "SELECT time FROM Showtimes WHERE film_id = @filmId";
+            string query = "SELECT time FROM Showtimes s " +
+                "inner join movieCinema m on s.film_id = m.film_id " +
+                "WHERE s.film_id = @filmId AND m.cinema_id = @cinemaId";
+
             using (SqlCommand cmd = new SqlCommand(query, clsConnectDB.conn))
             {
-                cmd.Parameters.AddWithValue("@filmId", filmId);
-                SqlDataReader reader = cmd.ExecuteReader();
+                cmd.Parameters.AddWithValue("@filmId", this.filmId);
+                cmd.Parameters.AddWithValue("@cinemaId", cinemaId);
 
+                SqlDataReader reader = cmd.ExecuteReader();
                 List<string> showtimes = new List<string>();
+
                 while (reader.Read())
                 {
                     showtimes.Add(reader["time"].ToString());
                 }
                 reader.Close();
 
-                // Gán vào btnTime và btnTime2 nếu có
-                if (showtimes.Count > 0)
-                {
-                    btnTime.Text = showtimes[0];
-                    btnTime.Visible = true;
-                    btnTime.Click += BtnTime_Click;
-                }
-                else
-                {
-                    btnTime.Visible = false;
-                }
+                int x = 20;
+                int y = 10;
 
-                if (showtimes.Count > 1)
-                {
-                    btnTime2.Text = showtimes[1];
-                    btnTime2.Visible = true;
-                    btnTime2.Click += BtnTime_Click;
-                }
-                else
-                {
-                    btnTime2.Visible = false;
-                }
-
-                // Nếu có nhiều hơn 2 suất chiếu, tạo thêm button động
-                int x = btnTime2.Right + 10;
-                int y = btnTime.Location.Y;
-                for (int i = 2; i < showtimes.Count; i++)
+                foreach (var time in showtimes)
                 {
                     Button newButton = new Button
                     {
-                        Text = showtimes[i],
+                        Text = time,
                         Location = new Point(x, y),
                         Size = new Size(60, 30),
                         BackColor = Color.White
@@ -175,10 +159,11 @@ namespace Project.NET
                     panelTime.Controls.Add(newButton);
                     timeButtons.Add(newButton);
 
-                    x += 70;
+                    x += 70; 
                 }
             }
         }
+
 
         private void BtnTime_Click(object sender, EventArgs e)
         {
