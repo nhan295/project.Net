@@ -6,12 +6,12 @@ drop database [Project.Net];
 
 use [Project.Net];
 
-create table Cinema (
-	cinema_id int identity(1,1) primary key,
-	cinema_name nvarchar(45),
-	cinema_address nvarchar(45),
-	total_rooms nvarchar(45),
+CREATE TABLE Cinema (
+    cinema_id INT IDENTITY(1,1) PRIMARY KEY,
+    cinema_name NVARCHAR(255) NOT NULL,
+    location NVARCHAR(255) NOT NULL
 );
+
 
 select* from cinema;
 
@@ -31,53 +31,57 @@ create table Genre (
 	genre_name nvarchar(45)
 );
 
-create table Film(
-	film_id int identity(1,1) primary key,
-	title nvarchar(50),
-	rated nvarchar(250),
-	genre_id int,
-	release_date date,
-	director nvarchar(50),
-	company_production nvarchar(50),
-	descriptions nvarchar(50),
-	thumbnail nvarchar(50),
-	film_status nvarchar(50),
-	film_language nvarchar(50)
+CREATE TABLE Film (
+    film_id INT IDENTITY(1,1) PRIMARY KEY,
+    title NVARCHAR(100) NOT NULL, -- Tăng độ dài tiêu đề phim
+    rated NVARCHAR(50), -- Giữ nguyên
+    genre_id INT, 
+    release_date DATE,
+    director NVARCHAR(100), -- Tăng độ dài tên đạo diễn
+    company_production NVARCHAR(100), -- Tăng độ dài tên công ty sản xuất
+    descriptions NVARCHAR(500), -- Tăng độ dài mô tả phim
+    thumbnail NVARCHAR(255), -- Đường dẫn ảnh có thể dài hơn
+    film_status NVARCHAR(50),
+    film_language NVARCHAR(50),
 
-	foreign key (genre_id) references Genre(genre_id),
-
-
+    FOREIGN KEY (genre_id) REFERENCES Genre(genre_id)
 );
+
 select * from Film;
 
-create table Showtimes (
-	showtime_id int identity(1,1) primary key,
-	film_id int,
-	time nvarchar(45),
-
-	foreign key (film_id) references film(film_id)
-);
-
-create table ScreeningRoom (
-	screeningroom_id int identity(1,1) primary key,
-	cinema_id int,
-	showtime_id int,
-	screeningroom_seats nvarchar(45),
-	screeningroom_name nvarchar(45),
-
-	foreign key (cinema_id) references Cinema(cinema_id),
-	foreign key (showtime_id) references Showtimes(showtime_id)
+CREATE TABLE Showtimes (
+    showtime_id INT IDENTITY(1,1) PRIMARY KEY,
+    film_id INT,
+    cinema_id INT,
+    screeningroom_id INT,
+    show_date DATE NOT NULL, -- Ngày chiếu
+    show_time TIME NOT NULL, -- Giờ chiếu
+    FOREIGN KEY (film_id) REFERENCES Film(film_id),
+    FOREIGN KEY (cinema_id) REFERENCES Cinema(cinema_id),
+    FOREIGN KEY (screeningroom_id) REFERENCES ScreeningRoom(screeningroom_id)
 );
 
 
-create table Seat (
-	seat_id int identity(1,1) primary key,
-	screeningroom_id int,
-	seat_number nvarchar(45),
-	seat_status tinyint,
-
-	foreign key (screeningroom_id) references ScreeningRoom(screeningroom_id)
+CREATE TABLE ScreeningRoom (
+    screeningroom_id INT IDENTITY(1,1) PRIMARY KEY,
+    cinema_id INT,
+    room_name NVARCHAR(50) NOT NULL,
+    seat_capacity INT NOT NULL, -- Tổng số ghế trong phòng
+    FOREIGN KEY (cinema_id) REFERENCES Cinema(cinema_id)
 );
+
+
+
+CREATE TABLE Seat (
+    seat_id INT IDENTITY(1,1) PRIMARY KEY,
+    screeningroom_id INT,
+    showtime_id INT,
+    seat_number NVARCHAR(10) NOT NULL,
+    seat_status TINYINT DEFAULT 0, -- 0: Trống, 1: Đã đặt
+    FOREIGN KEY (screeningroom_id) REFERENCES ScreeningRoom(screeningroom_id),
+    FOREIGN KEY (showtime_id) REFERENCES Showtimes(showtime_id)
+);
+
 create table Invoice (
 	invoice_id int identity(1,1) primary key,
 	cus_id int,
@@ -95,6 +99,8 @@ create table Invoice (
 	foreign key (screeningroom_id) references ScreeningRoom(screeningroom_id),
 );
 
+
+
 CREATE TABLE movieCinema (
     cinema_id INT,
     film_id INT,
@@ -103,34 +109,9 @@ CREATE TABLE movieCinema (
     FOREIGN KEY (film_id) REFERENCES Film(film_id)
 );
 
-insert movieCinema(cinema_id,film_id) values(1,1);
-insert movieCinema(cinema_id,film_id) values(1,2);
-insert movieCinema(cinema_id,film_id) values(1,3);
-insert movieCinema(cinema_id,film_id) values(1,4);
-insert movieCinema(cinema_id,film_id) values(2,1);
-insert movieCinema(cinema_id,film_id) values(2,2);
-insert movieCinema(cinema_id,film_id) values(2,3);
-insert movieCinema(cinema_id,film_id) values(2,4);
 
-CREATE PROCEDURE SearchFilmByTitle  
-    @Title NVARCHAR(50)  
-AS  
-BEGIN  
-    SET NOCOUNT ON;  
 
-    SELECT 
-        f.film_id, 
-        f.title, 
-        g.genre_name, 
-        f.release_date, 
-        f.director, 
-        f.company_production, 
-        f.descriptions, 
-        f.thumbnail
-    FROM Film f
-    JOIN Genre g ON f.genre_id = g.genre_id
-    WHERE f.title LIKE N'%' + @Title + '%';  
-END;
+
 
 
 CREATE PROCEDURE InsertCustomerIntoInvoice
@@ -173,17 +154,78 @@ END;
 EXEC ChangeUserPassword 1, "1234";
 
 -- Chèn dữ liệu vào bảng Cinema
-INSERT INTO Cinema (cinema_name, cinema_address, total_rooms) VALUES
-('Vincom Hung Vuong', '123 Main St', '5'),
-('Vincom Xuan Khanh', '456 Elm St', '3'),
-('Lotte Hung Vuong', '789 Oak St', '4'),
-('Lotte Xuan Khanh', '159 Pine St', '2'),
-('BigC 30/4', '753 Birch St', '6'),
-('CinemaGV', '852 Cedar St', '4'),
-('Room G', '369 Maple St', '5'),
-('Room H', '147 Spruce St', '3'),
-('Room I', '258 Walnut St', '4'),
-('Room J', '369 Cherry St', '2');
+
+
+
+INSERT INTO Cinema (cinema_name, location) VALUES
+('Vincom Hung Vuong', '123 Main St'),
+('Vincom Xuan Khanh', '456 Elm St'),
+('Lotte Hung Vuong', '789 Oak St'),
+('Lotte Xuan Khanh', '159 Pine St'),
+('BigC 30/4', '753 Birch St'),
+('CinemaGV', '852 Cedar St'),
+('Room G', '369 Maple St'),
+('Room H', '147 Spruce St'),
+('Room I', '258 Walnut St'),
+('Room J', '369 Cherry St');
+
+INSERT INTO Showtimes (film_id, cinema_id, screeningroom_id, show_date, show_time) VALUES
+(6, 1, 1, '2025-03-21', '10:00:00'),
+(6, 1, 1, '2025-03-21', '14:00:00'),
+(6, 1, 1, '2025-03-21', '18:30:00'),
+
+(2, 2, 2, '2025-03-21', '09:00:00'),
+(2, 2, 2, '2025-03-21', '13:30:00'),
+(2, 2, 2, '2025-03-21', '17:45:00'),
+
+(3, 3, 3, '2025-03-21', '11:15:00'),
+(3, 3, 3, '2025-03-21', '15:45:00'),
+(3, 3, 3, '2025-03-21', '20:00:00'),
+
+(4, 4, 4, '2025-03-21', '12:00:00'),
+(4, 4, 4, '2025-03-21', '16:15:00'),
+(4, 4, 4, '2025-03-21', '19:45:00'),
+
+(5, 5, 5, '2025-03-21', '08:30:00'),
+(5, 5, 5, '2025-03-21', '13:00:00'),
+(5, 5, 5, '2025-03-21', '17:30:00');
+
+
+
+INSERT INTO Seat (screeningroom_id, showtime_id, seat_number, seat_status) VALUES
+(1, 7, 'A1', 0),
+(1, 7, 'A2', 1),
+(1, 7, 'A3', 0),
+(1, 7, 'A4', 1),
+(1, 7, 'A5', 0),
+(1, 8, 'A1', 0),
+(1, 8, 'A2', 0),
+(1, 8, 'A3', 1),
+(1, 8, 'A4', 0),
+(1, 8, 'A5', 1),
+
+(2, 3, 'B1', 1),
+(2, 3, 'B2', 0),
+(2, 3, 'B3', 1),
+(2, 3, 'B4', 0),
+(2, 3, 'B5', 0),
+(2, 4, 'B1', 0),
+(2, 4, 'B2', 1),
+(2, 4, 'B3', 0),
+(2, 4, 'B4', 1),
+(2, 4, 'B5', 0),
+
+(3, 5, 'C1', 0),
+(3, 5, 'C2', 1),
+(3, 5, 'C3', 0),
+(3, 5, 'C4', 0),
+(3, 5, 'C5', 1),
+(3, 6, 'C1', 1),
+(3, 6, 'C2', 0),
+(3, 6, 'C3', 0),
+(3, 6, 'C4', 1),
+(3, 6, 'C5', 0);
+
 
 -- Chèn dữ liệu vào bảng Customer
 INSERT INTO Customer (cus_name, cus_password, cus_phone, cus_email, cus_address, cus_birthday) VALUES
@@ -198,6 +240,14 @@ INSERT INTO Customer (cus_name, cus_password, cus_phone, cus_email, cus_address,
 ('Grace Pink', 'grace789', '753159246', 'grace@example.com', 'Miami', '2003-05-20'),
 ('Henry Orange', 'henry321', '852963741', 'henry@example.com', 'Dallas', '2003-05-20');
 
+insert movieCinema(cinema_id,film_id) values(1,1);
+insert movieCinema(cinema_id,film_id) values(1,2);
+insert movieCinema(cinema_id,film_id) values(1,3);
+insert movieCinema(cinema_id,film_id) values(1,4);
+insert movieCinema(cinema_id,film_id) values(2,1);
+insert movieCinema(cinema_id,film_id) values(2,2);
+insert movieCinema(cinema_id,film_id) values(2,3);
+insert movieCinema(cinema_id,film_id) values(2,4);
 
 -- Chèn dữ liệu vào bảng Genre
 INSERT INTO Genre (genre_name) VALUES
@@ -216,34 +266,25 @@ INSERT INTO Genre (genre_name) VALUES
 
 
 -- Chèn dữ liệu vào bảng ScreeningRoom
-INSERT INTO ScreeningRoom (cinema_id, screeningroom_seats, screeningroom_name) VALUES
-(1,'50', 'Screen 1'),
-(2,'40', 'Screen 2'),
-(3,'30', 'Screen 3'),
-(4,'20', 'Screen 4'),
-(5,'60', 'Screen 5'),
-(6,'45', 'Screen 6'),
-(7,'35', 'Screen 7'),
-(8,'25', 'Screen 8'),
-(9,'55', 'Screen 9'),
-(10,'50', 'Screen 10');
+INSERT INTO ScreeningRoom (cinema_id, room_name, seat_capacity) VALUES
+(1, 'Room A1', 100),
+(1, 'Room A2', 120),
+(2, 'Room B1', 80),
+(2, 'Room B2', 90),
+(3, 'Room C1', 150),
+(3, 'Room C2', 130),
+(4, 'Room D1', 110),
+(4, 'Room D2', 140),
+(5, 'Room E1', 95),
+(5, 'Room E2', 105);
+
 
 -- Chèn dữ liệu vào bảng Seat
-INSERT INTO Seat (seat_number, seat_status) VALUES
-('A1', 1),
-('B2', 0),
-('C3', 1),
-('D4', 0),
-('E5', 1),
-('F6', 1),
-('G7', 0),
-('H8', 1),
-('I9', 0),
-('J10', 1);
+
 
 -- Chèn dữ liệu vào bảng Film
 INSERT INTO Film (title, genre_id, release_date, director, company_production, descriptions, thumbnail, film_status, film_language) VALUES
-('The Avengers', 1, '2012-05-04', 'Joss Whedon', 'Marvel Studios', 'Superhero film', 'avengers', 'Now Showing', 'English - Vietnamese'),
+('The Avengers', 1, '2012-05-04', 'Joss Whedon', 'Marvel Studios', 'Superhero film', 'avenger', 'Now Showing', 'English - Vietnamese'),
 ('Inception', 5, '2010-07-16', 'Christopher Nolan', 'Warner Bros.', 'Sci-fi thriller', 'inception', 'Now Showing', 'English - Vietnamese'),
 ('Titanic', 6, '1997-12-19', 'James Cameron', '20th Century Fox', 'Romantic drama', 'titanic', 'Now Showing', 'English - Vietnamese'),
 ('The Conjuring', 4, '2013-07-19', 'James Wan', 'New Line Cinema', 'Horror film', 'conjuring', 'Now Showing', 'English - Vietnamese'),
@@ -253,30 +294,8 @@ INSERT INTO Film (title, genre_id, release_date, director, company_production, d
 ('Frozen', 10, '2013-11-27', 'Chris Buck', 'Disney', 'Fantasy animation', 'frozen', 'Now Showing', 'English - Vietnamese'),
 ('Parasite', 3, '2019-05-30', 'Bong Joon-ho', 'CJ Entertainment', 'Thriller drama', 'parasite', 'Now Showing', 'English - Vietnamese'),
 ('The Godfather', 3, '1972-03-24', 'Francis Ford Coppola', 'Paramount Pictures', 'Crime drama', 'godfather', 'Now Showing', 'English - Vietnamese');
-INSERT INTO Showtimes (film_id,time) VALUES
-(1,'10:00 AM'),
-(2,'12:30 PM'),
-(3,'3:00 PM'),
-(4,'5:30 PM'),
-(5,'8:00 PM'),
-(6,'10:30 PM'),
-(7,'1:00 AM'),
-(8,'3:30 AM'),
-(9,'6:00 AM'),
-(10,'8:30 AM');
 
 
 
-select title, release_date, s.time, descriptions, rated, genre_name, director, film_language
-                                                from film f inner join Showtimes s on f.film_id = s.film_id
-                                                inner join Genre g on f.genre_id = g.genre_id
-                                                where f.film_id=2;
 
-Select cinema_name from Cinema c 
-	inner join movieCinema m on c.cinema_id = m.cinema_id
-    where m.film_id=4;
-
-
-SELECT time FROM Showtimes s
-                inner join movieCinema m on s.film_id = m.film_id 
-                WHERE s.film_id = 1 AND m.cinema_id = 2;
+SELECT seat_number, seat_status FROM Seat WHERE showtime_id = 3; -- Thay 1 bằng showtime_id cần kiểm tra

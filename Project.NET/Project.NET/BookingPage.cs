@@ -20,7 +20,9 @@ namespace Project.NET
             this.filmId = filmId;
             this.filmTitle = filmTitle;
             labelName.Text = filmTitle;
-
+            UpdateDate();
+            DefaultDay();
+            UpdateDay();
             clsConnectDB.OpenConnection();
             LoadCinemaList(); // Tải danh sách rạp
             cbCinema.SelectedIndexChanged += cbCinema_SelectedIndexChanged;
@@ -34,9 +36,10 @@ namespace Project.NET
         private void LoadCinemaList()
         {
             clsConnectDB.OpenConnection();
-            string query = "SELECT c.cinema_id, c.cinema_name FROM Cinema c " +
-                           "INNER JOIN movieCinema m ON c.cinema_id = m.cinema_id " +
-                           "WHERE m.film_id=@filmId";
+            string query = @"SELECT DISTINCT c.cinema_id, c.cinema_name 
+                 FROM Cinema c
+                 INNER JOIN movieCinema mc ON c.cinema_id = mc.cinema_id
+                 WHERE mc.film_id = @filmId";
 
             using (SqlCommand com = new SqlCommand(query, clsConnectDB.conn))
             {
@@ -48,8 +51,8 @@ namespace Project.NET
                         DataTable dt = new DataTable();
                         dt.Load(reader);
 
-                        cbCinema.DisplayMember = "cinema_name"; // Hiển thị tên rạp
-                        cbCinema.ValueMember = "cinema_id"; // Lưu ID của rạp
+                        cbCinema.DisplayMember = "cinema_name";
+                        cbCinema.ValueMember = "cinema_id";
                         cbCinema.DataSource = dt;
                     }
                 }
@@ -63,14 +66,20 @@ namespace Project.NET
 
         private void cbCinema_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbCinema.SelectedValue != null)
+            if (cbCinema.SelectedValue == null || selectedButton == null)
             {
-                int cinemaId = Convert.ToInt32(cbCinema.SelectedValue);
+                panelTime.Visible = false;
+                return;
+            }
 
-                LoadShowtimes(cinemaId);
+            if (int.TryParse(cbCinema.SelectedValue.ToString(), out int cinemaId))
+            {
+                string selectedDate = selectedButton.Tag.ToString();
+                LoadShowtimes(cinemaId, selectedDate);
                 panelTime.Visible = true;
             }
         }
+
 
 
         private void btnDay_Click(object sender, EventArgs e)
@@ -84,6 +93,13 @@ namespace Project.NET
 
             clickedButton.BackColor = Color.Salmon;
             selectedButton = clickedButton;
+
+            if (cbCinema.SelectedValue != null)
+            {
+                int cinemaId = Convert.ToInt32(cbCinema.SelectedValue);
+                string selectedDate = clickedButton.Tag.ToString(); 
+                LoadShowtimes(cinemaId, selectedDate);
+            }
         }
 
         private void DefaultDay()
@@ -94,19 +110,20 @@ namespace Project.NET
 
         private void UpdateDay()
         {
-            List<Button> buttonList = new List<Button> { btnDay, btnDay1, btnDay2, btnDay3, btnDay4, btnDay5 };
+            List<Button> buttonList = new List<Button> { btnDay, btnDay1, btnDay2, btnDay3, btnDay4, btnDay5, btnDay6 };
             DateTime today = DateTime.Now;
 
             for (int i = 0; i < buttonList.Count; i++)
             {
                 buttonList[i].Text = today.AddDays(i).ToString("dd");
+                buttonList[i].Tag = today.AddDays(i).ToString("yyyy-MM-dd");
                 buttonList[i].Click += btnDay_Click;
             }
         }
 
         private void UpdateDate()
         {
-            List<Label> labelList = new List<Label> { labDate, labDate1, labDate2, labDate3, labDate4, labDate5 };
+            List<Label> labelList = new List<Label> { labDate, labDate1, labDate2, labDate3, labDate4, labDate5 ,labDay6};
             DateTime today = DateTime.Now;
 
             for (int i = 0; i < labelList.Count; i++)
@@ -115,65 +132,75 @@ namespace Project.NET
             }
         }
 
-        private void LoadShowtimes(int cinemaId)
+        private void LoadShowtimes(int cinemaId, string showDate)
         {
-            // Xóa các button suất chiếu cũ
             foreach (var btn in timeButtons)
             {
                 panelTime.Controls.Remove(btn);
             }
             timeButtons.Clear();
 
-            string query = "SELECT time FROM Showtimes s " +
-                "inner join movieCinema m on s.film_id = m.film_id " +
-                "WHERE s.film_id = @filmId AND m.cinema_id = @cinemaId";
+            string query = @"SELECT showtime_id, show_time FROM Showtimes 
+                     WHERE film_id = @filmId AND cinema_id = @cinemaId AND show_date = @showDate";
 
             using (SqlCommand cmd = new SqlCommand(query, clsConnectDB.conn))
             {
                 cmd.Parameters.AddWithValue("@filmId", this.filmId);
                 cmd.Parameters.AddWithValue("@cinemaId", cinemaId);
+                cmd.Parameters.AddWithValue("@showDate", showDate);
 
                 SqlDataReader reader = cmd.ExecuteReader();
-                List<string> showtimes = new List<string>();
+                List<(int, string)> showtimes = new List<(int, string)>(); // Lưu cả showtime_id và giờ
 
                 while (reader.Read())
                 {
-                    showtimes.Add(reader["time"].ToString());
+                    int showtimeId = Convert.ToInt32(reader["showtime_id"]);
+                    string showTime = reader["show_time"].ToString();
+                    showtimes.Add((showtimeId, showTime));
                 }
                 reader.Close();
 
                 int x = 20;
                 int y = 10;
 
-                foreach (var time in showtimes)
+                foreach (var (showtimeId, time) in showtimes)
                 {
                     Button newButton = new Button
                     {
                         Text = time,
                         Location = new Point(x, y),
                         Size = new Size(60, 30),
-                        BackColor = Color.White
+                        BackColor = Color.White,
+                        Tag = showtimeId // Gán showtime_id vào Tag
                     };
 
                     newButton.Click += BtnTime_Click;
                     panelTime.Controls.Add(newButton);
                     timeButtons.Add(newButton);
 
-                    x += 70; 
+                    x += 70;
                 }
             }
         }
 
 
+
+
         private void BtnTime_Click(object sender, EventArgs e)
         {
             Button clickedButton = sender as Button;
-            MessageBox.Show($"Bạn đã chọn suất chiếu: {clickedButton.Text}");
+            int showtimeId = (int)clickedButton.Tag; 
+
+            SeatPage seatPage = new SeatPage(showtimeId);
+            seatPage.Show();
+
+            //this.Hide(); 
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
-          
+
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -187,6 +214,11 @@ namespace Project.NET
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labDay6_Click(object sender, EventArgs e)
         {
 
         }

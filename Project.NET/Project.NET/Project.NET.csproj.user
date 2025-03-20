@@ -28,5 +28,8 @@
     <Compile Update="Register_form.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="SeatPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

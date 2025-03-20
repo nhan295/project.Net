@@ -98,6 +98,7 @@
             btnBooking.TabIndex = 5;
             btnBooking.Text = "Book Now";
             btnBooking.UseVisualStyleBackColor = false;
+            btnBooking.Click += btnBooking_Click_1;
             // 
             // txtDate
             // 

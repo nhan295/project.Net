@@ -30,6 +30,8 @@
         {
             labelName = new Label();
             panelDates = new Panel();
+            labDay6 = new Label();
+            btnDay6 = new Button();
             labDate5 = new Label();
             labDate4 = new Label();
             labDate3 = new Label();
@@ -61,6 +63,8 @@
             // 
             panelDates.AutoScroll = true;
             panelDates.BackColor = Color.MistyRose;
+            panelDates.Controls.Add(labDay6);
+            panelDates.Controls.Add(btnDay6);
             panelDates.Controls.Add(labDate5);
             panelDates.Controls.Add(labDate4);
             panelDates.Controls.Add(labDate3);
@@ -79,10 +83,35 @@
             panelDates.Size = new Size(613, 56);
             panelDates.TabIndex = 1;
             // 
+            // labDay6
+            // 
+            labDay6.AutoSize = true;
+            labDay6.Location = new Point(534, 8);
+            labDay6.Name = "labDay6";
+            labDay6.Size = new Size(38, 15);
+            labDay6.TabIndex = 14;
+            labDay6.Text = "label1";
+            labDay6.Click += labDay6_Click;
+            // 
+            // btnDay6
+            // 
+            btnDay6.BackColor = Color.White;
+            btnDay6.FlatAppearance.BorderColor = Color.White;
+            btnDay6.FlatAppearance.BorderSize = 0;
+            btnDay6.FlatAppearance.MouseDownBackColor = Color.White;
+            btnDay6.FlatStyle = FlatStyle.Flat;
+            btnDay6.Location = new Point(534, 25);
+            btnDay6.Margin = new Padding(3, 2, 3, 2);
+            btnDay6.Name = "btnDay6";
+            btnDay6.Size = new Size(58, 22);
+            btnDay6.TabIndex = 13;
+            btnDay6.Text = "12";
+            btnDay6.UseVisualStyleBackColor = false;
+            // 
             // labDate5
             // 
             labDate5.AutoSize = true;
-            labDate5.Location = new Point(523, 8);
+            labDate5.Location = new Point(447, 8);
             labDate5.Name = "labDate5";
             labDate5.Size = new Size(38, 15);
             labDate5.TabIndex = 12;
@@ -91,7 +120,7 @@
             // labDate4
             // 
             labDate4.AutoSize = true;
-            labDate4.Location = new Point(427, 8);
+            labDate4.Location = new Point(363, 8);
             labDate4.Name = "labDate4";
             labDate4.Size = new Size(38, 15);
             labDate4.TabIndex = 11;
@@ -100,7 +129,7 @@
             // labDate3
             // 
             labDate3.AutoSize = true;
-            labDate3.Location = new Point(329, 8);
+            labDate3.Location = new Point(281, 8);
             labDate3.Name = "labDate3";
             labDate3.Size = new Size(38, 15);
             labDate3.TabIndex = 10;
@@ -109,7 +138,7 @@
             // labDate2
             // 
             labDate2.AutoSize = true;
-            labDate2.Location = new Point(234, 8);
+            labDate2.Location = new Point(196, 8);
             labDate2.Name = "labDate2";
             labDate2.Size = new Size(38, 15);
             labDate2.TabIndex = 9;
@@ -118,7 +147,7 @@
             // labDate1
             // 
             labDate1.AutoSize = true;
-            labDate1.Location = new Point(136, 8);
+            labDate1.Location = new Point(104, 8);
             labDate1.Name = "labDate1";
             labDate1.Size = new Size(38, 15);
             labDate1.TabIndex = 8;
@@ -127,7 +156,7 @@
             // labDate
             // 
             labDate.AutoSize = true;
-            labDate.Location = new Point(33, 8);
+            labDate.Location = new Point(18, 8);
             labDate.Name = "labDate";
             labDate.Size = new Size(38, 15);
             labDate.TabIndex = 7;
@@ -140,10 +169,10 @@
             btnDay5.FlatAppearance.BorderSize = 0;
             btnDay5.FlatAppearance.MouseDownBackColor = Color.White;
             btnDay5.FlatStyle = FlatStyle.Flat;
-            btnDay5.Location = new Point(507, 25);
+            btnDay5.Location = new Point(447, 25);
             btnDay5.Margin = new Padding(3, 2, 3, 2);
             btnDay5.Name = "btnDay5";
-            btnDay5.Size = new Size(82, 22);
+            btnDay5.Size = new Size(54, 22);
             btnDay5.TabIndex = 6;
             btnDay5.Text = "12";
             btnDay5.UseVisualStyleBackColor = false;
@@ -155,10 +184,10 @@
             btnDay4.FlatAppearance.BorderSize = 0;
             btnDay4.FlatAppearance.MouseDownBackColor = Color.White;
             btnDay4.FlatStyle = FlatStyle.Flat;
-            btnDay4.Location = new Point(407, 25);
+            btnDay4.Location = new Point(363, 25);
             btnDay4.Margin = new Padding(3, 2, 3, 2);
             btnDay4.Name = "btnDay4";
-            btnDay4.Size = new Size(82, 22);
+            btnDay4.Size = new Size(58, 22);
             btnDay4.TabIndex = 5;
             btnDay4.Text = "12";
             btnDay4.UseVisualStyleBackColor = false;
@@ -170,10 +199,10 @@
             btnDay3.FlatAppearance.BorderSize = 0;
             btnDay3.FlatAppearance.MouseDownBackColor = Color.White;
             btnDay3.FlatStyle = FlatStyle.Flat;
-            btnDay3.Location = new Point(310, 25);
+            btnDay3.Location = new Point(281, 25);
             btnDay3.Margin = new Padding(3, 2, 3, 2);
             btnDay3.Name = "btnDay3";
-            btnDay3.Size = new Size(82, 22);
+            btnDay3.Size = new Size(57, 22);
             btnDay3.TabIndex = 4;
             btnDay3.Text = "12";
             btnDay3.UseVisualStyleBackColor = false;
@@ -185,10 +214,10 @@
             btnDay2.FlatAppearance.BorderSize = 0;
             btnDay2.FlatAppearance.MouseDownBackColor = Color.White;
             btnDay2.FlatStyle = FlatStyle.Flat;
-            btnDay2.Location = new Point(211, 25);
+            btnDay2.Location = new Point(196, 25);
             btnDay2.Margin = new Padding(3, 2, 3, 2);
             btnDay2.Name = "btnDay2";
-            btnDay2.Size = new Size(82, 22);
+            btnDay2.Size = new Size(61, 22);
             btnDay2.TabIndex = 3;
             btnDay2.Text = "12";
             btnDay2.UseVisualStyleBackColor = false;
@@ -200,10 +229,10 @@
             btnDay1.FlatAppearance.BorderSize = 0;
             btnDay1.FlatAppearance.MouseDownBackColor = Color.White;
             btnDay1.FlatStyle = FlatStyle.Flat;
-            btnDay1.Location = new Point(116, 25);
+            btnDay1.Location = new Point(104, 25);
             btnDay1.Margin = new Padding(3, 2, 3, 2);
             btnDay1.Name = "btnDay1";
-            btnDay1.Size = new Size(82, 22);
+            btnDay1.Size = new Size(58, 22);
             btnDay1.TabIndex = 2;
             btnDay1.Text = "12";
             btnDay1.UseVisualStyleBackColor = false;
@@ -218,7 +247,7 @@
             btnDay.Location = new Point(18, 25);
             btnDay.Margin = new Padding(3, 2, 3, 2);
             btnDay.Name = "btnDay";
-            btnDay.Size = new Size(82, 22);
+            btnDay.Size = new Size(53, 22);
             btnDay.TabIndex = 0;
             btnDay.Text = "12";
             btnDay.UseVisualStyleBackColor = false;
@@ -276,5 +305,7 @@
         private Label labDate1;
         private ComboBox cbCinema;
         private Panel panelTime;
+        private Label labDay6;
+        private Button btnDay6;
     }
 }

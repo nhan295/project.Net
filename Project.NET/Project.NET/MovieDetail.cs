@@ -19,7 +19,7 @@ namespace Project.NET
             {
                 clsConnectDB.OpenConnection();
 
-                SqlCommand com = new SqlCommand("SELECT title, release_date, s.time, descriptions, rated, genre_name, director, film_language, thumbnail " +
+                SqlCommand com = new SqlCommand("SELECT title, release_date, s.show_time, descriptions, rated, genre_name, director, film_language, thumbnail " +
                                                 "FROM film f INNER JOIN Showtimes s ON f.film_id = s.film_id " +
                                                 "INNER JOIN Genre g ON f.genre_id = g.genre_id " +
                                                 "WHERE f.film_id=@filmId", clsConnectDB.conn);
@@ -31,7 +31,7 @@ namespace Project.NET
                 {
                     txtTitle.Text = reader["title"].ToString();
                     txtDate.Text = Convert.ToDateTime(reader["release_date"]).ToString("yyyy-MM-dd");
-                    txtTimeshow.Text = reader["time"].ToString();
+                    txtTimeshow.Text = reader["show_time"].ToString();
                     txtDecrip.Text = reader["descriptions"].ToString();
                     txtRatedCnt.Text = reader["rated"].ToString();
                     txtGerneCnt.Text = reader["genre_name"].ToString();
@@ -74,6 +74,12 @@ namespace Project.NET
         }
 
         private void btnBooking_Click(object sender, EventArgs e)
+        {
+            BookingPage bookingForm = new BookingPage(filmId, txtTitle.Text);
+            bookingForm.ShowDialog();
+        }
+
+        private void btnBooking_Click_1(object sender, EventArgs e)
         {
             BookingPage bookingForm = new BookingPage(filmId, txtTitle.Text);
             bookingForm.ShowDialog();
