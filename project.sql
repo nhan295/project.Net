@@ -299,3 +299,7 @@ INSERT INTO Film (title, genre_id, release_date, director, company_production, d
 
 
 SELECT seat_number, seat_status FROM Seat WHERE showtime_id = 3; -- Thay 1 bằng showtime_id cần kiểm tra
+
+
+INSERT INTO Invoice (cus_id, screeningroom_id, film_id, seat_id, cinema_id, showtime_id) 
+                                              VALUES (11, 1, 2, 18, 2, 6);

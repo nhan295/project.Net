@@ -417,6 +417,7 @@
             pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox7.TabIndex = 10;
             pictureBox7.TabStop = false;
+            pictureBox7.Click += pictureBox7_Click;
             // 
             // btn_Ticket
             // 
@@ -430,6 +431,7 @@
             btn_Ticket.Text = "My Tickets";
             btn_Ticket.TextAlign = ContentAlignment.MiddleLeft;
             btn_Ticket.UseVisualStyleBackColor = false;
+            btn_Ticket.Click += btn_Ticket_Click;
             // 
             // panel3
             // 
@@ -556,7 +558,7 @@
             sidebar.Location = new Point(0, 34);
             sidebar.Margin = new Padding(3, 2, 3, 2);
             sidebar.Name = "sidebar";
-            sidebar.Size = new Size(10, 458);
+            sidebar.Size = new Size(223, 458);
             sidebar.TabIndex = 7;
             // 
             // timer1

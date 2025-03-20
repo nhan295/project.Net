@@ -65,7 +65,7 @@ namespace Project.NET
 
                         filmFrames[index].SizeMode = PictureBoxSizeMode.StretchImage;
 
-                        // Gán sự kiện click cho mỗi PictureBox
+
                         int filmId = filmIds[index];
                         filmFrames[index].Click += (s, e) => OpenMovieDetail(filmId);
 
@@ -78,6 +78,7 @@ namespace Project.NET
         // Hàm mở trang chi tiết phim
         private void OpenMovieDetail(int filmId)
         {
+            clsSession.FilmId = filmId;
             MovieDetail detailForm = new MovieDetail(filmId);
             detailForm.ShowDialog();
         }
@@ -101,9 +102,9 @@ namespace Project.NET
                         string filmname = reader["title"].ToString();
 
 
-                            filmName[index].Text = filmname;
-                        
-                    
+                        filmName[index].Text = filmname;
+
+
                         index++;
                     }
                 }
@@ -230,6 +231,18 @@ namespace Project.NET
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_Ticket_Click(object sender, EventArgs e)
+        {
+            BookingHistoryPage bookingHistoryPage = new BookingHistoryPage();
+            bookingHistoryPage.Show();
+        }
+
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+            BookingHistoryPage bookingHistoryPage = new BookingHistoryPage();
+            bookingHistoryPage.Show();
         }
     }
 }

@@ -1,12 +1,9 @@
 ﻿namespace Project.NET
 {
-    partial class Booking
+    partial class BookingHistoryPage
     {
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnUpcoming;
-        private System.Windows.Forms.Button btnWatched;
-        private System.Windows.Forms.Panel pnlUpcomingMovies;
-        private System.Windows.Forms.Panel pnlWatchedMovies;
         private System.Windows.Forms.Label lblNote;
         private System.Windows.Forms.PictureBox picMovie1, picMovie2, picMovie3;
         private System.Windows.Forms.PictureBox picMovie4, picMovie5, picMovie6;
@@ -28,70 +25,60 @@
 
         private void InitializeComponent()
         {
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.btnUpcoming = new System.Windows.Forms.Button();
-            this.btnWatched = new System.Windows.Forms.Button();
-            this.pnlUpcomingMovies = new System.Windows.Forms.Panel();
-            this.pnlWatchedMovies = new System.Windows.Forms.Panel();
-            this.lblNote = new System.Windows.Forms.Label();
-
-            // Form properties
-            this.SuspendLayout();
-            this.ClientSize = new System.Drawing.Size(640, 500);
-            this.Text = "Booking";
-
+            lblTitle = new Label();
+            btnUpcoming = new Button();
+            lblNote = new Label();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            SuspendLayout();
+            // 
             // lblTitle
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Bold);
-            this.lblTitle.Location = new System.Drawing.Point(20, 20);
-            this.lblTitle.Text = "Booking";
-
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Arial", 16F, FontStyle.Bold);
+            lblTitle.Location = new Point(20, 20);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(97, 26);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "Booking";
+            // 
             // btnUpcoming
-            this.btnUpcoming.Location = new System.Drawing.Point(20, 60);
-            this.btnUpcoming.Size = new System.Drawing.Size(150, 40);
-            this.btnUpcoming.Text = "Phim sắp xem";
-            this.btnUpcoming.Click += new System.EventHandler(this.btnUpcoming_Click);
-
-            // btnWatched
-            this.btnWatched.Location = new System.Drawing.Point(180, 60);
-            this.btnWatched.Size = new System.Drawing.Size(150, 40);
-            this.btnWatched.Text = "Phim đã xem";
-            this.btnWatched.Click += new System.EventHandler(this.btnWatched_Click);
-
-            // pnlUpcomingMovies
-            this.pnlUpcomingMovies = new System.Windows.Forms.Panel();
-            this.pnlUpcomingMovies.Location = new System.Drawing.Point(20, 110);
-            this.pnlUpcomingMovies.Size = new System.Drawing.Size(600, 300);
-            this.pnlUpcomingMovies.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlUpcomingMovies.AutoScroll = true; // Bật cuộn
-
-            // pnlWatchedMovies
-            this.pnlWatchedMovies = new System.Windows.Forms.Panel();
-            this.pnlWatchedMovies.Location = new System.Drawing.Point(20, 110);
-            this.pnlWatchedMovies.Size = new System.Drawing.Size(600, 300);
-            this.pnlWatchedMovies.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlWatchedMovies.AutoScroll = true; // Bật cuộn
-            this.pnlWatchedMovies.Visible = false;
-
+            // 
+            btnUpcoming.Location = new Point(20, 60);
+            btnUpcoming.Name = "btnUpcoming";
+            btnUpcoming.Size = new Size(150, 40);
+            btnUpcoming.TabIndex = 1;
+            btnUpcoming.Text = "Phim đã đặt";
+            btnUpcoming.Click += btnUpcoming_Click;
+            // 
             // lblNote
-            this.lblNote.AutoSize = true;
-            this.lblNote.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Italic);
-            this.lblNote.Location = new System.Drawing.Point(20, 420);
-            this.lblNote.Size = new System.Drawing.Size(500, 20);
-            this.lblNote.Text = "Chỉ hiển thị giao dịch trong vòng 3 tháng gần nhất, vui lòng liên hệ 0909009099";
-
-            // ========== Thẻ phim ==========
-            CreateMovieCards();
-
-            // Add controls
-            this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.btnUpcoming);
-            this.Controls.Add(this.btnWatched);
-            this.Controls.Add(this.pnlUpcomingMovies);
-            this.Controls.Add(this.pnlWatchedMovies);
-            this.Controls.Add(this.lblNote);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            // 
+            lblNote.AutoSize = true;
+            lblNote.Font = new Font("Arial", 10F, FontStyle.Italic);
+            lblNote.Location = new Point(20, 420);
+            lblNote.Name = "lblNote";
+            lblNote.Size = new Size(508, 16);
+            lblNote.TabIndex = 5;
+            lblNote.Text = "Chỉ hiển thị giao dịch trong vòng 3 tháng gần nhất, vui lòng liên hệ 0909009099";
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.Location = new Point(20, 106);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(600, 300);
+            flowLayoutPanel1.TabIndex = 6;
+            // 
+            // BookingHistoryPage
+            // 
+            ClientSize = new Size(640, 500);
+            Controls.Add(flowLayoutPanel1);
+            Controls.Add(lblTitle);
+            Controls.Add(btnUpcoming);
+            Controls.Add(lblNote);
+            Name = "BookingHistoryPage";
+            Text = "Booking";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         private void CreateMovieCards()
@@ -161,7 +148,7 @@
                 moviePanel.Controls.Add(lblPrice);
                 moviePanel.Controls.Add(btnBook);
 
-                pnlUpcomingMovies.Controls.Add(moviePanel);
+
             }
 
             // ========== Phim đã xem ==========
@@ -227,10 +214,9 @@
                 moviePanel.Controls.Add(lblPrice);
                 moviePanel.Controls.Add(btnDetail);
 
-                pnlWatchedMovies.Controls.Add(moviePanel);
+                
             }
         }
-
-
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }

@@ -75,6 +75,7 @@ namespace Project.NET
             if (int.TryParse(cbCinema.SelectedValue.ToString(), out int cinemaId))
             {
                 string selectedDate = selectedButton.Tag.ToString();
+                clsSession.CinemaId = cinemaId;
                 LoadShowtimes(cinemaId, selectedDate);
                 panelTime.Visible = true;
             }
@@ -150,13 +151,15 @@ namespace Project.NET
                 cmd.Parameters.AddWithValue("@showDate", showDate);
 
                 SqlDataReader reader = cmd.ExecuteReader();
-                List<(int, string)> showtimes = new List<(int, string)>(); // Lưu cả showtime_id và giờ
+                List<(int, string)> showtimes = new List<(int, string)>();
+                
 
                 while (reader.Read())
                 {
                     int showtimeId = Convert.ToInt32(reader["showtime_id"]);
                     string showTime = reader["show_time"].ToString();
                     showtimes.Add((showtimeId, showTime));
+                    
                 }
                 reader.Close();
 
@@ -171,7 +174,7 @@ namespace Project.NET
                         Location = new Point(x, y),
                         Size = new Size(60, 30),
                         BackColor = Color.White,
-                        Tag = showtimeId // Gán showtime_id vào Tag
+                        Tag = showtimeId 
                     };
 
                     newButton.Click += BtnTime_Click;
@@ -189,9 +192,9 @@ namespace Project.NET
         private void BtnTime_Click(object sender, EventArgs e)
         {
             Button clickedButton = sender as Button;
-            int showtimeId = (int)clickedButton.Tag; 
-
-            SeatPage seatPage = new SeatPage(showtimeId);
+            int showtimeId = (int)clickedButton.Tag;
+            clsSession.ShowtimeId = showtimeId;
+            SeatPage seatPage = new SeatPage();
             seatPage.Show();
 
             //this.Hide(); 
