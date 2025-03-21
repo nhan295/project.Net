@@ -49,7 +49,6 @@
             txtName = new TextBox();
             pictureBox3 = new PictureBox();
             label3 = new Label();
-            pictureBox4 = new PictureBox();
             sidebarTransition = new System.Windows.Forms.Timer(components);
             btn_menu = new PictureBox();
             sidebar = new FlowLayoutPanel();
@@ -67,7 +66,6 @@
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btn_menu).BeginInit();
             sidebar.SuspendLayout();
             SuspendLayout();
@@ -77,9 +75,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             label1.ForeColor = SystemColors.ActiveCaptionText;
-            label1.Location = new Point(166, 166);
+            label1.Location = new Point(190, 221);
             label1.Name = "label1";
-            label1.Size = new Size(137, 25);
+            label1.Size = new Size(172, 32);
             label1.TabIndex = 0;
             label1.Text = "Now Showing";
             label1.Click += label1_Click;
@@ -89,9 +87,8 @@
             pictureBox1.BackColor = SystemColors.Window;
             pictureBox1.Dock = DockStyle.Top;
             pictureBox1.Location = new Point(0, 0);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(757, 34);
+            pictureBox1.Size = new Size(865, 45);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
@@ -100,9 +97,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             label2.ForeColor = SystemColors.ActiveCaptionText;
-            label2.Location = new Point(458, 166);
+            label2.Location = new Point(523, 221);
             label2.Name = "label2";
-            label2.Size = new Size(134, 25);
+            label2.Size = new Size(168, 32);
             label2.TabIndex = 2;
             label2.Text = "Coming Soon";
             label2.Click += label2_Click;
@@ -111,20 +108,18 @@
             // 
             panel7.Controls.Add(btnLogOut);
             panel7.Controls.Add(pictureBox2);
-            panel7.Location = new Point(3, 146);
-            panel7.Margin = new Padding(3, 2, 3, 2);
+            panel7.Location = new Point(3, 197);
             panel7.Name = "panel7";
-            panel7.Size = new Size(195, 31);
+            panel7.Size = new Size(223, 41);
             panel7.TabIndex = 9;
             // 
             // btnLogOut
             // 
             btnLogOut.BackColor = SystemColors.InactiveCaptionText;
             btnLogOut.ForeColor = SystemColors.ButtonFace;
-            btnLogOut.Location = new Point(40, -9);
-            btnLogOut.Margin = new Padding(3, 2, 3, 2);
+            btnLogOut.Location = new Point(46, -12);
             btnLogOut.Name = "btnLogOut";
-            btnLogOut.Size = new Size(160, 53);
+            btnLogOut.Size = new Size(183, 71);
             btnLogOut.TabIndex = 7;
             btnLogOut.Text = "Log Out";
             btnLogOut.TextAlign = ContentAlignment.MiddleLeft;
@@ -135,9 +130,8 @@
             // 
             pictureBox2.Image = Properties.Resources.logout;
             pictureBox2.Location = new Point(0, 0);
-            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(35, 31);
+            pictureBox2.Size = new Size(40, 41);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
@@ -147,19 +141,17 @@
             // 
             panel8.Controls.Add(pictureBox8);
             panel8.Controls.Add(btnAccountInformation);
-            panel8.Location = new Point(3, 41);
-            panel8.Margin = new Padding(3, 2, 3, 2);
+            panel8.Location = new Point(3, 56);
             panel8.Name = "panel8";
-            panel8.Size = new Size(195, 31);
+            panel8.Size = new Size(223, 41);
             panel8.TabIndex = 9;
             // 
             // pictureBox8
             // 
             pictureBox8.Image = Properties.Resources.user2;
-            pictureBox8.Location = new Point(0, 2);
-            pictureBox8.Margin = new Padding(3, 2, 3, 2);
+            pictureBox8.Location = new Point(0, 3);
             pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(35, 31);
+            pictureBox8.Size = new Size(40, 41);
             pictureBox8.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox8.TabIndex = 8;
             pictureBox8.TabStop = false;
@@ -169,10 +161,9 @@
             // 
             btnAccountInformation.BackColor = SystemColors.InactiveCaptionText;
             btnAccountInformation.ForeColor = SystemColors.ButtonFace;
-            btnAccountInformation.Location = new Point(40, -9);
-            btnAccountInformation.Margin = new Padding(3, 2, 3, 2);
+            btnAccountInformation.Location = new Point(46, -12);
             btnAccountInformation.Name = "btnAccountInformation";
-            btnAccountInformation.Size = new Size(160, 53);
+            btnAccountInformation.Size = new Size(183, 71);
             btnAccountInformation.TabIndex = 7;
             btnAccountInformation.Text = "Account Information";
             btnAccountInformation.TextAlign = ContentAlignment.MiddleLeft;
@@ -183,19 +174,17 @@
             // 
             panel9.Controls.Add(pictureBox7);
             panel9.Controls.Add(btn_Ticket);
-            panel9.Location = new Point(3, 111);
-            panel9.Margin = new Padding(3, 2, 3, 2);
+            panel9.Location = new Point(3, 150);
             panel9.Name = "panel9";
-            panel9.Size = new Size(195, 31);
+            panel9.Size = new Size(223, 41);
             panel9.TabIndex = 9;
             // 
             // pictureBox7
             // 
             pictureBox7.Image = Properties.Resources.ticket;
             pictureBox7.Location = new Point(0, 0);
-            pictureBox7.Margin = new Padding(3, 2, 3, 2);
             pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(35, 27);
+            pictureBox7.Size = new Size(40, 36);
             pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox7.TabIndex = 10;
             pictureBox7.TabStop = false;
@@ -205,10 +194,9 @@
             // 
             btn_Ticket.BackColor = SystemColors.InactiveCaptionText;
             btn_Ticket.ForeColor = SystemColors.ButtonFace;
-            btn_Ticket.Location = new Point(40, -9);
-            btn_Ticket.Margin = new Padding(3, 2, 3, 2);
+            btn_Ticket.Location = new Point(46, -12);
             btn_Ticket.Name = "btn_Ticket";
-            btn_Ticket.Size = new Size(160, 53);
+            btn_Ticket.Size = new Size(183, 71);
             btn_Ticket.TabIndex = 7;
             btn_Ticket.Text = "My Tickets";
             btn_Ticket.TextAlign = ContentAlignment.MiddleLeft;
@@ -219,10 +207,9 @@
             // 
             panel3.Controls.Add(btn_ChangePass);
             panel3.Controls.Add(pictureBox15);
-            panel3.Location = new Point(3, 76);
-            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Location = new Point(3, 103);
             panel3.Name = "panel3";
-            panel3.Size = new Size(195, 31);
+            panel3.Size = new Size(223, 41);
             panel3.TabIndex = 8;
             panel3.Paint += panel3_Paint;
             // 
@@ -230,10 +217,9 @@
             // 
             btn_ChangePass.BackColor = SystemColors.InactiveCaptionText;
             btn_ChangePass.ForeColor = SystemColors.ButtonFace;
-            btn_ChangePass.Location = new Point(40, -9);
-            btn_ChangePass.Margin = new Padding(3, 2, 3, 2);
+            btn_ChangePass.Location = new Point(46, -12);
             btn_ChangePass.Name = "btn_ChangePass";
-            btn_ChangePass.Size = new Size(160, 53);
+            btn_ChangePass.Size = new Size(183, 71);
             btn_ChangePass.TabIndex = 7;
             btn_ChangePass.Text = "Change password";
             btn_ChangePass.TextAlign = ContentAlignment.MiddleLeft;
@@ -243,10 +229,9 @@
             // pictureBox15
             // 
             pictureBox15.Image = Properties.Resources.password;
-            pictureBox15.Location = new Point(3, 4);
-            pictureBox15.Margin = new Padding(3, 2, 3, 2);
+            pictureBox15.Location = new Point(3, 5);
             pictureBox15.Name = "pictureBox15";
-            pictureBox15.Size = new Size(35, 27);
+            pictureBox15.Size = new Size(40, 36);
             pictureBox15.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox15.TabIndex = 11;
             pictureBox15.TabStop = false;
@@ -255,61 +240,47 @@
             // 
             panel6.Controls.Add(pictureBox5);
             panel6.Controls.Add(txtName);
-            panel6.Location = new Point(3, 2);
-            panel6.Margin = new Padding(3, 2, 3, 2);
+            panel6.Location = new Point(3, 3);
             panel6.Name = "panel6";
-            panel6.Size = new Size(199, 35);
+            panel6.Size = new Size(227, 47);
             panel6.TabIndex = 10;
             // 
             // pictureBox5
             // 
             pictureBox5.Image = Properties.Resources.dinosaur;
-            pictureBox5.Location = new Point(3, 4);
-            pictureBox5.Margin = new Padding(3, 2, 3, 2);
+            pictureBox5.Location = new Point(3, 5);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(32, 31);
+            pictureBox5.Size = new Size(37, 41);
             pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox5.TabIndex = 11;
             pictureBox5.TabStop = false;
             // 
             // txtName
             // 
-            txtName.Location = new Point(35, 13);
-            txtName.Margin = new Padding(3, 2, 3, 2);
+            txtName.Location = new Point(40, 17);
             txtName.Name = "txtName";
-            txtName.Size = new Size(149, 23);
+            txtName.Size = new Size(170, 27);
             txtName.TabIndex = 9;
             txtName.TextChanged += textBox1_TextChanged;
             // 
             // pictureBox3
             // 
-            pictureBox3.Location = new Point(178, 49);
-            pictureBox3.Margin = new Padding(3, 2, 3, 2);
+            pictureBox3.Location = new Point(203, 65);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(392, 106);
+            pictureBox3.Size = new Size(448, 141);
             pictureBox3.TabIndex = 5;
             pictureBox3.TabStop = false;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
-            label3.Location = new Point(315, 9);
+            label3.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            label3.ForeColor = Color.Firebrick;
+            label3.Location = new Point(348, 9);
             label3.Name = "label3";
-            label3.Size = new Size(103, 28);
+            label3.Size = new Size(176, 46);
             label3.TabIndex = 0;
             label3.Text = "CINEMAX";
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.Image = Properties.Resources.notification;
-            pictureBox4.Location = new Point(61, 9);
-            pictureBox4.Margin = new Padding(3, 2, 3, 2);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(32, 26);
-            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox4.TabIndex = 0;
-            pictureBox4.TabStop = false;
             // 
             // sidebarTransition
             // 
@@ -319,10 +290,9 @@
             // btn_menu
             // 
             btn_menu.Image = Properties.Resources.menu;
-            btn_menu.Location = new Point(10, 9);
-            btn_menu.Margin = new Padding(3, 2, 3, 2);
+            btn_menu.Location = new Point(11, 12);
             btn_menu.Name = "btn_menu";
-            btn_menu.Size = new Size(33, 22);
+            btn_menu.Size = new Size(38, 29);
             btn_menu.SizeMode = PictureBoxSizeMode.StretchImage;
             btn_menu.TabIndex = 6;
             btn_menu.TabStop = false;
@@ -337,10 +307,9 @@
             sidebar.Controls.Add(panel9);
             sidebar.Controls.Add(panel7);
             sidebar.Dock = DockStyle.Left;
-            sidebar.Location = new Point(0, 34);
-            sidebar.Margin = new Padding(3, 2, 3, 2);
+            sidebar.Location = new Point(0, 45);
             sidebar.Name = "sidebar";
-            sidebar.Size = new Size(0, 396);
+            sidebar.Size = new Size(0, 528);
             sidebar.TabIndex = 7;
             // 
             // timer1
@@ -350,29 +319,28 @@
             // flowFilmPanel1
             // 
             flowFilmPanel1.AutoScroll = true;
-            flowFilmPanel1.Location = new Point(61, 216);
+            flowFilmPanel1.Location = new Point(70, 288);
+            flowFilmPanel1.Margin = new Padding(3, 4, 3, 4);
             flowFilmPanel1.Name = "flowFilmPanel1";
-            flowFilmPanel1.Size = new Size(642, 202);
+            flowFilmPanel1.Size = new Size(734, 269);
             flowFilmPanel1.TabIndex = 8;
             // 
             // HomePage
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(757, 430);
-            Controls.Add(flowFilmPanel1);
+            ClientSize = new Size(865, 573);
             Controls.Add(sidebar);
             Controls.Add(btn_menu);
-            Controls.Add(pictureBox4);
             Controls.Add(label3);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox1);
             Controls.Add(label2);
             Controls.Add(label1);
+            Controls.Add(flowFilmPanel1);
             Font = new Font("Segoe UI", 9F);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "HomePage";
             Text = "HomePage";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -388,7 +356,6 @@
             panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)btn_menu).EndInit();
             sidebar.ResumeLayout(false);
             ResumeLayout(false);
