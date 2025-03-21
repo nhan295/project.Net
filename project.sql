@@ -2,7 +2,7 @@
 ﻿-- Tạo database
 CREATE DATABASE [Project.Net];
 USE [Project.Net];
-
+use master;
 drop database [Project.Net];
 -- Tạo bảng
 CREATE TABLE Cinema (
@@ -40,6 +40,7 @@ CREATE TABLE Film (
     film_id INT IDENTITY(1,1) PRIMARY KEY,
     title NVARCHAR(100) NOT NULL,
     rated NVARCHAR(50),
+	price int,
     genre_id INT,
     release_date DATE,
     director NVARCHAR(100),
@@ -168,19 +169,20 @@ INSERT INTO ScreeningRoom (cinema_id, room_name, seat_capacity) VALUES
 
 
 -- Chèn dữ liệu vào bảng Film
-INSERT INTO Film (title, rated,genre_id, release_date, director, company_production, descriptions, thumbnail, film_status, film_language) VALUES
-('The Avengers','13+', 1, '2012-05-04', 'Joss Whedon', 'Marvel Studios', 'Superhero film', 'avenger', 'Now Showing', 'English - Vietnamese'),
-('Inception','13+', 5, '2010-07-16', 'Christopher Nolan', 'Warner Bros.', 'Sci-fi thriller', 'inception', 'Now Showing', 'English - Vietnamese'),
-('Titanic','13+', 6, '1997-12-19', 'James Cameron', '20th Century Fox', 'Romantic drama', 'titanic', 'Now Showing', 'English - Vietnamese'),
-('The Conjuring','R', 4, '2013-07-19', 'James Wan', 'New Line Cinema', 'Horror film', 'conjuring', 'Now Showing', 'English - Vietnamese'),
-('Toy Story', 'G',8, '1995-11-22', 'John Lasseter', 'Pixar', 'Animated film', 'toystory', 'Now Showing', 'English - Vietnamese'),
-('The Dark Knight','PG-13', 1, '2008-07-18', 'Christopher Nolan', 'Warner Bros.', 'Superhero film', 'darkknight', 'Now Showing', 'English - Vietnamese'),
-('Interstellar','PG-13', 5, '2014-11-07', 'Christopher Nolan', 'Paramount', 'Sci-fi adventure', 'interstellar', 'Now Showing', 'English - Vietnamese'),
-('Frozen','PG', 10, '2013-11-27', 'Chris Buck', 'Disney', 'Fantasy animation', 'frozen', 'Now Showing', 'English - Vietnamese'),
-('Parasite','R', 3, '2019-05-30', 'Bong Joon-ho', 'CJ Entertainment', 'Thriller drama', 'parasite', 'Now Showing', 'English - Vietnamese'),
-('The Godfather','R', 3, '1972-03-24', 'Francis Ford Coppola', 'Paramount Pictures', 'Crime drama', 'godfather', 'Now Showing', 'English - Vietnamese');
+INSERT INTO Film (title, rated, price,genre_id, release_date, director, company_production, descriptions, thumbnail, film_status, film_language) VALUES
+('The Avengers','13+',159000, 1, '2012-05-04', 'Joss Whedon', 'Marvel Studios', 'Superhero film', 'avenger', 'Showing', 'English - Vietnamese'),
+('Inception','13+',139000, 5, '2010-07-16', 'Christopher Nolan', 'Warner Bros.', 'Sci-fi thriller', 'inception', 'Showing', 'English - Vietnamese'),
+('Titanic','13+',210000, 6, '1997-12-19', 'James Cameron', '20th Century Fox', 'Romantic drama', 'titanic', 'Showing', 'English - Vietnamese'),
+('The Conjuring','R',119000, 4, '2013-07-19', 'James Wan', 'New Line Cinema', 'Horror film', 'conjuring', 'Showing', 'English - Vietnamese'),
+('Toy Story', 'G',175000,8, '1995-11-22', 'John Lasseter', 'Pixar', 'Animated film', 'toystory', 'Showing', 'English - Vietnamese'),
+('The Dark Knight','PG-13',195000, 1, '2008-07-18', 'Christopher Nolan', 'Warner Bros.', 'Superhero film', 'darkknight', 'Comming', 'English - Vietnamese'),
+('Interstellar','PG-13',175000, 5, '2014-11-07', 'Christopher Nolan', 'Paramount', 'Sci-fi adventure', 'interstellar', 'Comming', 'English - Vietnamese'),
+('Frozen','PG', 125000, 10,'2013-11-27', 'Chris Buck', 'Disney', 'Fantasy animation', 'frozen', 'Comming', 'English - Vietnamese'),
+('Parasite','R',159000,3, '2019-05-30', 'Bong Joon-ho', 'CJ Entertainment', 'Thriller drama', 'parasite', 'Comming', 'English - Vietnamese'),
+('The Godfather','R',115000, 3, '1972-03-24', 'Francis Ford Coppola', 'Paramount Pictures', 'Crime drama', 'godfather', 'Comming', 'English - Vietnamese');
 
-
+delete from Showtimes;
+DBCC CHECKIDENT ('Showtimes', RESEED, 0);
 
 -- Chèn dữ liệu vào bảng Showtimes
 INSERT INTO Showtimes (film_id, cinema_id, screeningroom_id, show_date, show_time) VALUES
@@ -225,6 +227,8 @@ INSERT INTO Showtimes (film_id, cinema_id, screeningroom_id, show_date, show_tim
 
 
 -- Chèn dữ liệu vào bảng Seat
+
+delete from Seat;
 
 DECLARE @showtime_id INT = 1;
 DECLARE @screeningroom_id INT;

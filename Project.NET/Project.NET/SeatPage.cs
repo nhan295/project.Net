@@ -13,7 +13,7 @@ namespace Project.NET
 {
     public partial class SeatPage : Form
     {
-
+        private decimal ticketPrice;
         private int cusId, cinemaId, filmId, showtimeId;
         private List<Button> seatButtons = new List<Button>();
 
@@ -25,10 +25,18 @@ namespace Project.NET
             this.cinemaId = clsSession.CinemaId;
             this.filmId = clsSession.FilmId;
             this.showtimeId = clsSession.ShowtimeId;
-
+            ticketPrice = GetTicketPrice();
             LoadSeats();
         }
         private int selectedScreeningRoomId;
+
+
+        private Label totalPriceLabel = new Label
+        {
+            Font = new Font("Arial", 12, FontStyle.Bold),
+            ForeColor = Color.Red,
+            AutoSize = true
+        };
 
         private void LoadSeats()
         {
@@ -42,7 +50,23 @@ namespace Project.NET
             {
                 clsConnectDB.OpenConnection();
 
-                // Lấy phòng chiếu duy nhất của suất chiếu
+                ticketPrice = GetTicketPrice();
+
+
+                flowLayoutPanel1.Controls.Clear();
+
+                Label priceLabel = new Label
+                {
+                    Text = $"Price: {ticketPrice:N0} VND / seat",
+                    Font = new Font("Arial", 12, FontStyle.Bold),
+                    ForeColor = Color.SkyBlue,
+                    AutoSize = true
+                };
+
+                flowLayoutPanel1.Controls.Add(priceLabel);
+                flowLayoutPanel1.Controls.Add(totalPriceLabel);
+                UpdateTotalPrice();
+
                 string roomQuery = "SELECT TOP 1 screeningroom_id FROM Seat WHERE showtime_id = @showtimeId";
                 using (SqlCommand cmd = new SqlCommand(roomQuery, clsConnectDB.conn))
                 {
@@ -58,7 +82,6 @@ namespace Project.NET
                     selectedScreeningRoomId = Convert.ToInt32(result);
                 }
 
-                // Lấy danh sách ghế
                 string seatQuery = "SELECT seat_number, seat_status FROM Seat WHERE showtime_id = @showtimeId AND screeningroom_id = @screeningRoomId";
 
                 using (SqlCommand cmd = new SqlCommand(seatQuery, clsConnectDB.conn))
@@ -86,7 +109,6 @@ namespace Project.NET
                         return;
                     }
 
-                    // Setup ghế theo hàng và cột
                     int rowCount = 3;
                     int[] seatsPerRow = { 3, 3, 4 };
 
@@ -135,6 +157,12 @@ namespace Project.NET
             }
         }
 
+        private void UpdateTotalPrice()
+        {
+            int selectedSeatsCount = seatButtons.Count(b => b.BackColor == Color.Blue);
+            decimal totalPrice = selectedSeatsCount * ticketPrice;
+            totalPriceLabel.Text = $"Total: {totalPrice:N0} VND";
+        }
 
 
 
@@ -147,12 +175,13 @@ namespace Project.NET
 
             if (clickedButton.BackColor == Color.LightGreen)
             {
-                clickedButton.BackColor = Color.Blue; 
+                clickedButton.BackColor = Color.Blue;
             }
             else if (clickedButton.BackColor == Color.Blue)
             {
-                clickedButton.BackColor = Color.LightGreen; 
+                clickedButton.BackColor = Color.LightGreen;
             }
+            UpdateTotalPrice();
         }
 
         private void Screen_Click(object sender, EventArgs e)
@@ -166,7 +195,7 @@ namespace Project.NET
 
             foreach (var button in seatButtons)
             {
-                if (button.BackColor == Color.Blue) 
+                if (button.BackColor == Color.Blue)
                 {
                     selectedSeats.Add(button.Text);
                 }
@@ -193,7 +222,7 @@ namespace Project.NET
                     {
                         seatCmd.Parameters.AddWithValue("@seatNumber", seat);
                         seatCmd.Parameters.AddWithValue("@showtimeId", this.showtimeId);
-                        seatCmd.Parameters.AddWithValue("@screeningRoomId", selectedScreeningRoomId); 
+                        seatCmd.Parameters.AddWithValue("@screeningRoomId", selectedScreeningRoomId);
                         seatId = Convert.ToInt32(seatCmd.ExecuteScalar());
                     }
 
@@ -206,7 +235,7 @@ namespace Project.NET
                         using (SqlCommand cmd = new SqlCommand(insertInvoiceQuery, clsConnectDB.conn))
                         {
                             cmd.Parameters.AddWithValue("@cusId", this.cusId);
-                            cmd.Parameters.AddWithValue("@screeningRoomId", selectedScreeningRoomId); 
+                            cmd.Parameters.AddWithValue("@screeningRoomId", selectedScreeningRoomId);
                             cmd.Parameters.AddWithValue("@filmId", this.filmId);
                             cmd.Parameters.AddWithValue("@seatId", seatId);
                             cmd.Parameters.AddWithValue("@cinemaId", this.cinemaId);
@@ -224,7 +253,7 @@ namespace Project.NET
                 }
 
                 MessageBox.Show("Đặt vé thành công!");
-                LoadSeats(); 
+                LoadSeats();
             }
             catch (Exception ex)
             {
@@ -233,6 +262,36 @@ namespace Project.NET
         }
 
 
+        private decimal GetTicketPrice()
+        {
+            decimal price = 0;
+            try
+            {
+                if (clsConnectDB.conn.State != ConnectionState.Open)
+                    clsConnectDB.OpenConnection();
 
+                string query = "SELECT price FROM Film WHERE film_id = @filmId";
+                using (SqlCommand cmd = new SqlCommand(query, clsConnectDB.conn))
+                {
+                    cmd.Parameters.AddWithValue("@filmId", this.filmId);
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        price = Convert.ToDecimal(result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi lấy giá vé: " + ex.Message);
+            }
+
+            return price;
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

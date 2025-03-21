@@ -28,8 +28,8 @@ namespace Project.NET
         {
             InitializeComponent();
             LoadSlideImage();
-            LoadNameMovies();
             LoadMovies();
+            
             timer1.Tick += TimerSlide_Tick;
             timer1.Start();
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -39,38 +39,136 @@ namespace Project.NET
         private void LoadMovies()
         {
             clsConnectDB.OpenConnection();
-            
-            string query = "SELECT TOP 6 film_id, thumbnail FROM film ORDER BY film_id ASC";
+
+            // Lấy danh sách phim có status = 'Showing'
+            string query = "SELECT film_id, title, thumbnail FROM film WHERE film_status = 'Showing' ORDER BY film_id ASC";
+
             using (SqlCommand com = new SqlCommand(query, clsConnectDB.conn))
             {
                 using (SqlDataReader reader = com.ExecuteReader())
                 {
-                    PictureBox[] filmFrames = { FilmFrame1, FilmFrame2, FilmFrame3, FilmFrame4, FilmFrame5, FilmFrame6 };
-                    int[] filmIds = new int[6];
-                    int index = 0;
+                    flowFilmPanel1.Controls.Clear(); // Xóa các phần tử cũ trước khi load mới
 
-                    while (reader.Read() && index < filmFrames.Length)
+                    while (reader.Read())
                     {
-                        filmIds[index] = Convert.ToInt32(reader["film_id"]); 
+                        int filmId = Convert.ToInt32(reader["film_id"]);
+                        string filmTitle = reader["title"].ToString();
                         string imageName = reader["thumbnail"].ToString();
+
+                        // Load ảnh từ resource
                         Image movieImage = (Image)Properties.Resources.ResourceManager.GetObject(imageName);
-
-                        if (movieImage != null)
+                        if (movieImage == null)
                         {
-                            filmFrames[index].Image = movieImage;
-                        }
-                        else
-                        {
-                            filmFrames[index].Image = Properties.Resources.images;
+                            movieImage = Properties.Resources.images;
                         }
 
-                        filmFrames[index].SizeMode = PictureBoxSizeMode.StretchImage;
+                        // Tạo Panel chứa ảnh và tên phim
+                        Panel filmPanel = new Panel
+                        {
+                            Size = new Size(150, 220),
+                            Margin = new Padding(10),
+                            BorderStyle = BorderStyle.FixedSingle
+                        };
 
+                        // Tạo PictureBox hiển thị thumbnail
+                        PictureBox pictureBox = new PictureBox
+                        {
+                            Image = movieImage,
+                            Size = new Size(150, 180),
+                            SizeMode = PictureBoxSizeMode.StretchImage,
+                            Cursor = Cursors.Hand
+                        };
 
-                        int filmId = filmIds[index];
-                        filmFrames[index].Click += (s, e) => OpenMovieDetail(filmId);
+                        // Sự kiện khi click vào ảnh phim
+                        pictureBox.Click += (s, e) => OpenMovieDetail(filmId);
 
-                        index++;
+                        // Tạo Label hiển thị tên phim
+                        Label nameLabel = new Label
+                        {
+                            Text = filmTitle,
+                            AutoSize = false,
+                            Size = new Size(150, 40),
+                            TextAlign = ContentAlignment.MiddleCenter,
+                            Font = new Font("Arial", 10, FontStyle.Bold),
+                            ForeColor = Color.Black
+                        };
+
+                        // Thêm PictureBox và Label vào Panel
+                        filmPanel.Controls.Add(pictureBox);
+                        filmPanel.Controls.Add(nameLabel);
+                        nameLabel.Location = new Point(0, pictureBox.Height);
+
+                        // Thêm Panel vào flowFilmPanel1
+                        flowFilmPanel1.Controls.Add(filmPanel);
+                    }
+                }
+            }
+        }
+
+        private void LoadCommingMovies()
+        {
+            clsConnectDB.OpenConnection();
+
+            // Lấy danh sách phim có status = 'Showing'
+            string query = "SELECT film_id, title, thumbnail FROM film WHERE film_status = 'Comming' ORDER BY film_id ASC";
+
+            using (SqlCommand com = new SqlCommand(query, clsConnectDB.conn))
+            {
+                using (SqlDataReader reader = com.ExecuteReader())
+                {
+                    flowFilmPanel1.Controls.Clear(); // Xóa các phần tử cũ trước khi load mới
+
+                    while (reader.Read())
+                    {
+                        int filmId = Convert.ToInt32(reader["film_id"]);
+                        string filmTitle = reader["title"].ToString();
+                        string imageName = reader["thumbnail"].ToString();
+
+                        // Load ảnh từ resource
+                        Image movieImage = (Image)Properties.Resources.ResourceManager.GetObject(imageName);
+                        if (movieImage == null)
+                        {
+                            movieImage = Properties.Resources.images;
+                        }
+
+                        // Tạo Panel chứa ảnh và tên phim
+                        Panel filmPanel = new Panel
+                        {
+                            Size = new Size(150, 220),
+                            Margin = new Padding(10),
+                            BorderStyle = BorderStyle.FixedSingle
+                        };
+
+                        // Tạo PictureBox hiển thị thumbnail
+                        PictureBox pictureBox = new PictureBox
+                        {
+                            Image = movieImage,
+                            Size = new Size(150, 180),
+                            SizeMode = PictureBoxSizeMode.StretchImage,
+                            Cursor = Cursors.Hand
+                        };
+
+                        // Sự kiện khi click vào ảnh phim
+                        pictureBox.Click += (s, e) => OpenMovieDetail(filmId);
+
+                        // Tạo Label hiển thị tên phim
+                        Label nameLabel = new Label
+                        {
+                            Text = filmTitle,
+                            AutoSize = false,
+                            Size = new Size(150, 40),
+                            TextAlign = ContentAlignment.MiddleCenter,
+                            Font = new Font("Arial", 10, FontStyle.Bold),
+                            ForeColor = Color.Black
+                        };
+
+                        // Thêm PictureBox và Label vào Panel
+                        filmPanel.Controls.Add(pictureBox);
+                        filmPanel.Controls.Add(nameLabel);
+                        nameLabel.Location = new Point(0, pictureBox.Height);
+
+                        // Thêm Panel vào flowFilmPanel1
+                        flowFilmPanel1.Controls.Add(filmPanel);
                     }
                 }
             }
@@ -84,32 +182,6 @@ namespace Project.NET
         }
 
 
-
-        private void LoadNameMovies()
-        {
-            clsConnectDB.OpenConnection();
-
-            string query = "SELECT TOP 6 title FROM film ORDER BY film_id ASC";
-            using (SqlCommand com = new SqlCommand(query, clsConnectDB.conn))
-            {
-                using (SqlDataReader reader = com.ExecuteReader())
-                {
-                    TextBox[] filmName = { FilmName1, FilmName2, FilmName3, FilmName4, FilmName5, FilmName6 };
-                    int index = 0;
-
-                    while (reader.Read() && index < filmName.Length)
-                    {
-                        string filmname = reader["title"].ToString();
-
-
-                        filmName[index].Text = filmname;
-
-
-                        index++;
-                    }
-                }
-            }
-        }
 
 
 
@@ -128,7 +200,7 @@ namespace Project.NET
 
         private void label1_Click(object sender, EventArgs e)
         {
-
+            LoadMovies();
         }
 
         bool sidebarExpand = false;
@@ -243,6 +315,11 @@ namespace Project.NET
         {
             BookingHistoryPage bookingHistoryPage = new BookingHistoryPage();
             bookingHistoryPage.Show();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            LoadCommingMovies();
         }
     }
 }

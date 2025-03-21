@@ -31,6 +31,7 @@
             panelSeats = new Panel();
             Screen = new PictureBox();
             btnBook = new Button();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)Screen).BeginInit();
             SuspendLayout();
             // 
@@ -55,19 +56,28 @@
             // 
             // btnBook
             // 
-            btnBook.Location = new Point(150, 400);
+            btnBook.Location = new Point(100, 395);
             btnBook.Name = "btnBook";
-            btnBook.Size = new Size(500, 43);
+            btnBook.Size = new Size(354, 43);
             btnBook.TabIndex = 2;
             btnBook.Text = "Book";
             btnBook.UseVisualStyleBackColor = true;
             btnBook.Click += btnBook_Click;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Location = new Point(490, 395);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(210, 43);
+            flowLayoutPanel1.TabIndex = 3;
+            flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
             // 
             // SeatPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(flowLayoutPanel1);
             Controls.Add(btnBook);
             Controls.Add(Screen);
             Controls.Add(panelSeats);
@@ -81,6 +91,6 @@
         private System.Windows.Forms.Button btnBook;
         private Panel panelSeats;
         private PictureBox Screen;
-       
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }
