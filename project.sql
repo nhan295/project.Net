@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿-- Tạo database
 CREATE DATABASE [Project.Net];
 USE [Project.Net];
@@ -91,6 +92,104 @@ CREATE TABLE MovieCinema (
     PRIMARY KEY (cinema_id, film_id),
     FOREIGN KEY (cinema_id) REFERENCES Cinema(cinema_id),
     FOREIGN KEY (film_id) REFERENCES Film(film_id)
+=======
+﻿-- Tạo database
+CREATE DATABASE [Project.Net];
+USE [Project.Net];
+
+drop database [Project.Net];
+-- Tạo bảng
+CREATE TABLE Cinema (
+    cinema_id INT IDENTITY(1,1) PRIMARY KEY,
+    cinema_name NVARCHAR(255) NOT NULL,
+    location NVARCHAR(255) NOT NULL
+);
+select* from Cinema;
+
+CREATE TABLE Genre (
+    genre_id INT IDENTITY(1,1) PRIMARY KEY,
+    genre_name NVARCHAR(45) NOT NULL
+);
+
+CREATE TABLE Customer (
+    cus_id INT IDENTITY(1,1) PRIMARY KEY,
+    cus_name NVARCHAR(45) NOT NULL,
+    cus_password NVARCHAR(45) NOT NULL,
+    cus_phone NVARCHAR(45) NOT NULL,
+    cus_email NVARCHAR(45) NOT NULL,
+    cus_address NVARCHAR(125),
+    cus_birthday DATE
+);
+select * 
+
+CREATE TABLE ScreeningRoom (
+    screeningroom_id INT IDENTITY(1,1) PRIMARY KEY,
+    cinema_id INT,
+    room_name NVARCHAR(50) NOT NULL,
+    seat_capacity INT NOT NULL,
+    FOREIGN KEY (cinema_id) REFERENCES Cinema(cinema_id)
+);
+
+CREATE TABLE Film (
+    film_id INT IDENTITY(1,1) PRIMARY KEY,
+    title NVARCHAR(100) NOT NULL,
+    rated NVARCHAR(50),
+    genre_id INT,
+    release_date DATE,
+    director NVARCHAR(100),
+    company_production NVARCHAR(100),
+    descriptions NVARCHAR(500),
+    thumbnail NVARCHAR(255),
+    film_status NVARCHAR(50),
+    film_language NVARCHAR(50),
+    FOREIGN KEY (genre_id) REFERENCES Genre(genre_id)
+);
+
+CREATE TABLE Showtimes (
+    showtime_id INT IDENTITY(1,1) PRIMARY KEY,
+    film_id INT,
+    cinema_id INT,
+    screeningroom_id INT,
+    show_date DATE NOT NULL,
+    show_time TIME NOT NULL,
+    FOREIGN KEY (film_id) REFERENCES Film(film_id),
+    FOREIGN KEY (cinema_id) REFERENCES Cinema(cinema_id),
+    FOREIGN KEY (screeningroom_id) REFERENCES ScreeningRoom(screeningroom_id)
+);
+
+CREATE TABLE Seat (
+    seat_id INT IDENTITY(1,1) PRIMARY KEY,
+    screeningroom_id INT,
+    showtime_id INT,
+    seat_number NVARCHAR(10) NOT NULL,
+    seat_status TINYINT DEFAULT 0,
+    FOREIGN KEY (screeningroom_id) REFERENCES ScreeningRoom(screeningroom_id),
+    FOREIGN KEY (showtime_id) REFERENCES Showtimes(showtime_id)
+);
+
+CREATE TABLE Invoice (
+    invoice_id INT IDENTITY(1,1) PRIMARY KEY,
+    cus_id INT,
+    screeningroom_id INT,
+    film_id INT,
+    seat_id INT,
+    cinema_id INT,
+    showtime_id INT,
+    FOREIGN KEY (cus_id) REFERENCES Customer(cus_id),
+    FOREIGN KEY (screeningroom_id) REFERENCES ScreeningRoom(screeningroom_id),
+    FOREIGN KEY (film_id) REFERENCES Film(film_id),
+    FOREIGN KEY (seat_id) REFERENCES Seat(seat_id),
+    FOREIGN KEY (cinema_id) REFERENCES Cinema(cinema_id),
+    FOREIGN KEY (showtime_id) REFERENCES Showtimes(showtime_id)
+);
+
+CREATE TABLE MovieCinema (
+    cinema_id INT,
+    film_id INT,
+    PRIMARY KEY (cinema_id, film_id),
+    FOREIGN KEY (cinema_id) REFERENCES Cinema(cinema_id),
+    FOREIGN KEY (film_id) REFERENCES Film(film_id)
+>>>>>>> d2fb303b6593f06808c9c07c99a3f01a0a66002f
 );
 
 
@@ -247,7 +346,25 @@ BEGIN
     SET @showtime_id = @showtime_id + 1;
 END
 
+--change pass
+CREATE PROCEDURE ChangeUserPassword
+    @UserId INT,
+    @new_pwd NVARCHAR(255)
+AS
+BEGIN
+    SET NOCOUNT ON;
 
+    UPDATE Customer 
+    SET cus_password = @new_pwd
+    WHERE cus_id = @UserId;
+
+    IF @@ROWCOUNT > 0
+        SELECT 1 AS Success; -- Thành công
+    ELSE
+        SELECT 0 AS Success; -- Thất bại
+END;
+
+EXEC ChangeUserPassword 1, "1234";
 
 
 INSERT INTO MovieCinema (cinema_id, film_id) VALUES

@@ -33,12 +33,13 @@ namespace Project.NET
             timer1.Tick += TimerSlide_Tick;
             timer1.Start();
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            txtName.Text = clsSession.CusName;
         }
 
         private void LoadMovies()
         {
             clsConnectDB.OpenConnection();
-
+            
             string query = "SELECT TOP 6 film_id, thumbnail FROM film ORDER BY film_id ASC";
             using (SqlCommand com = new SqlCommand(query, clsConnectDB.conn))
             {
