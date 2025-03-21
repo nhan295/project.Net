@@ -40,7 +40,7 @@ namespace Project.NET
             clsConnectDB.OpenConnection();
 
             string query = @"
-        SELECT f.title, s.show_date, c.cinema_name
+        SELECT i.invoice_id, f.title, s.show_date, c.cinema_name
         FROM Invoice i
         JOIN Film f ON i.film_id = f.film_id
         JOIN Showtimes s ON i.showtime_id = s.showtime_id
@@ -56,23 +56,26 @@ namespace Project.NET
 
                     while (reader.Read())
                     {
+                        int invoiceId = Convert.ToInt32(reader["invoice_id"]);
                         string film = reader["title"].ToString();
                         DateTime showtime = Convert.ToDateTime(reader["show_date"]);
                         string formattedShowtime = showtime.ToString("dd MMM yyyy hh:mm tt");
                         string cinema = reader["cinema_name"].ToString();
 
-                        CreateInvoicePanel(film, formattedShowtime, cinema);
+                        CreateInvoicePanel(film, formattedShowtime, cinema, invoiceId);
                     }
                 }
             }
         }
 
-        private void CreateInvoicePanel(string film, string showtime, string cinema)
+        private void CreateInvoicePanel(string film, string showtime, string cinema, int invoiceId)
         {
             Panel panel = new Panel();
             panel.Size = new Size(450, 100);
             panel.BorderStyle = BorderStyle.FixedSingle;
             panel.Margin = new Padding(10);
+            panel.Tag = invoiceId;
+            panel.Click += InvoicePanel_Click;
 
             Label lblFilm = new Label();
             lblFilm.Text = film;
@@ -101,7 +104,16 @@ namespace Project.NET
             flowLayoutPanel1.Controls.Add(panel);
         }
 
-
+        private void InvoicePanel_Click(object sender, EventArgs e)
+        {
+            Panel clickedPanel = sender as Panel;
+            if (clickedPanel != null && clickedPanel.Tag != null)
+            {
+                int invoiceId = (int)clickedPanel.Tag;
+                BookingDetail bookingDetail = new BookingDetail(invoiceId);
+                bookingDetail.ShowDialog();
+            }
+        }
 
 
         private void pnlUpcomingMovies_Paint(object sender, PaintEventArgs e)
