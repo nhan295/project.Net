@@ -108,9 +108,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             label1.ForeColor = SystemColors.ActiveCaptionText;
-            label1.Location = new Point(166, 166);
+            label1.Location = new Point(190, 221);
             label1.Name = "label1";
-            label1.Size = new Size(137, 25);
+            label1.Size = new Size(172, 32);
             label1.TabIndex = 0;
             label1.Text = "Now Showing";
             label1.Click += label1_Click;
@@ -120,9 +120,8 @@
             pictureBox1.BackColor = SystemColors.Window;
             pictureBox1.Dock = DockStyle.Top;
             pictureBox1.Location = new Point(0, 0);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(740, 34);
+            pictureBox1.Size = new Size(844, 45);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
@@ -131,9 +130,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             label2.ForeColor = SystemColors.ActiveCaptionText;
-            label2.Location = new Point(458, 166);
+            label2.Location = new Point(523, 221);
             label2.Name = "label2";
-            label2.Size = new Size(134, 25);
+            label2.Size = new Size(168, 32);
             label2.TabIndex = 2;
             label2.Text = "Coming Soon";
             // 
@@ -146,182 +145,163 @@
             panel1.Controls.Add(panel5);
             panel1.Controls.Add(panel4);
             panel1.Controls.Add(panel2);
-            panel1.Location = new Point(73, 208);
-            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Location = new Point(83, 277);
             panel1.Name = "panel1";
-            panel1.Size = new Size(653, 284);
+            panel1.Size = new Size(746, 379);
             panel1.TabIndex = 3;
             // 
             // panel12
             // 
             panel12.Controls.Add(FilmFrame6);
             panel12.Controls.Add(FilmName6);
-            panel12.Location = new Point(441, 232);
-            panel12.Margin = new Padding(3, 2, 3, 2);
+            panel12.Location = new Point(504, 309);
             panel12.Name = "panel12";
-            panel12.Size = new Size(176, 200);
+            panel12.Size = new Size(201, 267);
             panel12.TabIndex = 7;
             // 
             // FilmFrame6
             // 
-            FilmFrame6.Location = new Point(3, 2);
-            FilmFrame6.Margin = new Padding(3, 2, 3, 2);
+            FilmFrame6.Location = new Point(3, 3);
             FilmFrame6.Name = "FilmFrame6";
-            FilmFrame6.Size = new Size(168, 169);
+            FilmFrame6.Size = new Size(192, 225);
             FilmFrame6.TabIndex = 0;
             FilmFrame6.TabStop = false;
             // 
             // FilmName6
             // 
-            FilmName6.Location = new Point(9, 176);
-            FilmName6.Margin = new Padding(3, 2, 3, 2);
+            FilmName6.Location = new Point(10, 235);
             FilmName6.Name = "FilmName6";
             FilmName6.ReadOnly = true;
-            FilmName6.Size = new Size(162, 23);
+            FilmName6.Size = new Size(185, 27);
             FilmName6.TabIndex = 1;
             // 
             // panel11
             // 
             panel11.Controls.Add(FilmFrame5);
             panel11.Controls.Add(FilmName5);
-            panel11.Location = new Point(236, 232);
-            panel11.Margin = new Padding(3, 2, 3, 2);
+            panel11.Location = new Point(270, 309);
             panel11.Name = "panel11";
-            panel11.Size = new Size(176, 200);
+            panel11.Size = new Size(201, 267);
             panel11.TabIndex = 6;
             // 
             // FilmFrame5
             // 
-            FilmFrame5.Location = new Point(3, 4);
-            FilmFrame5.Margin = new Padding(3, 2, 3, 2);
+            FilmFrame5.Location = new Point(3, 5);
             FilmFrame5.Name = "FilmFrame5";
-            FilmFrame5.Size = new Size(168, 169);
+            FilmFrame5.Size = new Size(192, 225);
             FilmFrame5.TabIndex = 0;
             FilmFrame5.TabStop = false;
             // 
             // FilmName5
             // 
-            FilmName5.Location = new Point(9, 176);
-            FilmName5.Margin = new Padding(3, 2, 3, 2);
+            FilmName5.Location = new Point(10, 235);
             FilmName5.Name = "FilmName5";
             FilmName5.ReadOnly = true;
-            FilmName5.Size = new Size(162, 23);
+            FilmName5.Size = new Size(185, 27);
             FilmName5.TabIndex = 1;
             // 
             // panel10
             // 
             panel10.Controls.Add(FilmFrame4);
             panel10.Controls.Add(FilmName4);
-            panel10.Location = new Point(29, 235);
-            panel10.Margin = new Padding(3, 2, 3, 2);
+            panel10.Location = new Point(33, 313);
             panel10.Name = "panel10";
-            panel10.Size = new Size(176, 200);
+            panel10.Size = new Size(201, 267);
             panel10.TabIndex = 5;
             // 
             // FilmFrame4
             // 
-            FilmFrame4.Location = new Point(3, 2);
-            FilmFrame4.Margin = new Padding(3, 2, 3, 2);
+            FilmFrame4.Location = new Point(3, 3);
             FilmFrame4.Name = "FilmFrame4";
-            FilmFrame4.Size = new Size(168, 169);
+            FilmFrame4.Size = new Size(192, 225);
             FilmFrame4.TabIndex = 0;
             FilmFrame4.TabStop = false;
             FilmFrame4.Click += pictureBox12_Click;
             // 
             // FilmName4
             // 
-            FilmName4.Location = new Point(9, 176);
-            FilmName4.Margin = new Padding(3, 2, 3, 2);
+            FilmName4.Location = new Point(10, 235);
             FilmName4.Name = "FilmName4";
             FilmName4.ReadOnly = true;
-            FilmName4.Size = new Size(162, 23);
+            FilmName4.Size = new Size(185, 27);
             FilmName4.TabIndex = 1;
             // 
             // panel5
             // 
             panel5.Controls.Add(FilmFrame3);
             panel5.Controls.Add(FilmName3);
-            panel5.Location = new Point(438, 16);
-            panel5.Margin = new Padding(3, 2, 3, 2);
+            panel5.Location = new Point(501, 21);
             panel5.Name = "panel5";
-            panel5.Size = new Size(179, 208);
+            panel5.Size = new Size(205, 277);
             panel5.TabIndex = 4;
             // 
             // FilmFrame3
             // 
-            FilmFrame3.Location = new Point(9, 6);
-            FilmFrame3.Margin = new Padding(3, 2, 3, 2);
+            FilmFrame3.Location = new Point(10, 8);
             FilmFrame3.Name = "FilmFrame3";
-            FilmFrame3.Size = new Size(168, 169);
+            FilmFrame3.Size = new Size(192, 225);
             FilmFrame3.TabIndex = 0;
             FilmFrame3.TabStop = false;
             FilmFrame3.Click += pictureBox11_Click;
             // 
             // FilmName3
             // 
-            FilmName3.Location = new Point(9, 176);
-            FilmName3.Margin = new Padding(3, 2, 3, 2);
+            FilmName3.Location = new Point(10, 235);
             FilmName3.Name = "FilmName3";
             FilmName3.ReadOnly = true;
-            FilmName3.Size = new Size(162, 23);
+            FilmName3.Size = new Size(185, 27);
             FilmName3.TabIndex = 1;
             // 
             // panel4
             // 
             panel4.Controls.Add(FilmFrame2);
             panel4.Controls.Add(FilmName2);
-            panel4.Location = new Point(234, 16);
-            panel4.Margin = new Padding(3, 2, 3, 2);
+            panel4.Location = new Point(267, 21);
             panel4.Name = "panel4";
-            panel4.Size = new Size(179, 208);
+            panel4.Size = new Size(205, 277);
             panel4.TabIndex = 3;
             // 
             // FilmFrame2
             // 
-            FilmFrame2.Location = new Point(5, 6);
-            FilmFrame2.Margin = new Padding(3, 2, 3, 2);
+            FilmFrame2.Location = new Point(6, 8);
             FilmFrame2.Name = "FilmFrame2";
-            FilmFrame2.Size = new Size(168, 169);
+            FilmFrame2.Size = new Size(192, 225);
             FilmFrame2.TabIndex = 0;
             FilmFrame2.TabStop = false;
             FilmFrame2.Click += pictureBox10_Click;
             // 
             // FilmName2
             // 
-            FilmName2.Location = new Point(9, 179);
-            FilmName2.Margin = new Padding(3, 2, 3, 2);
+            FilmName2.Location = new Point(10, 239);
             FilmName2.Name = "FilmName2";
             FilmName2.ReadOnly = true;
-            FilmName2.Size = new Size(162, 23);
+            FilmName2.Size = new Size(185, 27);
             FilmName2.TabIndex = 1;
             // 
             // panel2
             // 
             panel2.Controls.Add(FilmFrame1);
             panel2.Controls.Add(FilmName1);
-            panel2.Location = new Point(29, 20);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(33, 27);
             panel2.Name = "panel2";
-            panel2.Size = new Size(176, 200);
+            panel2.Size = new Size(201, 267);
             panel2.TabIndex = 2;
             // 
             // FilmFrame1
             // 
-            FilmFrame1.Location = new Point(3, 2);
-            FilmFrame1.Margin = new Padding(3, 2, 3, 2);
+            FilmFrame1.Location = new Point(3, 3);
             FilmFrame1.Name = "FilmFrame1";
-            FilmFrame1.Size = new Size(168, 169);
+            FilmFrame1.Size = new Size(192, 225);
             FilmFrame1.TabIndex = 0;
             FilmFrame1.TabStop = false;
             FilmFrame1.Click += pictureBox9_Click;
             // 
             // FilmName1
             // 
-            FilmName1.Location = new Point(9, 176);
-            FilmName1.Margin = new Padding(3, 2, 3, 2);
+            FilmName1.Location = new Point(10, 235);
             FilmName1.Name = "FilmName1";
             FilmName1.ReadOnly = true;
-            FilmName1.Size = new Size(162, 23);
+            FilmName1.Size = new Size(185, 27);
             FilmName1.TabIndex = 1;
             FilmName1.TextChanged += textBox2_TextChanged;
             // 
@@ -329,20 +309,18 @@
             // 
             panel7.Controls.Add(btnLogOut);
             panel7.Controls.Add(pictureBox2);
-            panel7.Location = new Point(3, 146);
-            panel7.Margin = new Padding(3, 2, 3, 2);
+            panel7.Location = new Point(3, 197);
             panel7.Name = "panel7";
-            panel7.Size = new Size(195, 31);
+            panel7.Size = new Size(223, 41);
             panel7.TabIndex = 9;
             // 
             // btnLogOut
             // 
             btnLogOut.BackColor = SystemColors.InactiveCaptionText;
             btnLogOut.ForeColor = SystemColors.ButtonFace;
-            btnLogOut.Location = new Point(40, -9);
-            btnLogOut.Margin = new Padding(3, 2, 3, 2);
+            btnLogOut.Location = new Point(46, -12);
             btnLogOut.Name = "btnLogOut";
-            btnLogOut.Size = new Size(160, 53);
+            btnLogOut.Size = new Size(183, 71);
             btnLogOut.TabIndex = 7;
             btnLogOut.Text = "Log Out";
             btnLogOut.TextAlign = ContentAlignment.MiddleLeft;
@@ -353,9 +331,8 @@
             // 
             pictureBox2.Image = Properties.Resources.logout;
             pictureBox2.Location = new Point(0, 0);
-            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(35, 31);
+            pictureBox2.Size = new Size(40, 41);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
@@ -365,19 +342,17 @@
             // 
             panel8.Controls.Add(pictureBox8);
             panel8.Controls.Add(btnAccountInformation);
-            panel8.Location = new Point(3, 41);
-            panel8.Margin = new Padding(3, 2, 3, 2);
+            panel8.Location = new Point(3, 56);
             panel8.Name = "panel8";
-            panel8.Size = new Size(195, 31);
+            panel8.Size = new Size(223, 41);
             panel8.TabIndex = 9;
             // 
             // pictureBox8
             // 
             pictureBox8.Image = Properties.Resources.user2;
-            pictureBox8.Location = new Point(0, 2);
-            pictureBox8.Margin = new Padding(3, 2, 3, 2);
+            pictureBox8.Location = new Point(0, 3);
             pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(35, 31);
+            pictureBox8.Size = new Size(40, 41);
             pictureBox8.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox8.TabIndex = 8;
             pictureBox8.TabStop = false;
@@ -387,10 +362,9 @@
             // 
             btnAccountInformation.BackColor = SystemColors.InactiveCaptionText;
             btnAccountInformation.ForeColor = SystemColors.ButtonFace;
-            btnAccountInformation.Location = new Point(40, -9);
-            btnAccountInformation.Margin = new Padding(3, 2, 3, 2);
+            btnAccountInformation.Location = new Point(46, -12);
             btnAccountInformation.Name = "btnAccountInformation";
-            btnAccountInformation.Size = new Size(160, 53);
+            btnAccountInformation.Size = new Size(183, 71);
             btnAccountInformation.TabIndex = 7;
             btnAccountInformation.Text = "Account Information";
             btnAccountInformation.TextAlign = ContentAlignment.MiddleLeft;
@@ -401,19 +375,17 @@
             // 
             panel9.Controls.Add(pictureBox7);
             panel9.Controls.Add(btn_Ticket);
-            panel9.Location = new Point(3, 111);
-            panel9.Margin = new Padding(3, 2, 3, 2);
+            panel9.Location = new Point(3, 150);
             panel9.Name = "panel9";
-            panel9.Size = new Size(195, 31);
+            panel9.Size = new Size(223, 41);
             panel9.TabIndex = 9;
             // 
             // pictureBox7
             // 
             pictureBox7.Image = Properties.Resources.ticket;
             pictureBox7.Location = new Point(0, 0);
-            pictureBox7.Margin = new Padding(3, 2, 3, 2);
             pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(35, 27);
+            pictureBox7.Size = new Size(40, 36);
             pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox7.TabIndex = 10;
             pictureBox7.TabStop = false;
@@ -423,10 +395,9 @@
             // 
             btn_Ticket.BackColor = SystemColors.InactiveCaptionText;
             btn_Ticket.ForeColor = SystemColors.ButtonFace;
-            btn_Ticket.Location = new Point(40, -9);
-            btn_Ticket.Margin = new Padding(3, 2, 3, 2);
+            btn_Ticket.Location = new Point(46, -12);
             btn_Ticket.Name = "btn_Ticket";
-            btn_Ticket.Size = new Size(160, 53);
+            btn_Ticket.Size = new Size(183, 71);
             btn_Ticket.TabIndex = 7;
             btn_Ticket.Text = "My Tickets";
             btn_Ticket.TextAlign = ContentAlignment.MiddleLeft;
@@ -437,10 +408,9 @@
             // 
             panel3.Controls.Add(btn_ChangePass);
             panel3.Controls.Add(pictureBox15);
-            panel3.Location = new Point(3, 76);
-            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Location = new Point(3, 103);
             panel3.Name = "panel3";
-            panel3.Size = new Size(195, 31);
+            panel3.Size = new Size(223, 41);
             panel3.TabIndex = 8;
             panel3.Paint += panel3_Paint;
             // 
@@ -448,10 +418,9 @@
             // 
             btn_ChangePass.BackColor = SystemColors.InactiveCaptionText;
             btn_ChangePass.ForeColor = SystemColors.ButtonFace;
-            btn_ChangePass.Location = new Point(40, -9);
-            btn_ChangePass.Margin = new Padding(3, 2, 3, 2);
+            btn_ChangePass.Location = new Point(46, -12);
             btn_ChangePass.Name = "btn_ChangePass";
-            btn_ChangePass.Size = new Size(160, 53);
+            btn_ChangePass.Size = new Size(183, 71);
             btn_ChangePass.TabIndex = 7;
             btn_ChangePass.Text = "Change password";
             btn_ChangePass.TextAlign = ContentAlignment.MiddleLeft;
@@ -461,10 +430,9 @@
             // pictureBox15
             // 
             pictureBox15.Image = Properties.Resources.password;
-            pictureBox15.Location = new Point(3, 4);
-            pictureBox15.Margin = new Padding(3, 2, 3, 2);
+            pictureBox15.Location = new Point(3, 5);
             pictureBox15.Name = "pictureBox15";
-            pictureBox15.Size = new Size(35, 27);
+            pictureBox15.Size = new Size(40, 36);
             pictureBox15.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox15.TabIndex = 11;
             pictureBox15.TabStop = false;
@@ -473,38 +441,34 @@
             // 
             panel6.Controls.Add(pictureBox5);
             panel6.Controls.Add(textBox1);
-            panel6.Location = new Point(3, 2);
-            panel6.Margin = new Padding(3, 2, 3, 2);
+            panel6.Location = new Point(3, 3);
             panel6.Name = "panel6";
-            panel6.Size = new Size(199, 35);
+            panel6.Size = new Size(227, 47);
             panel6.TabIndex = 10;
             // 
             // pictureBox5
             // 
             pictureBox5.Image = Properties.Resources.dinosaur;
-            pictureBox5.Location = new Point(3, 4);
-            pictureBox5.Margin = new Padding(3, 2, 3, 2);
+            pictureBox5.Location = new Point(3, 5);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(32, 31);
+            pictureBox5.Size = new Size(37, 41);
             pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox5.TabIndex = 11;
             pictureBox5.TabStop = false;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(35, 13);
-            textBox1.Margin = new Padding(3, 2, 3, 2);
+            textBox1.Location = new Point(40, 17);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(149, 23);
+            textBox1.Size = new Size(170, 27);
             textBox1.TabIndex = 9;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
             // pictureBox3
             // 
-            pictureBox3.Location = new Point(178, 49);
-            pictureBox3.Margin = new Padding(3, 2, 3, 2);
+            pictureBox3.Location = new Point(203, 65);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(392, 106);
+            pictureBox3.Size = new Size(448, 141);
             pictureBox3.TabIndex = 5;
             pictureBox3.TabStop = false;
             // 
@@ -512,19 +476,18 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
-            label3.Location = new Point(315, 9);
+            label3.Location = new Point(360, 12);
             label3.Name = "label3";
-            label3.Size = new Size(103, 28);
+            label3.Size = new Size(130, 35);
             label3.TabIndex = 0;
             label3.Text = "CINEMAX";
             // 
             // pictureBox4
             // 
             pictureBox4.Image = Properties.Resources.notification;
-            pictureBox4.Location = new Point(61, 9);
-            pictureBox4.Margin = new Padding(3, 2, 3, 2);
+            pictureBox4.Location = new Point(70, 12);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(32, 26);
+            pictureBox4.Size = new Size(37, 35);
             pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox4.TabIndex = 0;
             pictureBox4.TabStop = false;
@@ -537,10 +500,9 @@
             // btn_menu
             // 
             btn_menu.Image = Properties.Resources.menu;
-            btn_menu.Location = new Point(10, 9);
-            btn_menu.Margin = new Padding(3, 2, 3, 2);
+            btn_menu.Location = new Point(11, 12);
             btn_menu.Name = "btn_menu";
-            btn_menu.Size = new Size(33, 22);
+            btn_menu.Size = new Size(38, 29);
             btn_menu.SizeMode = PictureBoxSizeMode.StretchImage;
             btn_menu.TabIndex = 6;
             btn_menu.TabStop = false;
@@ -555,10 +517,9 @@
             sidebar.Controls.Add(panel9);
             sidebar.Controls.Add(panel7);
             sidebar.Dock = DockStyle.Left;
-            sidebar.Location = new Point(0, 34);
-            sidebar.Margin = new Padding(3, 2, 3, 2);
+            sidebar.Location = new Point(0, 45);
             sidebar.Name = "sidebar";
-            sidebar.Size = new Size(223, 458);
+            sidebar.Size = new Size(0, 611);
             sidebar.TabIndex = 7;
             // 
             // timer1
@@ -567,11 +528,11 @@
             // 
             // HomePage
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(757, 430);
+            ClientSize = new Size(865, 573);
             Controls.Add(sidebar);
             Controls.Add(btn_menu);
             Controls.Add(pictureBox4);
@@ -582,7 +543,6 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Font = new Font("Segoe UI", 9F);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "HomePage";
             Text = "HomePage";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
