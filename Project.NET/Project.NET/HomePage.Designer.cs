@@ -340,7 +340,7 @@
             sidebar.Location = new Point(0, 34);
             sidebar.Margin = new Padding(3, 2, 3, 2);
             sidebar.Name = "sidebar";
-            sidebar.Size = new Size(0, 396);
+            sidebar.Size = new Size(100, 396);
             sidebar.TabIndex = 7;
             // 
             // timer1

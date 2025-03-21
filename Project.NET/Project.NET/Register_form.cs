@@ -155,6 +155,7 @@ namespace Project.NET
                     if (userId > 0)
                     {
                         clsSession.CusId = userId;
+                        clsSession.CusName =name;
                         MessageBox.Show("Đăng ký thành công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Hide();
                         HomePage home = new HomePage();
