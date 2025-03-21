@@ -65,7 +65,7 @@
             pictureBox15 = new PictureBox();
             panel6 = new Panel();
             pictureBox5 = new PictureBox();
-            textBox1 = new TextBox();
+            txtName = new TextBox();
             pictureBox3 = new PictureBox();
             label3 = new Label();
             pictureBox4 = new PictureBox();
@@ -440,7 +440,7 @@
             // panel6
             // 
             panel6.Controls.Add(pictureBox5);
-            panel6.Controls.Add(textBox1);
+            panel6.Controls.Add(txtName);
             panel6.Location = new Point(3, 3);
             panel6.Name = "panel6";
             panel6.Size = new Size(227, 47);
@@ -456,13 +456,13 @@
             pictureBox5.TabIndex = 11;
             pictureBox5.TabStop = false;
             // 
-            // textBox1
+            // txtName
             // 
-            textBox1.Location = new Point(40, 17);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(170, 27);
-            textBox1.TabIndex = 9;
-            textBox1.TextChanged += textBox1_TextChanged;
+            txtName.Location = new Point(40, 17);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(170, 27);
+            txtName.TabIndex = 9;
+            txtName.TextChanged += textBox1_TextChanged;
             // 
             // pictureBox3
             // 
@@ -631,5 +631,6 @@
         private System.Windows.Forms.Timer timer1;
         private Button btnLogOut;
         private PictureBox pictureBox15;
+        private TextBox txtName;
     }
 }
