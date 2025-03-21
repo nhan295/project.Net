@@ -100,7 +100,8 @@ namespace Project.NET
             {
                 MessageBox.Show(errors, "Lỗi đăng ký", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
-            } else
+            }
+            else
             {
                 return true;
             }
@@ -116,9 +117,9 @@ namespace Project.NET
             string password = txtRegpass.Text;
             string confirmPassword = txtConfirmpass.Text;
 
-            bool checkRegister =ValidateRegisterForm(name, phoneNumber, email, address, password, confirmPassword);
+            bool checkRegister = ValidateRegisterForm(name, phoneNumber, email, address, password, confirmPassword);
 
-            try 
+            try
             {
                 if (checkRegister)
                 {
@@ -166,12 +167,20 @@ namespace Project.NET
                         clsConnectDB.CloseConnection();
                     }
                 }
-            } 
-            catch(Exception ex) 
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void login_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Login_form login = new Login_form();
+            this.Hide();
+            login.ShowDialog();
+            this.Close();
         }
     }
 }

@@ -34,7 +34,6 @@
             txtEmail = new TextBox();
             txtPass = new TextBox();
             btn_login = new Button();
-            linkLabel1 = new LinkLabel();
             btn_register = new Button();
             label1 = new Label();
             pictureBox4 = new PictureBox();
@@ -109,18 +108,6 @@
             btn_login.UseVisualStyleBackColor = false;
             btn_login.Click += btn_login_Click;
             // 
-            // linkLabel1
-            // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Font = new Font("Segoe UI", 10F);
-            linkLabel1.LinkColor = Color.MediumBlue;
-            linkLabel1.Location = new Point(219, 501);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(149, 23);
-            linkLabel1.TabIndex = 6;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "Forgot password ?";
-            // 
             // btn_register
             // 
             btn_register.BackColor = SystemColors.ButtonFace;
@@ -138,7 +125,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Variable Display", 12F);
-            label1.Location = new Point(269, 550);
+            label1.Location = new Point(269, 537);
             label1.Name = "label1";
             label1.Size = new Size(39, 27);
             label1.TabIndex = 8;
@@ -147,7 +134,7 @@
             // pictureBox4
             // 
             pictureBox4.Image = Properties.Resources.minus;
-            pictureBox4.Location = new Point(117, 551);
+            pictureBox4.Location = new Point(117, 538);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(162, 26);
             pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -157,7 +144,7 @@
             // pictureBox5
             // 
             pictureBox5.Image = Properties.Resources.minus;
-            pictureBox5.Location = new Point(288, 551);
+            pictureBox5.Location = new Point(288, 538);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(162, 26);
             pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -195,7 +182,6 @@
             Controls.Add(peye);
             Controls.Add(label1);
             Controls.Add(btn_register);
-            Controls.Add(linkLabel1);
             Controls.Add(btn_login);
             Controls.Add(txtPass);
             Controls.Add(txtEmail);
@@ -226,7 +212,6 @@
         private TextBox txtEmail;
         private TextBox txtPass;
         private Button btn_login;
-        private LinkLabel linkLabel1;
         private Button btn_register;
         private Label label1;
         private PictureBox pictureBox4;
