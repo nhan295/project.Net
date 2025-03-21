@@ -25,7 +25,7 @@ namespace Project.NET
             try
             {
                 clsConnectDB.OpenConnection();
-                SqlCommand com = new SqlCommand(@"select f.title, f.thumbnail, sc.room_name, s.show_date, s.show_time, c.cinema_name, c.location, se.seat_number 
+                SqlCommand com = new SqlCommand(@"select f.title, f.thumbnail, f.price, sc.room_name, s.show_date, s.show_time, c.cinema_name, c.location, se.seat_number 
                                                 from invoice i 
                                                 inner join film f on i.film_id = f.film_id 
                                                 inner join screeningroom sc on i.screeningroom_id = sc.screeningroom_id
@@ -47,6 +47,7 @@ namespace Project.NET
                     lblCinemaAddress.Text = reader["location"].ToString();
                     txtSeat.Text = reader["seat_number"].ToString();
                     txtScreeningRoom.Text = reader["room_name"].ToString();
+                    txtTotalPrice.Text = reader["price"].ToString() + "VND";
 
                     string imageName = reader["thumbnail"].ToString().Trim();
 
