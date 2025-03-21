@@ -2,12 +2,14 @@
 CREATE DATABASE [Project.Net];
 USE [Project.Net];
 
+drop database [Project.Net];
 -- Tạo bảng
 CREATE TABLE Cinema (
     cinema_id INT IDENTITY(1,1) PRIMARY KEY,
     cinema_name NVARCHAR(255) NOT NULL,
     location NVARCHAR(255) NOT NULL
 );
+select* from Cinema;
 
 CREATE TABLE Genre (
     genre_id INT IDENTITY(1,1) PRIMARY KEY,
@@ -23,6 +25,7 @@ CREATE TABLE Customer (
     cus_address NVARCHAR(125),
     cus_birthday DATE
 );
+select * 
 
 CREATE TABLE ScreeningRoom (
     screeningroom_id INT IDENTITY(1,1) PRIMARY KEY,
@@ -252,7 +255,25 @@ BEGIN
     SET @showtime_id = @showtime_id + 1;
 END
 
+--change pass
+CREATE PROCEDURE ChangeUserPassword
+    @UserId INT,
+    @new_pwd NVARCHAR(255)
+AS
+BEGIN
+    SET NOCOUNT ON;
 
+    UPDATE Customer 
+    SET cus_password = @new_pwd
+    WHERE cus_id = @UserId;
+
+    IF @@ROWCOUNT > 0
+        SELECT 1 AS Success; -- Thành công
+    ELSE
+        SELECT 0 AS Success; -- Thất bại
+END;
+
+EXEC ChangeUserPassword 1, "1234";
 
 INSERT INTO MovieCinema (cinema_id, film_id) VALUES
 (1, 1), (2, 1), (3, 1),
