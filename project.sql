@@ -98,6 +98,9 @@ CREATE TABLE MovieCinema (
 
 
 
+SELECT showtime_id, show_time FROM Showtimes 
+                     WHERE film_id = 2 AND cinema_id = 2 AND show_date = '2025-03-22';
+
 
 
 
@@ -177,45 +180,44 @@ INSERT INTO Film (title, rated,genre_id, release_date, director, company_product
 
 -- Chèn dữ liệu vào bảng Showtimes
 INSERT INTO Showtimes (film_id, cinema_id, screeningroom_id, show_date, show_time) VALUES
-(1, 1, 1, '2025-03-21', '10:00:00'),
-(1, 1, 1, '2025-03-21', '14:00:00'),
-(1, 1, 1, '2025-03-21', '18:30:00'),
+(1, 1, 1, '2025-03-21', '10:00'),
+(2, 1, 2, '2025-03-21', '14:00'),
+(4, 1, 1, '2025-03-21', '18:30'),
+(6, 1, 2, '2025-03-21', '09:00'),
+(8, 1, 1, '2025-03-21', '13:30'),
+(10, 1, 2, '2025-03-21', '17:45'),
 
-(2, 2, 3, '2025-03-21', '09:00:00'),
-(2, 2, 3, '2025-03-21', '13:30:00'),
-(2, 2, 3, '2025-03-21', '17:45:00'),
 
-(3, 3, 5, '2025-03-21', '11:15:00'),
-(3, 3, 5, '2025-03-21', '15:45:00'),
-(3, 3, 5, '2025-03-21', '20:00:00'),
+(1, 2, 3, '2025-03-21', '11:15'),
+(3, 2, 4, '2025-03-21', '15:45'),
+(5, 2, 3, '2025-03-21', '20:00'),
+(6, 2, 4, '2025-03-21', '12:00'),
+(7, 2, 3, '2025-03-21', '16:15'),
+(9, 2, 4, '2025-03-21', '19:45'),
+(10, 2, 3, '2025-03-21', '08:30'),
 
-(4, 4, 7, '2025-03-21', '12:00:00'),
-(4, 4, 7, '2025-03-21', '16:15:00'),
-(4, 4, 7, '2025-03-21', '19:45:00'),
 
-(5, 5, 9, '2025-03-21', '08:30:00'),
-(5, 5, 9, '2025-03-21', '13:00:00'),
-(5, 5, 9, '2025-03-21', '17:30:00'),
+(1, 3, 5, '2025-03-21', '13:00'),
+(2, 3, 6, '2025-03-21', '17:30'),
+(4, 3, 5, '2025-03-21', '10:00'),
+(6, 3, 6, '2025-03-21', '14:00'),
+(7, 3, 5, '2025-03-21', '18:30'),
+(8, 3, 6, '2025-03-21', '09:00'),
+(10, 3, 5, '2025-03-21', '13:30'),
 
-(6, 1, 2, '2025-03-21', '10:00:00'),
-(6, 1, 2, '2025-03-21', '14:00:00'),
-(6, 1, 2, '2025-03-21', '18:30:00'),
 
-(7, 2, 4, '2025-03-21', '09:00:00'),
-(7, 2, 4, '2025-03-21', '13:30:00'),
-(7, 2, 4, '2025-03-21', '17:45:00'),
+(3, 4, 7, '2025-03-21', '17:45'),
+(4, 4, 8, '2025-03-21', '11:15'),
+(5, 4, 7, '2025-03-21', '15:45'),
+(7, 4, 8, '2025-03-21', '20:00'),
+(9, 4, 8, '2025-03-21', '12:00'),
 
-(8, 3, 6, '2025-03-21', '11:15:00'),
-(8, 3, 6, '2025-03-21', '15:45:00'),
-(8, 3, 6, '2025-03-21', '20:00:00'),
 
-(9, 4, 8, '2025-03-21', '12:00:00'),
-(9, 4, 8, '2025-03-21', '16:15:00'),
-(9, 4, 8, '2025-03-21', '19:45:00'),
-
-(10, 5, 10, '2025-03-21', '08:30:00'),
-(10, 5, 10, '2025-03-21', '13:00:00'),
-(10, 5, 10, '2025-03-21', '17:30:00');
+(2, 5, 9, '2025-03-21', '16:15'),
+(3, 5, 9, '2025-03-21', '19:45'),
+(5, 5, 10, '2025-03-21', '08:30'),
+(8, 5, 10, '2025-03-21', '13:00'),
+(9, 5, 10, '2025-03-21', '17:30');
 
 
 -- Chèn dữ liệu vào bảng Seat
@@ -223,34 +225,28 @@ INSERT INTO Showtimes (film_id, cinema_id, screeningroom_id, show_date, show_tim
 DECLARE @showtime_id INT = 1;
 DECLARE @screeningroom_id INT;
 DECLARE @seat_number NVARCHAR(10);
-DECLARE @charIndex INT;
-DECLARE @numIndex INT;
+DECLARE @index INT;
 
 WHILE @showtime_id <= 30  
 BEGIN
-    SET @screeningroom_id = 1;
-    
-    WHILE @screeningroom_id <= 10  
+    -- Lấy screeningroom_id từ suất chiếu
+    SELECT @screeningroom_id = screeningroom_id FROM Showtimes WHERE showtime_id = @showtime_id;
+
+    -- Tạo 10 ghế từ A1 đến A10
+    SET @index = 0;
+    WHILE @index <= 9  
     BEGIN
-        SET @charIndex = 1;
-        SET @numIndex = 0;
+        SET @seat_number = 'A' + CAST(@index AS NVARCHAR);
         
-        WHILE @numIndex < 10  
-        BEGIN
-            SET @seat_number = CHAR(64 + @charIndex) + CAST(@numIndex AS NVARCHAR);
-            
-            INSERT INTO Seat (screeningroom_id, showtime_id, seat_number, seat_status)
-            VALUES (@screeningroom_id, @showtime_id, @seat_number, 0);
+        INSERT INTO Seat (screeningroom_id, showtime_id, seat_number, seat_status)
+        VALUES (@screeningroom_id, @showtime_id, @seat_number, 0);
 
-            SET @numIndex = @numIndex + 1;
-            SET @charIndex = ((@numIndex / 2) + 1); 
-        END
-
-        SET @screeningroom_id = @screeningroom_id + 1;
+        SET @index = @index + 1;
     END
 
     SET @showtime_id = @showtime_id + 1;
 END
+
 
 
 

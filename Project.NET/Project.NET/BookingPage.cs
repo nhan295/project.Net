@@ -12,7 +12,7 @@ namespace Project.NET
         private int filmId;
         private string filmTitle;
         private Button selectedButton = null;
-        private List<Button> timeButtons = new List<Button>(); 
+        private List<Button> timeButtons = new List<Button>();
 
         public BookingPage(int filmId, string filmTitle)
         {
@@ -24,7 +24,7 @@ namespace Project.NET
             DefaultDay();
             UpdateDay();
             clsConnectDB.OpenConnection();
-            LoadCinemaList(); 
+            LoadCinemaList();
             cbCinema.SelectedIndexChanged += cbCinema_SelectedIndexChanged;
         }
 
@@ -93,7 +93,7 @@ namespace Project.NET
             if (cbCinema.SelectedValue != null)
             {
                 int cinemaId = Convert.ToInt32(cbCinema.SelectedValue);
-                string selectedDate = clickedButton.Tag.ToString(); 
+                string selectedDate = clickedButton.Tag.ToString();
                 LoadShowtimes(cinemaId, selectedDate);
             }
         }
@@ -119,7 +119,7 @@ namespace Project.NET
 
         private void UpdateDate()
         {
-            List<Label> labelList = new List<Label> { labDate, labDate1, labDate2, labDate3, labDate4, labDate5 ,labDay6};
+            List<Label> labelList = new List<Label> { labDate, labDate1, labDate2, labDate3, labDate4, labDate5, labDay6 };
             DateTime today = DateTime.Now;
 
             for (int i = 0; i < labelList.Count; i++)
@@ -145,16 +145,17 @@ namespace Project.NET
                 cmd.Parameters.AddWithValue("@cinemaId", cinemaId);
                 cmd.Parameters.AddWithValue("@showDate", showDate);
 
+
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<(int, string)> showtimes = new List<(int, string)>();
-                
+
 
                 while (reader.Read())
                 {
                     int showtimeId = Convert.ToInt32(reader["showtime_id"]);
                     string showTime = reader["show_time"].ToString();
                     showtimes.Add((showtimeId, showTime));
-                    
+
                 }
                 reader.Close();
 
@@ -165,11 +166,11 @@ namespace Project.NET
                 {
                     Button newButton = new Button
                     {
-                        Text = time,
+                        Text = DateTime.Parse(time).ToString("HH:mm"),
                         Location = new Point(x, y),
                         Size = new Size(60, 30),
                         BackColor = Color.White,
-                        Tag = showtimeId 
+                        Tag = showtimeId
                     };
 
                     newButton.Click += BtnTime_Click;
@@ -217,6 +218,11 @@ namespace Project.NET
         }
 
         private void labDay6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbCinema_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
         }

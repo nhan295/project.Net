@@ -260,6 +260,7 @@
             cbCinema.Name = "cbCinema";
             cbCinema.Size = new Size(612, 23);
             cbCinema.TabIndex = 2;
+            cbCinema.SelectedIndexChanged += cbCinema_SelectedIndexChanged_1;
             // 
             // panelTime
             // 
