@@ -45,12 +45,12 @@ namespace Project.NET
                 using (SqlDataReader reader = com.ExecuteReader())
                 {
                     PictureBox[] filmFrames = { FilmFrame1, FilmFrame2, FilmFrame3, FilmFrame4, FilmFrame5, FilmFrame6 };
-                    int[] filmIds = new int[6];  // Lưu ID phim để truyền qua trang chi tiết
+                    int[] filmIds = new int[6];
                     int index = 0;
 
                     while (reader.Read() && index < filmFrames.Length)
                     {
-                        filmIds[index] = Convert.ToInt32(reader["film_id"]); // Lưu ID phim
+                        filmIds[index] = Convert.ToInt32(reader["film_id"]); 
                         string imageName = reader["thumbnail"].ToString();
                         Image movieImage = (Image)Properties.Resources.ResourceManager.GetObject(imageName);
 
@@ -75,7 +75,6 @@ namespace Project.NET
             }
         }
 
-        // Hàm mở trang chi tiết phim
         private void OpenMovieDetail(int filmId)
         {
             clsSession.FilmId = filmId;
@@ -185,11 +184,11 @@ namespace Project.NET
 
         private void btnAccountInformation_Click(object sender, EventArgs e)
         {
-            //this.Hide();
+
             ProfilePage profilePage = new ProfilePage();
             profilePage.Owner = this;
             profilePage.ShowDialog();
-            //this.Close();
+
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)

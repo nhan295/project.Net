@@ -28,6 +28,8 @@ namespace Project.NET
 
             LoadSeats();
         }
+        private int selectedScreeningRoomId; 
+
         private void LoadSeats()
         {
             if (panelSeats == null)
@@ -38,14 +40,38 @@ namespace Project.NET
 
             try
             {
-
                 clsConnectDB.OpenConnection();
 
-                string query = "SELECT seat_number, seat_status FROM Seat WHERE showtime_id = @showtimeId";
 
-                using (SqlCommand cmd = new SqlCommand(query, clsConnectDB.conn))
+                string roomQuery = "SELECT DISTINCT screeningroom_id FROM Seat WHERE showtime_id = @showtimeId";
+                List<int> roomIds = new List<int>();
+
+                using (SqlCommand cmd = new SqlCommand(roomQuery, clsConnectDB.conn))
                 {
                     cmd.Parameters.AddWithValue("@showtimeId", this.showtimeId);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        roomIds.Add(reader.GetInt32(0));
+                    }
+                    reader.Close();
+                }
+
+                if (roomIds.Count == 0)
+                {
+                    MessageBox.Show("Không có phòng chiếu nào cho suất này!");
+                    return;
+                }
+                Random rand = new Random();
+                selectedScreeningRoomId = roomIds[rand.Next(roomIds.Count)];
+
+                string seatQuery = "SELECT seat_number, seat_status FROM Seat WHERE showtime_id = @showtimeId AND screeningroom_id = @screeningRoomId";
+
+                using (SqlCommand cmd = new SqlCommand(seatQuery, clsConnectDB.conn))
+                {
+                    cmd.Parameters.AddWithValue("@showtimeId", this.showtimeId);
+                    cmd.Parameters.AddWithValue("@screeningRoomId", selectedScreeningRoomId);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     panelSeats.Controls.Clear();
@@ -63,56 +89,62 @@ namespace Project.NET
                     }
                     reader.Close();
 
+                    if (totalSeats == 0)
+                    {
+                        MessageBox.Show("Không tìm thấy ghế trong phòng này!");
+                        return;
+                    }
 
-                    int colCount = 10;
-                    int rowCount = (int)Math.Ceiling((double)totalSeats / colCount);
+                    panelSeats.Controls.Clear();
+                    seatButtons.Clear();
 
+                    int rowCount = 3; 
+                    int[] seatsPerRow = { 3, 3, 4 }; 
 
-                    int buttonSize = 50;
-                    int spacing = 10;
-
-
+                    int buttonSize = 50; 
                     int panelWidth = panelSeats.Width;
                     int panelHeight = panelSeats.Height;
 
-
-                    int totalRowWidth = (buttonSize + spacing) * colCount - spacing;
-                    int startX = (panelWidth - totalRowWidth) / 2;
-                    if (startX < 0) startX = 10;
-
-                    int totalColumnHeight = (buttonSize + spacing) * rowCount - spacing;
-                    int startY = (panelHeight - totalColumnHeight) / 2;
-                    if (startY < 0) startY = 10;
-
-                    int x = startX, y = startY;
+                    int y = 10; 
                     int seatIndex = 0;
 
-                    foreach (var (seatNumber, isBooked) in seatData)
+                    for (int row = 0; row < rowCount; row++)
                     {
-                        Button seatButton = new Button
-                        {
-                            Text = seatNumber,
-                            Size = new Size(buttonSize, buttonSize),
-                            Location = new Point(x, y),
-                            BackColor = isBooked ? Color.Gray : Color.LightGreen,
-                            Enabled = !isBooked
-                        };
+                        int colCount = seatsPerRow[row]; 
 
-                        seatButton.Click += SeatButton_Click;
-                        panelSeats.Controls.Add(seatButton);
-                        seatButtons.Add(seatButton);
+                        int totalButtonWidth = colCount * buttonSize;
+                        int spacing = (panelWidth - totalButtonWidth) / (colCount + 1);
 
-                        seatIndex++;
-                        if (seatIndex % colCount == 0)
+                        int x = spacing; 
+
+                        for (int col = 0; col < colCount; col++)
                         {
-                            x = startX;
-                            y += buttonSize + spacing;
+                            if (seatIndex >= totalSeats) break;
+
+                            var (seatNumber, isBooked) = seatData[seatIndex];
+
+                            Button seatButton = new Button
+                            {
+                                Text = seatNumber,
+                                Size = new Size(buttonSize, buttonSize),
+                                Location = new Point(x, y),
+                                BackColor = isBooked ? Color.Gray : Color.LightGreen,
+                                Enabled = !isBooked
+                            };
+
+                            seatButton.Click += SeatButton_Click;
+                            panelSeats.Controls.Add(seatButton);
+                            seatButtons.Add(seatButton);
+
+                            x += buttonSize + spacing; 
+                            seatIndex++;
                         }
-                        else
-                        {
-                            x += buttonSize + spacing;
-                        }
+                        y += buttonSize + 30;
                     }
+
+
+
+
                 }
             }
             catch (Exception ex)
@@ -126,17 +158,18 @@ namespace Project.NET
 
 
 
+
         private void SeatButton_Click(object sender, EventArgs e)
         {
             Button clickedButton = sender as Button;
 
             if (clickedButton.BackColor == Color.LightGreen)
             {
-                clickedButton.BackColor = Color.Blue; // Đổi màu khi chọn
+                clickedButton.BackColor = Color.Blue; 
             }
             else if (clickedButton.BackColor == Color.Blue)
             {
-                clickedButton.BackColor = Color.LightGreen; // Bỏ chọn
+                clickedButton.BackColor = Color.LightGreen; 
             }
         }
 
@@ -149,10 +182,9 @@ namespace Project.NET
         {
             List<string> selectedSeats = new List<string>();
 
-            // Lấy danh sách ghế được chọn
             foreach (var button in seatButtons)
             {
-                if (button.BackColor == Color.Blue) // Ghế đã chọn
+                if (button.BackColor == Color.Blue) 
                 {
                     selectedSeats.Add(button.Text);
                 }
@@ -169,37 +201,30 @@ namespace Project.NET
                 if (clsConnectDB.conn.State != ConnectionState.Open)
                     clsConnectDB.OpenConnection();
 
-
                 foreach (var seat in selectedSeats)
                 {
-                    // Lấy seat_id từ seat_number
-                    string seatQuery = "SELECT seat_id FROM Seat WHERE seat_number = @seatNumber AND showtime_id = @showtimeId";
+
+                    string seatQuery = "SELECT seat_id FROM Seat WHERE seat_number = @seatNumber AND showtime_id = @showtimeId AND screeningroom_id = @screeningRoomId";
                     int seatId = -1;
 
                     using (SqlCommand seatCmd = new SqlCommand(seatQuery, clsConnectDB.conn))
                     {
                         seatCmd.Parameters.AddWithValue("@seatNumber", seat);
                         seatCmd.Parameters.AddWithValue("@showtimeId", this.showtimeId);
+                        seatCmd.Parameters.AddWithValue("@screeningRoomId", selectedScreeningRoomId); 
                         seatId = Convert.ToInt32(seatCmd.ExecuteScalar());
                     }
 
                     if (seatId != -1)
                     {
-                        // Thêm dữ liệu vào Invoice
                         string insertInvoiceQuery = @"
-    INSERT INTO Invoice (cus_id, screeningroom_id, film_id, seat_id, cinema_id, showtime_id) 
-    VALUES (
-        @cusId, 
-        (SELECT TOP 1 screeningroom_id FROM ScreeningRoom WHERE cinema_id = @cinemaId ORDER BY NEWID()), 
-        @filmId, 
-        @seatId, 
-        @cinemaId, 
-        @showtimeId)";
-
+                INSERT INTO Invoice (cus_id, screeningroom_id, film_id, seat_id, cinema_id, showtime_id) 
+                VALUES (@cusId, @screeningRoomId, @filmId, @seatId, @cinemaId, @showtimeId)";
 
                         using (SqlCommand cmd = new SqlCommand(insertInvoiceQuery, clsConnectDB.conn))
                         {
                             cmd.Parameters.AddWithValue("@cusId", this.cusId);
+                            cmd.Parameters.AddWithValue("@screeningRoomId", selectedScreeningRoomId); 
                             cmd.Parameters.AddWithValue("@filmId", this.filmId);
                             cmd.Parameters.AddWithValue("@seatId", seatId);
                             cmd.Parameters.AddWithValue("@cinemaId", this.cinemaId);
@@ -207,7 +232,6 @@ namespace Project.NET
                             cmd.ExecuteNonQuery();
                         }
 
-                        // Cập nhật trạng thái ghế
                         string updateSeatQuery = "UPDATE Seat SET seat_status = 1 WHERE seat_id = @seatId";
                         using (SqlCommand updateCmd = new SqlCommand(updateSeatQuery, clsConnectDB.conn))
                         {
@@ -218,13 +242,15 @@ namespace Project.NET
                 }
 
                 MessageBox.Show("Đặt vé thành công!");
-                LoadSeats(); // Cập nhật lại giao diện ghế
+                LoadSeats(); 
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi đặt ghế: " + ex.Message);
             }
         }
+
+
 
     }
 }

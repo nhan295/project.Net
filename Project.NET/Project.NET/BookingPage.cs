@@ -12,7 +12,7 @@ namespace Project.NET
         private int filmId;
         private string filmTitle;
         private Button selectedButton = null;
-        private List<Button> timeButtons = new List<Button>(); // Danh sách button suất chiếu
+        private List<Button> timeButtons = new List<Button>(); 
 
         public BookingPage(int filmId, string filmTitle)
         {
@@ -24,21 +24,16 @@ namespace Project.NET
             DefaultDay();
             UpdateDay();
             clsConnectDB.OpenConnection();
-            LoadCinemaList(); // Tải danh sách rạp
+            LoadCinemaList(); 
             cbCinema.SelectedIndexChanged += cbCinema_SelectedIndexChanged;
         }
 
-
-
-
-
-        // Chổ này là show cái drop box các rạp phim làm sao để người ta chọn index theo kiểu drop các rạp rồi chọn rạp mới ra giờ
         private void LoadCinemaList()
         {
             clsConnectDB.OpenConnection();
             string query = @"SELECT DISTINCT c.cinema_id, c.cinema_name 
                  FROM Cinema c
-                 INNER JOIN movieCinema mc ON c.cinema_id = mc.cinema_id
+                 INNER JOIN MovieCinema mc ON c.cinema_id = mc.cinema_id
                  WHERE mc.film_id = @filmId";
 
             using (SqlCommand com = new SqlCommand(query, clsConnectDB.conn))

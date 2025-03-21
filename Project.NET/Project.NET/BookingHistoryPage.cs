@@ -52,7 +52,7 @@ namespace Project.NET
                 cmd.Parameters.AddWithValue("@cus_id", cusId);
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    flowLayoutPanel1.Controls.Clear(); // Xóa danh sách cũ trước khi load mới
+                    flowLayoutPanel1.Controls.Clear();
 
                     while (reader.Read())
                     {
