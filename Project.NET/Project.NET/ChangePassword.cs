@@ -66,7 +66,7 @@ namespace Project.NET
                     // Gọi stored procedure và xử lý kết quả trả về
                     SqlCommand cmd = new SqlCommand("ChangeUserPassword", clsConnectDB.conn);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@cus_id", userId);
+                    cmd.Parameters.AddWithValue("@UserId", userId);
                     cmd.Parameters.AddWithValue("@new_pwd", newPassword);
 
                     // Đọc kết quả trả về từ stored procedure
