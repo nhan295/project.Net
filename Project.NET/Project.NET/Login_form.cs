@@ -50,8 +50,9 @@ namespace Project.NET
                     if (reader.Read())
                     {
                         clsSession.CusId = reader.GetInt32(0);
+                        clsSession.CusName = reader.GetString(1);
 
-                        //MessageBox.Show("Customer ID: " + clsSession.CusId, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //MessageBox.Show("Customer ID: " + clsSession.CusName, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
                     //MessageBox.Show("Dang nhap thanh cong", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
