@@ -33,7 +33,7 @@ namespace Project.NET
 
         private Label totalPriceLabel = new Label
         {
-            Font = new Font("Arial", 12, FontStyle.Bold),
+            Font = new Font("Arial", 10, FontStyle.Bold),
             ForeColor = Color.Red,
             AutoSize = true
         };
@@ -58,7 +58,7 @@ namespace Project.NET
                 Label priceLabel = new Label
                 {
                     Text = $"Price: {ticketPrice:N0} VND / seat",
-                    Font = new Font("Arial", 12, FontStyle.Bold),
+                    Font = new Font("Arial", 10, FontStyle.Bold),
                     ForeColor = Color.SkyBlue,
                     AutoSize = true
                 };

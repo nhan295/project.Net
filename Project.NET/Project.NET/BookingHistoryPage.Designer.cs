@@ -37,7 +37,7 @@
             lblTitle.Font = new Font("Arial", 16F, FontStyle.Bold);
             lblTitle.Location = new Point(20, 20);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(97, 26);
+            lblTitle.Size = new Size(125, 32);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Booking";
             // 
@@ -47,18 +47,18 @@
             btnUpcoming.Name = "btnUpcoming";
             btnUpcoming.Size = new Size(150, 40);
             btnUpcoming.TabIndex = 1;
-            btnUpcoming.Text = "Phim đã đặt";
+            btnUpcoming.Text = "Booked Movies";
             btnUpcoming.Click += btnUpcoming_Click;
             // 
             // lblNote
             // 
             lblNote.AutoSize = true;
-            lblNote.Font = new Font("Arial", 10F, FontStyle.Italic);
-            lblNote.Location = new Point(20, 420);
+            lblNote.Font = new Font("Arial", 8F, FontStyle.Italic);
+            lblNote.Location = new Point(2, 428);
             lblNote.Name = "lblNote";
-            lblNote.Size = new Size(508, 16);
+            lblNote.Size = new Size(635, 16);
             lblNote.TabIndex = 5;
-            lblNote.Text = "Chỉ hiển thị giao dịch trong vòng 3 tháng gần nhất, vui lòng liên hệ 0909009099";
+            lblNote.Text = "Only transactions from the last 3 months are displayed. For assistance, please contact 0909009099";
             // 
             // flowLayoutPanel1
             // 
