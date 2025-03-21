@@ -116,12 +116,11 @@ SELECT showtime_id, show_time FROM Showtimes
 
 -- Chèn dữ liệu vào bảng Cinema
 INSERT INTO Cinema (cinema_name, location) VALUES
-('CGV Sense City', 'Lầu 3, Sense City 1, Đại Lộ Hòa Bình, Q. Ninh Kiều, Tp. Cần Thơ'),
-('CGV Vincom Hùng Vương', 'Vincom Hùng Vương, 02 Hùng Vương, Q. Ninh Kiều, Tp. Cần Thơ'),
-('CGV Vincom Xuân Khánh', 'Tầng 5, Tòa nhà 209, Đường 30/04, Phường Xuân Khánh, Quận Ninh Kiều, Tp. Cần Thơ'),
-('Lotte Cần Thơ', 'Big C, Lô số 1, KDC Hưng Phú 1, P. Hưng Phú, Q. Cái Răng, Tp. Cần Thơ'),
-('BLotte Ninh Kiều', 'Tầng 3, Lotte Mart Cần Thơ, số 84 đường Mậu Thân, P. An Hòa, Q. Ninh Kiều, Tp. Cần Thơ.')
-
+(N'CGV Sense City', N'Lầu 3, Sense City 1, Đại Lộ Hòa Bình, Q. Ninh Kiều, Tp. Cần Thơ'),
+(N'CGV Vincom Hùng Vương', N'Vincom Hùng Vương, 02 Hùng Vương, Q. Ninh Kiều, Tp. Cần Thơ'),
+(N'CGV Vincom Xuân Khánh', N'Tầng 5, Tòa nhà 209, Đường 30/04, Phường Xuân Khánh, Quận Ninh Kiều, Tp. Cần Thơ'),
+(N'Lotte Cần Thơ', N'Big C, Lô số 1, KDC Hưng Phú 1, P. Hưng Phú, Q. Cái Răng, Tp. Cần Thơ'),
+(N'Lotte Ninh Kiều', N'Tầng 3, Lotte Mart Cần Thơ, số 84 đường Mậu Thân, P. An Hòa, Q. Ninh Kiều, Tp. Cần Thơ.');
 
 
 -- Chèn dữ liệu vào bảng Genre
