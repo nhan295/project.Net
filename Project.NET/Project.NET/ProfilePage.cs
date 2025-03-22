@@ -38,7 +38,7 @@ namespace ProfilePageApp
                     p5.Value = dtpBirthday.Value.Date;
                 else
                 {
-                    MessageBox.Show("Vui long chon ngay sinh hop le", "Invalid data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Please select a valid date of birth", "Invalid data", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 

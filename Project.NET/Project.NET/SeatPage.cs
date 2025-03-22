@@ -75,7 +75,7 @@ namespace Project.NET
 
                     if (result == null)
                     {
-                        MessageBox.Show("Không có phòng chiếu nào cho suất này!");
+                        MessageBox.Show("There are no screening rooms available for this show!");
                         return;
                     }
 
@@ -105,7 +105,7 @@ namespace Project.NET
 
                     if (seatData.Count == 0)
                     {
-                        MessageBox.Show("Không tìm thấy ghế trong phòng này!");
+                        MessageBox.Show("No seats found in this room!");
                         return;
                     }
 
@@ -153,7 +153,7 @@ namespace Project.NET
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi tải ghế: " + ex.Message);
+                MessageBox.Show("Error loading seat: " + ex.Message);
             }
         }
 
@@ -203,7 +203,7 @@ namespace Project.NET
 
             if (selectedSeats.Count == 0)
             {
-                MessageBox.Show("Vui lòng chọn ít nhất một ghế!");
+                MessageBox.Show("Please select at least one seat!");
                 return;
             }
 
@@ -252,12 +252,12 @@ namespace Project.NET
                     }
                 }
 
-                MessageBox.Show("Đặt vé thành công!");
+                MessageBox.Show("Ticket booking successful!");
                 LoadSeats();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi đặt ghế: " + ex.Message);
+                MessageBox.Show("Error when placing chairs: " + ex.Message);
             }
         }
 
@@ -283,7 +283,7 @@ namespace Project.NET
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi lấy giá vé: " + ex.Message);
+                MessageBox.Show("Error getting ticket price: " + ex.Message);
             }
 
             return price;
