@@ -44,7 +44,7 @@ namespace Project.NET
 
             if (newPassword != confirmPassword)
             {
-                MessageBox.Show("Mật khẩu mới không khớp!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("New password does not match!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -78,11 +78,11 @@ namespace Project.NET
 
                         if (success == 1)
                         {
-                            MessageBox.Show("Đổi mật khẩu thành công!", "Thông báo");
+                            MessageBox.Show("Password changed successfully!", "Notification");
                         }
                         else
                         {
-                            MessageBox.Show("Không thể đổi mật khẩu!", "Lỗi");
+                            MessageBox.Show("Unable to change password!", "Error");
                         }
                     }
 
@@ -91,12 +91,12 @@ namespace Project.NET
                 else
                 {
                     reader.Close();
-                    MessageBox.Show("Mật khẩu hiện tại không đúng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Current password is incorrect!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi");
+                MessageBox.Show("Error: " + ex.Message, "Error");
             }
             finally
             {
