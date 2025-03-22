@@ -75,30 +75,30 @@ namespace Project.NET
             string errors = "";
 
             // Validate cho tên
-            if (string.IsNullOrWhiteSpace(name)) errors += "Vui lòng nhập tên.\n";
+            if (string.IsNullOrWhiteSpace(name)) errors += "Please enter a name.\n";
 
             // Validate cho số điện thoại
-            if (string.IsNullOrWhiteSpace(phoneNumber)) errors += "Vui lòng nhập số điện thoại.\n";
-            else if (!Regex.IsMatch(phoneNumber, @"^0\d{9,10}$")) { errors += "Vui lòng nhập đúng định dạng số điện thoại.\n"; }
+            if (string.IsNullOrWhiteSpace(phoneNumber)) errors += "Please enter phone number.\n";
+            else if (!Regex.IsMatch(phoneNumber, @"^0\d{9,10}$")) { errors += "Please enter correct phone number format.\n"; }
 
             // Validate cho email
-            if (string.IsNullOrWhiteSpace(email)) errors += "Vui lòng nhập email.\n";
-            else if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$")) { errors += "Vui lòng nhập đúng định dạng email.\n"; }
+            if (string.IsNullOrWhiteSpace(email)) errors += "Please enter email.\n";
+            else if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$")) { errors += "Please enter correct email format.\n"; }
 
             // Validate cho address
-            if (string.IsNullOrWhiteSpace(address)) errors += "Vui lòng chọn địa chỉ.\n";
+            if (string.IsNullOrWhiteSpace(address)) errors += "Please select address.\n";
 
             // Validate cho password va confirmPassword
-            if (string.IsNullOrWhiteSpace(password)) errors += "Vui lòng nhập mật khẩu.\n";
-            else if (password.Length < 6) { errors += "Mật khẩu cần ít nhất 6 kí tự.\n"; }
+            if (string.IsNullOrWhiteSpace(password)) errors += "Please enter password.\n";
+            else if (password.Length < 6) { errors += "Password must be at least 6 characters.\n"; }
 
-            if (string.IsNullOrWhiteSpace(confirmPassword)) errors += "Vui lòng xác nhận mật khẩu.\n";
-            else if (password != confirmPassword) { errors += "Mật khẩu không khớp.\n"; }
+            if (string.IsNullOrWhiteSpace(confirmPassword)) errors += "Please confirm password.\n";
+            else if (password != confirmPassword) { errors += "Passwords do not match.\n"; }
 
             // Hiển thị lỗi
             if (!string.IsNullOrEmpty(errors))
             {
-                MessageBox.Show(errors, "Lỗi đăng ký", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(errors, "Registration error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             else
@@ -156,7 +156,7 @@ namespace Project.NET
                     {
                         clsSession.CusId = userId;
                         clsSession.CusName =name;
-                        MessageBox.Show("Đăng ký thành công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Registered successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Hide();
                         HomePage home = new HomePage();
                         home.ShowDialog();
@@ -164,7 +164,7 @@ namespace Project.NET
                     }
                     else
                     {
-                        MessageBox.Show("Tài khoản đã tồn tại", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Account already exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         clsConnectDB.CloseConnection();
                     }
                 }

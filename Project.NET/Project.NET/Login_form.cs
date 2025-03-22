@@ -64,7 +64,7 @@ namespace Project.NET
                 }
                 else
                 {
-                    MessageBox.Show("Dang nhap that bai", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Wrong email or password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     clsConnectDB.CloseConnection();
                 }
             }
