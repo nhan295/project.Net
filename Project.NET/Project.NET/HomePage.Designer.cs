@@ -320,8 +320,9 @@
             sidebar.Dock = DockStyle.Left;
             sidebar.Location = new Point(0, 45);
             sidebar.Name = "sidebar";
-            sidebar.Size = new Size(114, 528);
+            sidebar.Size = new Size(0, 528);
             sidebar.TabIndex = 7;
+            sidebar.Paint += sidebar_Paint;
             // 
             // timer1
             // 
